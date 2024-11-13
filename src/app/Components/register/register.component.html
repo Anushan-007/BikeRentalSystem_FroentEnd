@@ -1,0 +1,82 @@
+
+  <div class="container mt-5" >
+    <div class="form-container">
+      <h3 class="text-center mb-4">Registration Form</h3>
+      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <!-- NIC Number -->
+          <div class="col-md-6 mb-3">
+            <label for="nicNumber">NIC Number</label>
+            <input type="text" class="form-control" id="nicNumber" formControlName="nicNumber" placeholder="Enter NIC Number" >
+          </div>
+  
+          <!-- First Name -->
+          <div class="col-md-6 mb-3">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id="firstName" formControlName="firstName" placeholder="Enter First Name" >
+          </div>
+  
+          <!-- Last Name -->
+          <div class="col-md-6 mb-3">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" id="lastName" formControlName="lastName" placeholder="Enter Last Name" >
+          </div>
+  
+          <!-- Email -->
+          <div class="col-md-6 mb-3">
+            <label for="email">Email Address</label>
+            <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter Email" >
+          </div>
+  
+          <!-- Contact Number -->
+          <div class="col-md-6 mb-3">
+            <label for="contactNo">Contact Number</label>
+            <input type="text" class="form-control" id="contactNo" formControlName="contactNo" placeholder="Enter Contact Number" >
+          </div>
+  
+          <!-- Address -->
+          <div class="col-md-12 mb-3">
+            <label for="address">Address</label>
+            <textarea class="form-control" id="address" formControlName="address" rows="3" placeholder="Enter Address" ></textarea>
+          </div>
+  
+          <!-- Password -->
+          <div class="col-md-6 mb-3">
+            <label for="passwordHash">Password</label>
+            <input type="password" class="form-control" id="passwordHash" formControlName="passwordHash" placeholder="Enter Password" >
+          </div>
+  
+          <!-- Roles -->
+          <div class="col-md-6 mb-3">
+            <label for="roles">Roles</label>
+            <select class="form-control" id="roles" formControlName="roles" >
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+              <option value="admin">Manager</option>
+            </select>
+          </div>
+  
+          <!-- Username -->
+          <div class="col-md-6 mb-3">
+            <label for="userName">Username</label>
+            <input type="text" class="form-control" id="userName" formControlName="userName" placeholder="Enter Username" >
+          </div>
+  
+          <!-- Profile Image -->
+          <div class="col-md-12 mb-3">
+            <label for="profileImage">Profile Image</label>
+            <input type="file" class="form-control" id="profileImage" (change)="onImageSelected($event)" >
+            <div *ngIf="imagePreview" class="mt-2">
+              <img [src]="imagePreview" alt="Profile Image" class="profile-img">
+            </div>
+          </div>
+  
+          <!-- Submit Button -->
+          <div class="col-md-12 mb-3">
+            <button type="submit" class="btn btn-primary" [disabled]="!registrationForm.valid">Register</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  
