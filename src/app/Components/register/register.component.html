@@ -2,14 +2,20 @@
   <div class="container mt-5" >
     <div class="form-container">
       <h3 class="text-center mb-4">Registration Form</h3>
-      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="registrationForm" >
         <div class="row">
           <!-- NIC Number -->
           <div class="col-md-6 mb-3">
             <label for="nicNumber">NIC Number</label>
             <input type="text" class="form-control" id="nicNumber" formControlName="nicNumber" placeholder="Enter NIC Number" >
           </div>
-  
+
+           <!-- Email -->
+           <div class="col-md-6 mb-3">
+            <label for="email">Email Address</label>
+            <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter Email" >
+          </div>
+
           <!-- First Name -->
           <div class="col-md-6 mb-3">
             <label for="firstName">First Name</label>
@@ -22,11 +28,7 @@
             <input type="text" class="form-control" id="lastName" formControlName="lastName" placeholder="Enter Last Name" >
           </div>
   
-          <!-- Email -->
-          <div class="col-md-6 mb-3">
-            <label for="email">Email Address</label>
-            <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter Email" >
-          </div>
+         
   
           <!-- Contact Number -->
           <div class="col-md-6 mb-3">
@@ -65,7 +67,7 @@
           <!-- Profile Image -->
           <div class="col-md-12 mb-3">
             <label for="profileImage">Profile Image</label>
-            <input type="file" class="form-control" id="profileImage" (change)="onImageSelected($event)" >
+            <input type="file" class="form-control" id="profileImage" (change)="onImageSelected($event)" formControlName="profileImage">
             <div *ngIf="imagePreview" class="mt-2">
               <img [src]="imagePreview" alt="Profile Image" class="profile-img">
             </div>
@@ -73,10 +75,12 @@
   
           <!-- Submit Button -->
           <div class="col-md-12 mb-3">
-            <button type="submit" class="btn btn-primary" [disabled]="!registrationForm.valid">Register</button>
+            <button type="submit" class="btn btn-primary"  (click)="onSubmit(registrationForm)">Register</button>
           </div>
         </div>
       </form>
     </div>
   </div>
   
+
+  <!-- [disabled]="!registrationForm.valid" -->
