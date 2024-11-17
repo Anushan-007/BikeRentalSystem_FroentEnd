@@ -1,1 +1,33 @@
+
+<div class="container mt-5" >
+    <div class="form-container">
+      <h3 class="text-center mb-4">Login Form</h3>
+      <form [formGroup]="loginForm" >
+        <div class="row">
+
+          <!-- Username -->
+          <div class="col-md-6 mb-3">
+            <label for="userName">Username</label>
+            <input type="text" class="form-control" id="userName" formControlName="userName" placeholder="Enter Username" >
+          </div>
+
+         <!-- Password -->
+         <div class="col-md-6 mb-3">
+            <label for="passwordHash">Password</label>
+            <input type="password" class="form-control" id="passwordHash" formControlName="passwordHash" placeholder="Enter Password" >
+          </div>           
+  
+          <!-- Submit Button -->
+          <div class="col-md-12 mb-3">
+            <button type="submit" class="btn btn-primary"  (click)="onSubmit(loginForm)">Register</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+
+  <!-- [disabled]="!registrationForm.valid" -->
+
+
 <p [routerLink]="['/register']">Create new account</p>
