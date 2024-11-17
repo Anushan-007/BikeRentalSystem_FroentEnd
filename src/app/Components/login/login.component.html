@@ -8,19 +8,24 @@
           <!-- Username -->
           <div class="col-md-6 mb-3">
             <label for="userName">Username</label>
-            <input type="text" class="form-control" id="userName" formControlName="userName" placeholder="Enter Username" >
+            <input type="text" class="form-control" id="userName" formControlName="UserName" placeholder="Enter Username" >
           </div>
 
          <!-- Password -->
          <div class="col-md-6 mb-3">
             <label for="passwordHash">Password</label>
-            <input type="password" class="form-control" id="passwordHash" formControlName="passwordHash" placeholder="Enter Password" >
+            <input type="password" class="form-control" id="passwordHash" formControlName="Password" placeholder="Enter Password" >
           </div>           
   
           <!-- Submit Button -->
           <div class="col-md-12 mb-3">
-            <button type="submit" class="btn btn-primary"  (click)="onSubmit(loginForm)">Register</button>
+            <button type="submit" class="btn btn-primary"  (click)="onSubmit()">Register</button>
           </div>
+
+          <div class="col-md-12 mb-3 ">
+            <p [routerLink]="['/register']" >Create new account</p>
+          </div>
+
         </div>
       </form>
     </div>
@@ -30,4 +35,3 @@
   <!-- [disabled]="!registrationForm.valid" -->
 
 
-<p [routerLink]="['/register']">Create new account</p>

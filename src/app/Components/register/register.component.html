@@ -45,16 +45,16 @@
           <!-- Password -->
           <div class="col-md-6 mb-3">
             <label for="passwordHash">Password</label>
-            <input type="password" class="form-control" id="passwordHash" formControlName="passwordHash" placeholder="Enter Password" >
+            <input type="password" class="form-control" id="passwordHash" formControlName="password" placeholder="Enter Password" >
           </div>
   
           <!-- Roles -->
           <div class="col-md-6 mb-3">
             <label for="roles">Roles</label>
             <select class="form-control" id="roles" formControlName="roles" >
-              <option value="user">User</option>
-              <option value="admin">Admin</option>
-              <option value="admin">Manager</option>
+              <option value=1>Admin</option>
+              <option value=2>Manager</option>
+              <option value=3>User</option>
             </select>
           </div>
   
@@ -76,6 +76,10 @@
           <!-- Submit Button -->
           <div class="col-md-12 mb-3">
             <button type="submit" class="btn btn-primary"  (click)="onSubmit(registrationForm)">Register</button>
+          </div>
+
+          <div class="col-md-12 mb-3" >
+            <p [routerLink]="['/login']" >I am Already member</p>
           </div>
         </div>
       </form>
