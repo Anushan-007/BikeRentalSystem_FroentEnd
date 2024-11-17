@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
@@ -6,7 +7,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, BsDatepickerModule, RouterLink],
+  imports: [RouterOutlet, BsDatepickerModule, RouterLink, CommonModule],
   // providers: [
   //   provideAnimations(),
   //   provideToastr()
@@ -16,4 +17,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 })
 export class AppComponent {
   title = 'StanAloneProject';
+
+
+
 }
