@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit{
       lastName: ['', [Validators.required]],
       contactNo: ['', [Validators.required, Validators.minLength(10),Validators.maxLength(10)]],
       address: ['', [Validators.required]],
-      passwordHash: ['', [Validators.required]],
+      password: ['', [Validators.required]],
       roles: ['user', [Validators.required]],
       userName: ['', [Validators.required]],
       profileImage: [null, []]
@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit{
 onSubmit(registrationForm:any){
   if (this.registrationForm.valid) {
     const user = this.registrationForm.value;
-    
+    this.registrationForm.value.roles = parseInt(registrationForm.value.roles)
     this.registerService.AddRegisterUser(user).subscribe(data => {
       this.toaster.success("Sign Up Successfully", "Sign Up")
      console.log(data);

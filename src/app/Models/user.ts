@@ -6,7 +6,7 @@ export class user{
 
     ContactNo:string;
     Address:string;
-    PasswordHash:string;
+    password:string;
     roles:any;
     UserName:string;
     ProfileImage?:string;
@@ -19,7 +19,7 @@ export class user{
 
         this.ContactNo = obj.ContactNo != null ? obj.ContactNo : null;
         this.Address = obj.Address != null ? obj.Address : null;
-        this.PasswordHash = obj.PasswordHash != null ? obj.PasswordHash : null;
+        this.password = obj.Password != null ? obj.Password : null;
         this.roles = obj.roles != null ? obj.roles : null;
         this.UserName = obj.UserName != null ? obj.UserName : null;
         this.ProfileImage = obj.ProfileImage != null ? obj.ProfileImage : null;
