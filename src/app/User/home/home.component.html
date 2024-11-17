@@ -51,16 +51,16 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <p class="nav-link active" aria-current="page" >Home</p>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" [routerLink]="['/user/bikes']">Bikes</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" aria-disabled="true">Disabled</a>
         </li>
       </ul>
-      <button [routerLink]="['admin']">Admin</button>
+      <button [routerLink]="['/admin/']">Admin</button>
       <form class="d-flex" role="search">
        
         <div class="text-end">
@@ -76,45 +76,52 @@
 
 <main class="mt-4 " >
 
-<div id="myCarousel" class="carousel slide mb-6 mt-5" data-bs-ride="carousel" >
+
+<div id="myCarousel" class="carousel slide mb-6 mt-5" data-bs-ride="carousel">
+  <!-- Carousel Indicators -->
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
     <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
+
+  <!-- Carousel Inner -->
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
+    <!-- First Slide -->
+    <div class="carousel-item active" [ngStyle]="{'background-image': 'url(' + imageUrl + ')'}">
       <div class="container">
         <div class="carousel-caption text-start">
-          <h1><i class="bi bi-hand-thumbs-up-fill"></i>100% Trusted bike rental platform in Sri Lanka</h1>
+          <h1><i class="bi bi-hand-thumbs-up-fill"></i> 100% Trusted bike rental platform in Sri Lanka</h1>
           <p class="opacity-75">Dream Bike for Rent</p>
-          <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+          <p class="btn btn-lg btn-primary" id="home-btn">Sign up today</p>
         </div>
       </div>
     </div>
-    <div class="carousel-item">
-      <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
+
+    <!-- Second Slide -->
+    <div class="carousel-item" [ngStyle]="{'background-image': 'url(' + imageUrl1 + ')'}">
       <div class="container">
         <div class="carousel-caption">
-          <h1>Another example headline.</h1>
-          <p>Some representative placeholder content for the second slide of the carousel.</p>
-          <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+          <h1> Choose the Bike</h1>
+          <p>Safety and Maintaince</p>
+          <p class="btn btn-lg btn-primary">Customer Review</p>
         </div>
       </div>
     </div>
-    <div class="carousel-item">
-      <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
+
+    <!-- Third Slide -->
+    <div class="carousel-item" [ngStyle]="{'background-image': 'url(' + imageUrl2 + ')'}">
       <div class="container">
         <div class="carousel-caption text-end">
-          <h1>One more for good measure.</h1>
-          <p>Some representative placeholder content for the third slide of this carousel.</p>
-          <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+          <h1>Ready to get started?</h1>
+          <p>Simply sign up, select a bike, and start pedaling!</p>
+            <p class="btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#contactModal">Contact Us</p>
         </div>
       </div>
     </div>
   </div>
-  
+
+  <!-- Carousel Controls -->
   <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
@@ -127,7 +134,48 @@
 
 
 
+<!-- contact modal -->
+  <!-- Modal -->
+  <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Contact Us</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Thank you for choosing [Your Bike Rental Service Name]! We're here to 
+            make your biking experience as smooth and enjoyable as possible. Whether you have a question, need assistance, or want to share your feedback,
+             we’d love to hear from you!</p>
+             
+             <ul class="list-unstyled">
+              <li><h3>How Can We Help?</h3></li>
+      
+              <li>
+                <ul>
+                  <li>Rental Inquiries: Need information about available bikes, pricing, or booking options?</li>
+                  <li>Support: Have a problem with your bike or need assistance with our system?</li>
+                  <li>Feedback: Tell us how we’re doing or share your thoughts to help us improve..</li>
+                </ul>
+              </li>
+            </ul>
 
+            <h3>Get in Touch</h3>
+            <p>You can reach us in any of the following ways:</p>
+            <h4><i class="bi bi-envelope-open-fill"></i>Email: sample*gmail.com</h4>
+            <h4><i class="bi bi-telephone"></i>Phone: [00000000]</h4>
+            <h4><i class="bi bi-house-up"></i>Address: [Your Address, City, Zip Code]</h4>
+
+        </div>
+
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 <!-- Marketing messaging and featurettes
@@ -249,3 +297,61 @@
   </footer>
 
 </main>
+
+
+
+
+
+
+
+
+
+
+<!-- <div id="myCarousel" class="carousel slide mb-6 mt-5" data-bs-ride="carousel" >
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
+      <div class="container">
+        <div class="carousel-caption text-start">
+          <h1><i class="bi bi-hand-thumbs-up-fill"></i>100% Trusted bike rental platform in Sri Lanka</h1>
+          <p class="opacity-75">Dream Bike for Rent</p>
+          <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>Another example headline.</h1>
+          <p>Some representative placeholder content for the second slide of the carousel.</p>
+          <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
+      <div class="container">
+        <div class="carousel-caption text-end">
+          <h1>One more for good measure.</h1>
+          <p>Some representative placeholder content for the third slide of this carousel.</p>
+          <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div> -->
