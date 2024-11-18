@@ -1,97 +1,90 @@
-<header class="p-3 text-bg-dark">
-    <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+<div class="d-flex">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <h2>Admin Dashboard</h2>
+    </div>
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link active" [routerLink]="['/admin']" >
+          <i class="bi bi-house-door"></i> Home
         </a>
-  
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-         <li>
-          <img src="https://thumbs.dreamstime.com/z/admin-icon-trendy-design-style-isolated-white-background-vector-simple-modern-flat-symbol-web-site-mobile-logo-app-135742404.jpg"  class="rounded mx-2 " alt="" width="100px">
-         </li>
-         <li>
-          <h5>
-            Admin Dashboard
-          </h5>
-         
-         </li>
-        </ul>
-  
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-          <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
-        </form>
-  
-        <!-- <div class="text-end">
-          <button type="button" class="btn btn-outline-light me-2" [routerLink]="['login']">Login</button>
-          <button type="button" class="btn btn-warning" [routerLink]="['register']">Sign-up</button>
-        </div> -->
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/admin/bikeTable']" >
+          <i class="bi bi-bicycle"></i> Inventory
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="bi bi-cart-check"></i> Customers
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="bi bi-person-circle"></i> Rentals
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="bi bi-person-circle"></i> Reports
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="bi bi-box-arrow-right"></i> Logout
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content w-100">
+    <!-- Top Bar -->
+    <nav class="navbar navbar-expand-lg top-bar">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Admin</a>
+        <button class="btn btn-link d-lg-none" (click)="toggleSidebar()">
+          <i class="bi bi-list"></i>
+        </button>
       </div>
-    </div>
-  </header>
-  
-  
-  
-  
-  
-  <main class="d-flex flex-nowrap">
-  <h1 class="visually-hidden">Sidebars examples</h1>
-  
-  <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
-  <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-    <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-    <span class="fs-4">Admin Dashboard</span>
-  </a>
-  <hr>
-  <!-- <ul class="nav nav-pills flex-column mb-auto">
-    <li class="nav-item">
-      <a href="#" class="nav-link active" aria-current="page">
-        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-        Home
-      </a>
-    </li>
-    <li>
-      <a class="nav-link text-white" [routerLink]="['list-task']">
-        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-        Tasks
-      </a>
-    </li> 
-  <li>
-      <a href="" class="nav-link text-white" [routerLink]="['user-list']">
-        <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-        Users
-      </a>  
-    </li>
-  
-  </ul> -->
-  
-  
-  <div class="row ">
-    <div class="col-4 ">
-      <div class="list-group text-bg-dark" id="list-tab" role="tablist">
-        <a class="list-group-item list-group-item-action active text-bg-dark" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home" >Home</a>
-        <a class="list-group-item list-group-item-action text-bg-dark" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="list-profile" >Add Bike</a>
-        <a class="list-group-item list-group-item-action text-bg-dark" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab" aria-controls="list-messages" >View Bike Details</a>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Total Bikes</h5>
+              <p class="card-text">120 bikes available</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Bookings</h5>
+              <p class="card-text">30 active bookings</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Revenue</h5>
+              <p class="card-text">$3500 this month</p>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="col-8">
-      <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list"></div>
-        <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list"></div>
-        <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list"></div>
-      </div>
+
+
+      <!-- Bike Details Table -->
+      <!-- <app-bike-table></app-bike-table> -->
+      <router-outlet></router-outlet>
+
+
     </div>
   </div>
-  
-  <hr>
-  
-  </div>
-  <div class="b-example-divider b-example-vr"></div>
-  
-  
- 
-  
-  
-  </main>
-  
-  
-  
+</div>
