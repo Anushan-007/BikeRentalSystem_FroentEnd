@@ -6,12 +6,14 @@ import { HomeComponent } from './User/home/home.component';
 import { BlankLayoutComponent } from './Components/blank-layout/blank-layout.component';
 import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
+import { BikeTableComponent } from './AdminDashBoard/bike-table/bike-table.component';
+
 
 export const routes: Routes = [
     {path:'admin', 
     component:DashBoardComponent,
     children:[
-        
+      {path:'bikeTable', component:BikeTableComponent}
     ]
     },
 

@@ -11,7 +11,7 @@
   }
 
 
-  #home-btn{
+  .home-btn{
     padding: 17px 40px;
   border-radius: 50px;
   cursor: pointer;
@@ -27,7 +27,7 @@
   }
 
 
-  #home-btn:hover{
+  .home-btn:hover{
     letter-spacing: 3px;
   background-color: hsl(261deg 80% 48%);
   color: hsl(0, 0%, 100%);
@@ -35,7 +35,7 @@
   }
 
 
-  #home-btn:active{
+  .home-btn:active{
     letter-spacing: 3px;
     background-color: hsl(261deg 80% 48%);
     color: hsl(0, 0%, 100%);
@@ -43,3 +43,75 @@
     transform: translateY(10px);
     transition: 100ms;
   }
+
+
+  /* Ensure the modal content has a nice padding */
+.modal-content {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for the modal header */
+.modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Title styling */
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Styling for the modal body */
+.modal-body {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* Contact info section */
+.contact-info h4 {
+  font-size: 1.1rem;
+  margin: 10px 0;
+}
+
+.contact-info i {
+  color: #007bff;
+  margin-right: 10px;
+}
+
+/* Style for social media icons */
+.social-icon i {
+  font-size: 1.5rem;
+  color: #007bff;
+  transition: color 0.3s ease;
+}
+
+.social-icon:hover i {
+  color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .modal-dialog {
+    max-width: 100%;
+    margin: 15px;
+  }
+
+  .modal-title {
+    font-size: 1.2rem;
+  }
+
+  .modal-body {
+    font-size: 1rem;
+  }
+
+  .contact-info h4 {
+    font-size: 1rem;
+  }
+
+  .social-icon i {
+    font-size: 1.2rem;
+  }
+}
