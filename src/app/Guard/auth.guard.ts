@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, CanActivateFn, Router } from '@angular/router';
+import {  CanActivate,  Router,  } from '@angular/router';
 import { UserRegisterService } from '../Services/user-register.service';
+
 
 @Injectable({
   providedIn:'root'
@@ -16,11 +17,12 @@ export class AuthGuard implements CanActivate {
   if (this.registerService.isLoggedIn()) { 
   return true; 
   } else { 
-  this.router.navigate(['/admin']); 
+  this.router.navigate(['/login']); 
   return false; 
   } 
   }
 
+
   
-  }
+}
   
