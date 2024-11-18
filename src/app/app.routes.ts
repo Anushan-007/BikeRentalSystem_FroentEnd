@@ -7,11 +7,13 @@ import { BlankLayoutComponent } from './Components/blank-layout/blank-layout.com
 import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { BikeTableComponent } from './AdminDashBoard/bike-table/bike-table.component';
+import { AuthGuard } from './Guard/auth.guard';
 
 
 export const routes: Routes = [
     {path:'admin', 
     component:DashBoardComponent,
+    canActivate: [AuthGuard], data: { role: 'Admin' },
     children:[
       {path:'bikeTable', component:BikeTableComponent}
     ]
@@ -20,6 +22,7 @@ export const routes: Routes = [
 
     {path:'user',
      component:HomeComponent,
+     canActivate: [AuthGuard], data: { role: 'User' },
      children:[
         {path:'bikes', component:BikesComponent},
         {path:'bikeDetails', component:BikesDetailsComponent},

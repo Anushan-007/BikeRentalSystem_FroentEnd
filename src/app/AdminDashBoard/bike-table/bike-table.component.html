@@ -9,20 +9,13 @@
           <th>Rate per Hour</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>John Doe</td>
-          <td>Mountain Bike</td>
-          <td>2024-11-18</td>
-          <td>454</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jane Smith</td>
-          <td>Road Bike</td>
-          <td>2024-11-17</td>
-          <td>445</td>
+      <tbody *ngFor="let item of bikes">
+        <tr >
+          <td>{{item.id}}</td>
+          <td>{{item.brand}}</td>
+          <td>{{item.model}}</td>
+          <td>{{item.type}}</td>
+          <td>{{item.ratePerHour}}</td>
         </tr>
       </tbody>
     </table>

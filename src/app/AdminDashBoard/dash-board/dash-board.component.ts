@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BikeTableComponent } from '../bike-table/bike-table.component';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-dash-board',
@@ -11,9 +11,19 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class DashBoardComponent {
 
+  constructor(private router:Router){
+
+  }
+
   toggleSidebar() {
     const sidebar = document.querySelector('.sidebar');
     sidebar?.classList.toggle('active');
+  }
+
+
+  logOut(){
+    localStorage.clear();
+    this.router.navigate(['/login'])
   }
 
 }

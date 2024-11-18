@@ -174,3 +174,37 @@
     background-color: #e9ecef;
   }
   
+
+
+  .scrolling-heading {
+    display: inline-block;
+    white-space: nowrap;
+    font-size: 48px; /* Large text size */
+    font-weight: bold;
+    color: #fff; /* White text color */
+    text-transform: uppercase; /* Uppercase for emphasis */
+    letter-spacing: 2px; /* Slight space between letters */
+    animation: scroll-left 15s linear infinite;
+    padding: 10px;
+    text-shadow: 2px 2px 4px rgba(253, 249, 249, 0.8), 0 0 25px #101111, 0 0 5px #000000; /* Neon glow effect */
+    background: linear-gradient(90deg, #020202, #0d0d0e, #0d0d0e, #0d0d0e); /* Color gradient */
+    background-size: 400% 100%; /* Smooth gradient transition */
+    -webkit-background-clip: text; /* Clips the gradient to the text */
+    color: transparent; /* Makes the text transparent so gradient shows */
+}
+
+/* Keyframe animation for scrolling effect */
+@keyframes scroll-left {
+    0% {
+        transform: translateX(100%); /* Start off-screen to the right */
+    }
+    100% {
+        transform: translateX(-100%); /* End off-screen to the left */
+    }
+}
+
+/* Optional: Add some padding around the heading to make it stand out more */
+.scrolling-heading-container {
+    overflow: hidden; /* Prevents the text from overflowing outside the viewport */
+    padding: 20px;
+}

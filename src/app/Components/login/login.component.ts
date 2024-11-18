@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-
+  
 
   onSubmit(){
 
@@ -54,6 +54,5 @@ export class LoginComponent implements OnInit {
 }
 
 
+
 }
-
-

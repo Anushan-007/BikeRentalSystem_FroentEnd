@@ -2,16 +2,20 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { user } from '../Models/user';
 import { Login } from '../Models/login';
+import { jwtDecode } from "jwt-decode";
+import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserRegisterService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private router:Router) { }
 
   userRegisterURL = 'http://localhost:5268/api/User/userRegister';
   userLoginURL = 'http://localhost:5268/api/User/login';
+  
 
   AddRegisterUser(UserRegister:user){
     return this.http.post<user>(this.userRegisterURL, UserRegister)
@@ -32,8 +36,9 @@ export class UserRegisterService {
         const decoded:any = jwtDecode(token);
         console.log(decoded);
         
-        localStorage.setItem("name", decoded.userName)
-        localStorage.setItem("Role", decoded.Role)
+        localStorage.setItem("name", decoded.UserName)
+        localStorage.setItem("Role", decoded.roles)
+
       }
       return true;
     }else{
@@ -43,7 +48,6 @@ export class UserRegisterService {
 
 
 }
-function jwtDecode(token: string): any {
-  throw new Error('Function not implemented.');
-}
+
+
 
