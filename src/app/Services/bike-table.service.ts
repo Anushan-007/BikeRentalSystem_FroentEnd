@@ -12,7 +12,7 @@ export class BikeTableService {
 
 
   getAllBikeURL = 'http://localhost:5268/api/Bike/GetAllBikes';
-
+  postBikeURL = 'http://localhost:5268/api/Bike/BikeAdd';
   
   getBikes() {
     console.log(this.http.get<Bike[]>(this.getAllBikeURL));
@@ -20,4 +20,17 @@ export class BikeTableService {
     
   }
 
+
+  postBikes(bikes:Bike){
+    return this.http.post(this.postBikeURL , bikes)
+  }
+
 }
+
+
+
+
+
+
+
+
