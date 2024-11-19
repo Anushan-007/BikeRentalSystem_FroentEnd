@@ -57,6 +57,16 @@
                   <input type="text" class="form-control" placeholder="Enter the Rate per hour" aria-label="type" aria-describedby="addon-wrapping" formControlName="ratePerHour">
                 </div>
               </div>
+
+              <!-- image -->
+              <div class="modal-body">
+                <div class="input-group flex-nowrap">
+                  <span class="input-group-text" id="addon-wrapping"><i class="bi bi-cash-coin"></i></span>
+                  <input type="file" class="form-control"  aria-label="type" aria-describedby="addon-wrapping" formControlName="image" (change)="onFileSelected($event)">
+                </div>
+              </div>
+
+
         </form>
 
 
@@ -88,6 +98,8 @@
         <th>Model</th>
         <th>Type</th>
         <th>Rate per Hour</th>
+        <th>Image</th>
+
       </tr>
     </thead>
     <tbody *ngFor="let item of bikesArray">
@@ -97,6 +109,10 @@
         <td>{{ item.model }}</td>
         <td>{{ item.type }}</td>
         <td>{{ item.ratePerHour }}</td>
+        <td>
+          <img *ngIf="item.image" [src]="item.image" alt="Uploaded Bike Image" class="img-thumbnail" />
+          <span *ngIf="!item.image">No image available</span>
+        </td>
       </tr>
     </tbody>
   </table>
