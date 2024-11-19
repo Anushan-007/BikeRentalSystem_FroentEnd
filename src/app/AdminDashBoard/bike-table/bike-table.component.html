@@ -1,4 +1,112 @@
+<div class="d-flex flex-row-reverse">
+  <div class="row mt-3">
+    <div class="col">
+      <!-- Add Bike Button with Icon -->
+      <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#bikeaddModal">
+        <i class="bi bi-plus-circle"></i> Add Bike
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+  
+  <!-- Add Modal -->
+<!-- Modal -->
+<div class="modal fade" id="bikeaddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title  fs-4 fw-bold text-center text-primary" id="exampleModalLabel">
+          <i class="bi bi-bicycle me-2"></i> Add New Bikes
+        </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="row">
+        <form [formGroup]="bikeForm">
+              <!-- brand -->
+              <div class="modal-body">
+                <div class="input-group flex-nowrap">
+                  <span class="input-group-text" id="addon-wrapping"><i class="bi bi-bicycle"></i></span>
+                  <input type="text" class="form-control" placeholder="Enter the bike brand" aria-label="brand" aria-describedby="addon-wrapping" formControlName="brand">
+                </div>
+              </div>
+        
+              <!-- Modal -->
+              <div class="modal-body">
+                <div class="input-group flex-nowrap">
+                  <span class="input-group-text" id="addon-wrapping"><i class="bi bi-bicycle"></i></span>
+                  <input type="text" class="form-control" placeholder="Enter the bike modal" aria-label="modal" aria-describedby="addon-wrapping" formControlName="model">
+                </div>
+              </div>
+        
+               <!-- type -->
+              <div class="modal-body">
+                <div class="input-group flex-nowrap">
+                  <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-bounding-box"></i></span>
+                  <input type="text" class="form-control" placeholder="Enter the bike type" aria-label="type" aria-describedby="addon-wrapping" formControlName="type">
+                </div>
+              </div>
+        
+               <!-- rateperhour -->
+               <div class="modal-body">
+                <div class="input-group flex-nowrap">
+                  <span class="input-group-text" id="addon-wrapping"><i class="bi bi-cash-coin"></i></span>
+                  <input type="text" class="form-control" placeholder="Enter the Rate per hour" aria-label="type" aria-describedby="addon-wrapping" formControlName="ratePerHour">
+                </div>
+              </div>
+        </form>
+
+
+      </div>
+
+
+      <div class="modal-footer">
+        <button type="reset" class="btn btn-secondary" >Reset</button>
+        <button type="button" class="btn btn-primary shadow-lg px-4 py-2 rounded-3 text-white fw-bold 
+          transition-all duration-300 ease-in-out hover:bg-primary-dark hover:scale-105" (click)="addBike()" data-bs-dismiss="modal">
+          Save
+        </button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+  
+  
+
+
+
 <div class="table-responsive mt-4">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Brand</th>
+        <th>Model</th>
+        <th>Type</th>
+        <th>Rate per Hour</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of bikesArray">
+      <tr>
+        <td>{{ item.id }}</td>
+        <td>{{ item.brand }}</td>
+        <td>{{ item.model }}</td>
+        <td>{{ item.type }}</td>
+        <td>{{ item.ratePerHour }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
+<!-- <div class="table-responsive mt-4">
     <table class="table table-striped">
       <thead>
         <tr>
@@ -19,7 +127,7 @@
         </tr>
       </tbody>
     </table>
-  </div>
+  </div> -->
 
 
 
