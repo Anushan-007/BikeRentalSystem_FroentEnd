@@ -208,3 +208,11 @@
     overflow: hidden; /* Prevents the text from overflowing outside the viewport */
     padding: 20px;
 }
+
+
+
+.list-group-item.active {
+  background-color: #007bff !important;
+  border: solid #75d8f7 2px !important;
+  border-radius: 10px !important;
+}
