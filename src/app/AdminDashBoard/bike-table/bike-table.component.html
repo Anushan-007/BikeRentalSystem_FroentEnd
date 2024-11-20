@@ -109,8 +109,8 @@
         <td>{{ item.model }}</td>
         <td>{{ item.type }}</td>
         <td>{{ item.ratePerHour }}</td>
-        <td>
-          <img *ngIf="item.image" [src]="item.image" alt="Uploaded Bike Image" class="img-thumbnail" />
+        <td style="width: 30px; height: 20vh;">
+          <img *ngIf="item.image" [src]="'http://localhost:5268/images/'+item.image" alt="Uploaded Bike Image" class="img-thumbnail" />
           <span *ngIf="!item.image">No image available</span>
         </td>
       </tr>
