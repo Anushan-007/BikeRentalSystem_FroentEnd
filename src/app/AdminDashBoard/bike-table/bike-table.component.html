@@ -89,7 +89,7 @@
 
 
 
-<div class="table-responsive mt-4">
+<div class="table-responsive mt-4" >
   <table class="table table-striped">
     <thead>
       <tr>
@@ -97,23 +97,35 @@
         <th>Brand</th>
         <th>Model</th>
         <th>Type</th>
-        <th>Rate per Hour</th>
+        <th>Rate per Day</th>
+        <th>Registration Number</th>
         <th>Image</th>
-
       </tr>
     </thead>
     <tbody *ngFor="let item of bikesArray">
       <tr>
-        <td>{{ item.id }}</td>
+        <td>{{ item.id}}</td>
         <td>{{ item.brand }}</td>
         <td>{{ item.model }}</td>
         <td>{{ item.type }}</td>
-        <td>{{ item.ratePerHour }}</td>
-        <td style="width: 30px; height: 20vh;">
-          <img *ngIf="item.image" [src]="'http://localhost:5268/images/'+item.image" alt="Uploaded Bike Image" class="img-thumbnail" />
-          <span *ngIf="!item.image">No image available</span>
+        <div *ngFor="let unit of item.bikeUnits">
+          <td>{{ unit.rentPerDay}}</td>
+          <td>{{unit?.registrationNumber}}</td>
+        </div>
+        <div>
+          
+        </div>
+        <td>
+          <div *ngFor="let image of unit?.images">
+            <img *ngFor="let image of item.bikeUnits?.[0]?.imagepath" 
+            [src]="'http://localhost:5268/bike_images/'+image.imagePath" 
+            alt="Bike Image" 
+            width="50" height="50">
+          </div>
         </td>
+        
       </tr>
+
     </tbody>
   </table>
 </div>
@@ -148,3 +160,18 @@
 
 
   <!-- <span class="badge bg-warning">Pending</span> -->
+
+
+
+         <!-- Pagination controls -->
+  <!-- <div *ngIf="bikes.length > 0">
+    <button (click)="onPageChange(pagenumber - 1)" [disabled]="pagenumber <= 1">Previous</button>
+    <span>Page {{ pagenumber }}</span>
+    <button (click)="onPageChange(pagenumber + 1)">Next</button>
+  </div> -->
+
+
+          <!-- <td style="width: 30px; height: 20vh;">
+          <img *ngIf="item.image" [src]="'http://localhost:5268/bike-images/'+item.image" alt="Uploaded Bike Image" class="img-thumbnail" />
+          <span *ngIf="!item.image">No image available</span>
+        </td> -->
