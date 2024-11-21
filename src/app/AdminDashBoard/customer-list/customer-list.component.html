@@ -1,0 +1,53 @@
+<div class="table-responsive mt-4" >
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>NicNumber</th>
+          <th>FirstName</th>
+          <th>LastName</th>
+          <th>Email</th>
+          <th>ContactNo</th>
+          <th>Address</th>
+          <th>AccountCreated</th>
+          <th>Roles</th>
+          <th>UserName</th>
+          <!-- <th>ProfileImage</th> -->
+          <th>IsBlocked</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="User">
+        <tr *ngFor="let item of User">
+          <td>{{ item.nicNumber }}</td>
+          <td>{{ item.firstName }}</td>
+          <td>{{ item.lastName }}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.contactNo}}</td>
+          <td>{{item.address}}</td>
+          <td>{{item.accountCreated | date}}</td>
+          <td>{{item.roles}}</td>
+          <td>{{item.userName}}</td>
+          <!-- <td>{{item.ProfileImage}}</td> -->
+          <td><button class="btn btn-danger btn-sm">Blocked</button></td>
+          
+        </tr>
+  
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- <button 
+            class="btn btn-danger btn-sm" 
+            [disabled]="item.isBlocked"
+            (click)="toggleBlock(item)">
+            {{ item.isBlocked ? 'Unblock' : 'Block' }}
+          </button> -->   
+  <!-- important disable block function -->
+
+
+  <!-- <div *ngFor="let image of unit?.images">
+              <img *ngFor="let image of item.bikeUnits?.[0]?.imagepath" 
+              [src]="'http://localhost:5268/bike_images/'+image.imagePath" 
+              alt="Bike Image" 
+              width="50" height="50">
+            </div> -->

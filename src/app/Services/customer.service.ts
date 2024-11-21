@@ -1,27 +1,26 @@
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Bike } from '../Models/bike';
 import { Observable, catchError, throwError } from 'rxjs';
+import { Bike } from '../Models/bike';
+import { User } from '../Models/users';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BikeTableService {
+export class CustomerService {
 
   constructor(private http:HttpClient, private router:Router) { }
 
+  getAllUser = 'http://localhost:5268/api/User/GetAllUsers';
 
-  getAllBikeURL = 'http://localhost:5268/api/Bike/GetAllBikes';
-  postBikeURL = 'http://localhost:5268/api/Bike/BikeAdd';
-  AllBikesPaginationURL = 'http://localhost:5268/api/Bike';
-
-
-  getAllBikes(): Observable<Bike[]> {
-    return this.http.get<Bike[]>(this.AllBikesPaginationURL).pipe(
+  
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.getAllUser).pipe(
             catchError(this.handleError)
           );;
   }
+
 
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';
@@ -36,21 +35,4 @@ export class BikeTableService {
   }
 
 
-
-
-  postBikes(formData: FormData): Observable<any> {
-    return this.http.post(this.postBikeURL, formData).pipe(
-      catchError(this.handleError)
-    );;;
-  }
-  
-
 }
-
-
-
-
-
-
-
-

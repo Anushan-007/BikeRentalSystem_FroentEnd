@@ -9,6 +9,7 @@ import { RegisterComponent } from './Components/register/register.component';
 import { BikeTableComponent } from './AdminDashBoard/bike-table/bike-table.component';
 import { AuthGuard } from './Guard/auth.guard';
 import { AddBikesComponent } from './AdminDashBoard/add-bikes/add-bikes.component';
+import { CustomerListComponent } from './AdminDashBoard/customer-list/customer-list.component';
 
 
 export const routes: Routes = [
@@ -17,7 +18,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard], data: { role: 'Admin' },
     children:[
       {path:'bikeTable', component:BikeTableComponent},
-     
+      {path:'customerList', component:CustomerListComponent}
     ]
     },
 

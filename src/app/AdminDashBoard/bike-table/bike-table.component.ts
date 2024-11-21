@@ -17,8 +17,13 @@ export class BikeTableComponent implements OnInit{
 
   bikeForm!:FormGroup;
   bikesArray:Bike[] = [];
-  bikes!:Bike;
+  //bikes!:Bike;
   selectedFile: File | null = null;
+
+
+  loading: boolean = true;
+  error: string | null = null;
+unit: any;
 
   constructor(private fb:FormBuilder, private bikeTableService:BikeTableService, private toastr: ToastrService, private router:Router){
     this.bikeForm = this.fb.group({
@@ -37,17 +42,58 @@ export class BikeTableComponent implements OnInit{
 
   
 
+  // ngOnInit(): void {
+  //   this.loadBikes();
+  // }
+
+
+  // loadBikes() {
+  //   this.bikeTableService.getBikes().subscribe(data => {
+  //     this.bikesArray = data;
+  //     console.log(data);
+  //   })
+  // }
+
+
+
   ngOnInit(): void {
-    this.loadBikes();
+    this.getBikes();
   }
 
 
-  loadBikes() {
-    this.bikeTableService.getBikes().subscribe(data => {
-      this.bikesArray = data;
-      console.log(data);
-    })
-  }
+  getBikes(){
+    this.bikeTableService.getAllBikes().subscribe({
+      next: (data) => {
+        console.log(data);
+        
+        this.bikesArray = data;
+        this.loading = false;
+      },
+      error: (err) => {
+        this.error = 'Failed to load bikes';
+        this.loading = false;}
+  })
+}
+
+  // getBikes(): void {
+  //   this.loading = true;
+  //   this.bikeTableService.getAllBikes(this.pagenumber, this.pagesize).subscribe(
+  //     (response: any) => {
+  //       this.bikes = response; // Adjust according to your API response
+  //       // If your API returns pagination data, handle it here
+  //       this.loading = false;
+  //     },
+  //     (error) => {
+  //       console.error(error);
+  //       this.loading = false;
+  //     }
+  //   );
+  // }
+
+  // onPageChange(page: number): void {
+  //   this.pagenumber = page;
+  //   this.getBikes();
+  // }
 
 
   addBike() {
