@@ -20,11 +20,26 @@
           <i class="bi bi-cart-check"></i> Customers
         </a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link list-group-item list-group-item-action" >
           <i class="bi bi-person-circle"></i> Rentals
         </a>`
-      </li>
+      </li> -->
+
+                <!-- Rentals Dropdown -->
+          <li class="nav-item">
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle w-100 custom-dropdown-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person-circle"></i> Rentals
+              </button>
+              <ul class="dropdown-menu custom-dropdown-menu">
+                <li><a class="dropdown-item" href="#">Rental Request</a></li>
+                <li><a class="dropdown-item" href="#">Rental Process</a></li>
+                <li><a class="dropdown-item" href="#">Return</a></li>
+              </ul>
+            </div>
+          </li>
+     
       <li class="nav-item">
         <a class="nav-link list-group-item list-group-item-action" >
           <i class="bi bi-person-circle"></i> Reports
@@ -80,11 +95,23 @@
       </div>
 
 
-      <!-- Bike Details Table -->
-      <!-- <app-bike-table></app-bike-table> -->
       <router-outlet></router-outlet>
 
 
     </div>
   </div>
 </div>
+
+
+
+
+<!-- <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Rentals
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Rental Request</a></li>
+    <li><a class="dropdown-item" href="#">Rental Process</a></li>
+    <li><a class="dropdown-item" href="#">Return</a></li>
+  </ul>
+</div> -->
