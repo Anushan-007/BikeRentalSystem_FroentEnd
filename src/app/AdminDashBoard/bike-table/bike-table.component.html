@@ -217,6 +217,7 @@
         <th>Type</th>
         <th>Rate per Day</th>
         <th>Registration Number</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -254,10 +255,104 @@
             <span>{{ unit.registrationNumber }}</span>
           </ng-container>
         </td>
+        <td><button class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#bikeEditModal"><i class="bi bi-pencil-square"></i></button><button class="btn btn-danger"><i class="bi bi-trash"></i></button></td>
+        
       </tr>
     </tbody>
   </table>
 </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="bikeEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-4 fw-bold text-center text-primary" id="exampleModalLabel">
+          <i class="bi bi-bicycle me-2"></i> Edit Bikes
+        </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="container">
+        <form [formGroup]="editForm" (ngSubmit)="onEditTask()">
+          <div class="modal-body">
+            <!-- Bike Brand -->
+            <div class="row mb-3">
+              <div class="col-12">
+                <div class="input-group flex-nowrap">
+                  <span class="input-group-text" id="addon-wrapping"><i class="bi bi-bicycle"></i></span>
+                  <input type="text" class="form-control" placeholder="Enter the bike brand" formControlName="brand">
+                </div>
+              </div>
+            </div>
+
+            <!-- Bike Model -->
+            <div class="row mb-3">
+              <div class="col-12">
+                <div class="input-group flex-nowrap">
+                  <span class="input-group-text" id="addon-wrapping"><i class="bi bi-bicycle"></i></span>
+                  <input type="text" class="form-control" placeholder="Enter the bike model" formControlName="model">
+                </div>
+              </div>
+            </div>
+
+            <!-- Bike Type -->
+            <div class="row mb-3">
+              <div class="col-12">
+                <div class="input-group flex-nowrap">
+                  <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-bounding-box"></i></span>
+                  <input type="text" class="form-control" placeholder="Enter the bike type" formControlName="type">
+                </div>
+              </div>
+            </div>
+          
+             <!-- Registration Number -->
+            <div class="row mb-3">
+              <div class="col-12">
+                <div class="input-group flex-nowrap">
+                  <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-bounding-box"></i></span>
+                  <input type="text" class="form-control" placeholder="Enter the Registration Number" formControlName="RegistrationNumber">
+                </div>
+              </div>
+            </div>
+
+            <!-- Year -->
+            <div class="row mb-3">
+              <div class="col-12 mt-2">
+                <div class="input-group flex-nowrap">
+                  <span class="input-group-text" id="addon-wrapping"><i class="bi bi-calendar"></i></span>
+                  <input type="text" class="form-control" placeholder="Enter the Year" formControlName="year">
+                </div>
+              </div>
+            </div>
+
+             <!-- Rent per Day -->
+             <div class="row mb-3">
+              <div class="col-12 mt-2">
+                <div class="input-group flex-nowrap">
+                  <span class="input-group-text" id="addon-wrapping"><i class="bi bi-cash-coin"></i></span>
+                  <input type="text" class="form-control" placeholder="Enter the Rent per day" formControlName="rentPerDay">
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="reset" class="btn btn-secondary">Reset</button>
+            <button type="button" class="btn btn-primary shadow-lg px-4 py-2 rounded-3 text-white fw-bold"
+              (click)="addBike()" data-bs-dismiss="modal">
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 

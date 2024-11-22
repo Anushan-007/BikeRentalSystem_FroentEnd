@@ -17,6 +17,7 @@ import { bikeUnits } from '../../Models/bikeUnit';
 export class BikeTableComponent implements OnInit{
 
   bikeForm!:FormGroup;
+  editForm!:FormGroup;
   bikesArray:Bike[] = [];
   bikes!:Bike;
   selectedFile: File | null = null;
@@ -163,10 +164,18 @@ unit: any;
     }))
   }
 
+
+  onEditTask() {
+    let bike = (this.editForm.value);
+    this.bikeTableService.editTask(bike , this.bikes ? this.bikes.id : 0 ).subscribe(data => {
+      this.toastr.success('successfully updated', 'Success');
+      this.router.navigate(['/adminbikeTable']);
+    });
+
   
 }
 
-
+}
 
 
  
