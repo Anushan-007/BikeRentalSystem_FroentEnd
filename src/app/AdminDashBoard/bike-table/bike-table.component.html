@@ -18,78 +18,147 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title  fs-4 fw-bold text-center text-primary" id="exampleModalLabel">
+        <h1 class="modal-title fs-4 fw-bold text-center text-primary" id="exampleModalLabel">
           <i class="bi bi-bicycle me-2"></i> Add New Bikes
         </h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
-      <div class="row">
+      <div class="container">
         <form [formGroup]="bikeForm">
-          <!-- brand -->
           <div class="modal-body">
-            <div class="input-group flex-nowrap">
-              <span class="input-group-text" id="addon-wrapping"><i class="bi bi-bicycle"></i></span>
-              <input type="text" class="form-control" placeholder="Enter the bike brand" aria-label="brand"
-                aria-describedby="addon-wrapping" formControlName="brand">
+            <!-- Bike Brand -->
+            <div class="row mb-3">
+              <div class="col-12">
+                <div class="input-group flex-nowrap">
+                  <span class="input-group-text" id="addon-wrapping"><i class="bi bi-bicycle"></i></span>
+                  <input type="text" class="form-control" placeholder="Enter the bike brand" formControlName="brand">
+                </div>
+              </div>
             </div>
+
+            <!-- Bike Model -->
+            <div class="row mb-3">
+              <div class="col-12">
+                <div class="input-group flex-nowrap">
+                  <span class="input-group-text" id="addon-wrapping"><i class="bi bi-bicycle"></i></span>
+                  <input type="text" class="form-control" placeholder="Enter the bike model" formControlName="model">
+                </div>
+              </div>
+            </div>
+
+            <!-- Bike Type -->
+            <div class="row mb-3">
+              <div class="col-12">
+                <div class="input-group flex-nowrap">
+                  <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-bounding-box"></i></span>
+                  <input type="text" class="form-control" placeholder="Enter the bike type" formControlName="type">
+                </div>
+              </div>
+            </div>
+
+            <!-- Rate per Hour -->
+            <div class="row mb-3">
+              <div class="col-12">
+                <div class="input-group flex-nowrap">
+                  <span class="input-group-text" id="addon-wrapping"><i class="bi bi-cash-coin"></i></span>
+                  <input type="text" class="form-control" placeholder="Enter the Rate per hour" formControlName="ratePerHour">
+                </div>
+              </div>
+            </div>
+
+            <!-- Bike Units (Bike Specific) -->
+            <div formArrayName="bikeUnits">
+              <div *ngFor="let checkList of myBikeUnits.controls; let i = index;" [formGroupName]="i">
+                <div class="row mb-3">
+                  <!-- Registration Number -->
+                  <div class="col-12">
+                    <div class="input-group flex-nowrap">
+                      <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-bounding-box"></i></span>
+                      <input type="text" class="form-control" placeholder="Enter the Registration Number" formControlName="RegistrationNumber">
+                    </div>
+                  </div>
+
+                  <!-- Year -->
+                  <div class="col-12 mt-2">
+                    <div class="input-group flex-nowrap">
+                      <span class="input-group-text" id="addon-wrapping"><i class="bi bi-calendar"></i></span>
+                      <input type="text" class="form-control" placeholder="Enter the Year" formControlName="year">
+                    </div>
+                  </div>
+
+                  <!-- Rent per Day -->
+                  <div class="col-12 mt-2">
+                    <div class="input-group flex-nowrap">
+                      <span class="input-group-text" id="addon-wrapping"><i class="bi bi-cash-coin"></i></span>
+                      <input type="text" class="form-control" placeholder="Enter the Rent per day" formControlName="rentPerDay">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Remove Bike Unit -->
+                <div class="col-12 text-center mt-2">
+                  <button class="btn btn-danger" type="button" (click)="removeCheckList(i)">Remove</button>
+                </div>
+              </div>
+
+              <!-- Button to Add New Bike Unit -->
+              <div class="row mt-3">
+                <div class="col-12 text-center">
+                  <button class="btn btn-success" type="button" (click)="addCheckList()">Add Bike Unit</button>
+                </div>
+              </div>
+            </div>
+
           </div>
 
-          <!-- Modal -->
-          <div class="modal-body">
-            <div class="input-group flex-nowrap">
-              <span class="input-group-text" id="addon-wrapping"><i class="bi bi-bicycle"></i></span>
-              <input type="text" class="form-control" placeholder="Enter the bike modal" aria-label="modal"
-                aria-describedby="addon-wrapping" formControlName="model">
-            </div>
+          <div class="modal-footer">
+            <button type="reset" class="btn btn-secondary">Reset</button>
+            <button type="button" class="btn btn-primary shadow-lg px-4 py-2 rounded-3 text-white fw-bold"
+              (click)="addBike()" data-bs-dismiss="modal">
+              Save
+            </button>
           </div>
-
-          <!-- type -->
-          <div class="modal-body">
-            <div class="input-group flex-nowrap">
-              <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-bounding-box"></i></span>
-              <input type="text" class="form-control" placeholder="Enter the bike type" aria-label="type"
-                aria-describedby="addon-wrapping" formControlName="type">
-            </div>
-          </div>
-
-          <!-- rateperhour -->
-          <div class="modal-body">
-            <div class="input-group flex-nowrap">
-              <span class="input-group-text" id="addon-wrapping"><i class="bi bi-cash-coin"></i></span>
-              <input type="text" class="form-control" placeholder="Enter the Rate per hour" aria-label="type"
-                aria-describedby="addon-wrapping" formControlName="ratePerHour">
-            </div>
-          </div>
-
-          <!-- image -->
-          <div class="modal-body">
-            <div class="input-group flex-nowrap">
-              <span class="input-group-text" id="addon-wrapping"><i class="bi bi-cash-coin"></i></span>
-              <input type="file" class="form-control" aria-label="type" aria-describedby="addon-wrapping"
-                formControlName="image" (change)="onFileSelected($event)">
-            </div>
-          </div>
-
-
         </form>
-
-
       </div>
-
-
-      <div class="modal-footer">
-        <button type="reset" class="btn btn-secondary">Reset</button>
-        <button type="button" class="btn btn-primary shadow-lg px-4 py-2 rounded-3 text-white fw-bold 
-          transition-all duration-300 ease-in-out hover:bg-primary-dark hover:scale-105" (click)="addBike()"
-          data-bs-dismiss="modal">
-          Save
-        </button>
-      </div>
-
     </div>
   </div>
 </div>
+
+
+
+
+
+      <!-- <div class="col-2">
+                                <input type="checkbox" class="form-check-input fs-4 ms-4" id=""
+                                    formControlName="isDone">
+
+                            </div> -->
+                            <!-- <div class="col-8">
+                                <input type="text" class="form-control" id="" formControlName="RegistrationNumber" placeholder="Enter the Registration Number">
+                                <small
+                                    *ngIf="bikeForm.get('bikeUnits.RegistrationNumber')?.errors && bikeForm.get('bikeUnits.RegistrationNumber')?.touched">Registration Number
+                                    is required</small>
+                            </div> -->
+
+
+ <!-- <div class="col-8">
+                            <input type="text" class="form-control" id="" formControlName="year" placeholder="Enter the Year">
+                            <small
+                                *ngIf="bikeForm.get('bikeUnits.year')?.errors && bikeForm.get('bikeUnits.year')?.touched">Year
+                                is required</small>
+                        </div> -->
+                      
+<!-- <div class="col-8">
+                          <input type="text" class="form-control" id="" formControlName="rentPerDay" placeholder="Enter the Rent per day">
+                          <small
+                              *ngIf="bikeForm.get('bikeUnits.year')?.errors && bikeForm.get('bikeUnits.year')?.touched">Year
+                              is required</small>
+                              
+                      </div> -->
+
+
+
 
 
 
@@ -269,4 +338,11 @@
 
 
 
-   
+     <!-- image -->
+            <!-- <div class="modal-body">
+              <div class="input-group flex-nowrap">
+                <span class="input-group-text" id="addon-wrapping"><i class="bi bi-cash-coin"></i></span>
+                <input type="file" class="form-control" aria-label="type" aria-describedby="addon-wrapping"
+                  formControlName="image" (change)="onFileSelected($event)">
+              </div>
+            </div> -->
