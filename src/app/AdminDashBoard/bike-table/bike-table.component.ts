@@ -4,7 +4,8 @@ import { BikeTableService } from '../../Services/bike-table.service';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { bikeUnits } from '../../Models/bikeUnit';
 
 @Component({
   selector: 'app-bike-table',
@@ -32,7 +33,8 @@ unit: any;
       model: [''],
       type: [''],
       ratePerHour: ['', [Validators.required]],
-      image : [null]
+      bikeUnits : this.fb.array([])
+      // image : [null]
     })
   }
 
@@ -75,6 +77,8 @@ unit: any;
   })
 }
 
+
+
   // getBikes(): void {
   //   this.loading = true;
   //   this.bikeTableService.getAllBikes(this.pagenumber, this.pagesize).subscribe(
@@ -96,38 +100,70 @@ unit: any;
   // }
 
 
-  addBike() {
-    if (this.bikeForm.invalid || !this.selectedFile) {
-      return;  // Don't submit if the form is invalid or no file is selected
-    }
+  // addBike() {
+  //   if (this.bikeForm.invalid || !this.selectedFile) {
+  //     return;  // Don't submit if the form is invalid or no file is selected
+  //   }
   
-    const formData = new FormData();
+  //   const formData = new FormData();
   
-    // Append form values to FormData (excluding the image, since it's handled separately)
-    Object.keys(this.bikeForm.value).forEach(key => {
-      if (key !== 'image') {
-        formData.append(key, this.bikeForm.get(key)?.value);
-      }
-    });
+  //   // Append form values to FormData (excluding the image, since it's handled separately)
+  //   Object.keys(this.bikeForm.value).forEach(key => {
+  //     if (key !== 'image') {
+  //       formData.append(key, this.bikeForm.get(key)?.value);
+  //     }
+  //   });
   
-    // Append the image file
-    formData.append('image', this.selectedFile, this.selectedFile.name);
+  //   // Append the image file
+  //   formData.append('image', this.selectedFile, this.selectedFile.name);
   
-    // Call the service to send the form data to the backend
-    this.bikeTableService.postBikes(formData).subscribe(
-      (response: any) => {
-        console.log(response);
+  //   // Call the service to send the form data to the backend
+  //   this.bikeTableService.postBikes(formData).subscribe(
+  //     (response: any) => {
+  //       console.log(response);
         
-        this.toastr.success('Successfully added', 'Success');
-        this.router.navigate(['/admin/bikeTable']);
-        this.bikeForm.reset();
-      },
-      (error: any) => {
-        this.toastr.error('Post Failed', error);
-      }
-    );
+  //       this.toastr.success('Successfully added', 'Success');
+  //       this.router.navigate(['/admin/bikeTable']);
+  //       this.bikeForm.reset();
+  //     },
+  //     (error: any) => {
+  //       this.toastr.error('Post Failed', error);
+  //     }
+  //   );
+  // }
+
+
+  addBike(){
+    // this.bikesArray = (this.bikeForm.value);
+    // const BikeForm = this.bikeForm.value;
+    // this.bikeForm.value.ratePerHour = parseInt(this.bikeForm.value.ratePerHour)
+    // this.bikeTableService.postBikes(this.bikesArray).subscribe(data => {
+    //   this.toastr.success("successfully added", "Success")
+    //   this.router.navigate(['/admin/bikeTable']);
+    //   this.bikeForm.reset()
+    // })
+  }
+
+
+  get myBikeUnits(): FormArray {
+    return this.bikeForm.get('bikeUnits') as FormArray;
   }
   
+
+  removeCheckList(index:number){
+
+    this.myBikeUnits.removeAt(index);
+
+  }                                                    
+
+  addCheckList(){
+    this.myBikeUnits.push(this.fb.group({                          
+      RegistrationNumber : [''],
+      year :[''],
+      rentPerDay:['']
+      
+    }))
+  }
 
   
 }
@@ -135,14 +171,5 @@ unit: any;
 
 
 
-  // addBike(){
-  //   this.bikes = (this.bikeForm.value);
-  //   const BikeForm = this.bikeForm.value;
-  //   this.bikeForm.value.ratePerHour = parseInt(this.bikeForm.value.ratePerHour)
-  //   this.bikeTableService.postBikes(this.bikes).subscribe(data => {
-  //     this.toastr.success("successfully added", "Success")
-  //     this.router.navigate(['/admin/bikeTable']);
-  //     this.bikeForm.reset()
-  //   })
-  // }
+ 
 

@@ -38,8 +38,8 @@ export class BikeTableService {
 
 
 
-  postBikes(formData: FormData): Observable<any> {
-    return this.http.post(this.postBikeURL, formData).pipe(
+  postBikes(bikesArray: Bike): Observable<any> {
+    return this.http.post(this.postBikeURL, bikesArray).pipe(
       catchError(this.handleError)
     );;;
   }
