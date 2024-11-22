@@ -56,17 +56,7 @@
                 </div>
               </div>
             </div>
-
-            <!-- Rate per Hour -->
-            <div class="row mb-3">
-              <div class="col-12">
-                <div class="input-group flex-nowrap">
-                  <span class="input-group-text" id="addon-wrapping"><i class="bi bi-cash-coin"></i></span>
-                  <input type="text" class="form-control" placeholder="Enter the Rate per hour" formControlName="ratePerHour">
-                </div>
-              </div>
-            </div>
-
+          
             <!-- Bike Units (Bike Specific) -->
             <div formArrayName="bikeUnits">
               <div *ngFor="let checkList of myBikeUnits.controls; let i = index;" [formGroupName]="i">

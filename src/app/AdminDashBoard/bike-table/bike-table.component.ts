@@ -18,7 +18,7 @@ export class BikeTableComponent implements OnInit{
 
   bikeForm!:FormGroup;
   bikesArray:Bike[] = [];
-  //bikes!:Bike;
+  bikes!:Bike;
   selectedFile: File | null = null;
 
 
@@ -32,7 +32,6 @@ unit: any;
       brand: ['', [Validators.required]],
       model: [''],
       type: [''],
-      ratePerHour: ['', [Validators.required]],
       bikeUnits : this.fb.array([])
       // image : [null]
     })
@@ -134,14 +133,13 @@ unit: any;
 
 
   addBike(){
-    // this.bikesArray = (this.bikeForm.value);
-    // const BikeForm = this.bikeForm.value;
-    // this.bikeForm.value.ratePerHour = parseInt(this.bikeForm.value.ratePerHour)
-    // this.bikeTableService.postBikes(this.bikesArray).subscribe(data => {
-    //   this.toastr.success("successfully added", "Success")
-    //   this.router.navigate(['/admin/bikeTable']);
-    //   this.bikeForm.reset()
-    // })
+   
+    this.bikes = (this.bikeForm.value);
+    this.bikeTableService.postBikes(this.bikes).subscribe(data => {
+      this.toastr.success("successfully added", "Success")
+      this.router.navigate(['/admin/bikeTable']);
+    })
+
   }
 
 
@@ -173,3 +171,11 @@ unit: any;
 
  
 
+ // this.bikesArray = (this.bikeForm.value);
+    // const BikeForm = this.bikeForm.value;
+    // this.bikeForm.value.ratePerHour = parseInt(this.bikeForm.value.ratePerHour)
+    // this.bikeTableService.postBikes(this.bikesArray).subscribe(data => {
+    //   this.toastr.success("successfully added", "Success")
+    //   this.router.navigate(['/admin/bikeTable']);
+    //   this.bikeForm.reset()
+    // })
