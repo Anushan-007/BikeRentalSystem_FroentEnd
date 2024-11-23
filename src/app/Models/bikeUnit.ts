@@ -15,7 +15,7 @@ export class bikeUnits{
         this.registrationNumber = obj.registrationNumber != null ? obj.registrationNumber :null;
         this.year = obj.year != null ? obj.year :null;
         this.rentPerDay = obj.rentPerDay != null ? obj.rentPerDay :null;
-        this.images = obj.images != null ? obj.images :null;
+        this.images = obj.images != null ? obj.images : [];
 
     }
 

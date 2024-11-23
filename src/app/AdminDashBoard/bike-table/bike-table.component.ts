@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { bikeUnits } from '../../Models/bikeUnit';
+import { images } from '../../Models/images';
 
 @Component({
   selector: 'app-bike-table',
@@ -21,6 +22,7 @@ export class BikeTableComponent implements OnInit{
   bikesArray:Bike[] = [];
   bikes!:Bike;
   bikeUnits !: bikeUnits;
+  images!:images
   selectedFile: File | null = null;
 
 
@@ -30,20 +32,29 @@ unit: any;
 
   constructor(private fb:FormBuilder, private bikeTableService:BikeTableService, private toastr: ToastrService, private router:Router){
     this.bikeForm = this.fb.group({
-      id:[''],
+      id: [''],
       brand: ['', [Validators.required]],
       model: [''],
       type: [''],
-      bikeUnits : this.fb.array([])
-      // image : [null]
-    })
+      bikeUnits: this.fb.array([this.createBikeUnit()])
+    });
   }
+
+  createBikeUnit(): FormGroup {
+    return this.fb.group({
+      RegistrationNumber: ['', Validators.required],
+      year: ['', Validators.required],
+      rentPerDay: ['', Validators.required],
+      images: this.fb.array([])  // Assuming you might want to add images in the future
+    });
+  }
+
+
 
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
   }
 
-  
 
   // ngOnInit(): void {
   //   this.loadBikes();
@@ -134,37 +145,71 @@ unit: any;
   // }
 
 
-  addBike(){
+  // addBike(){
    
-    this.bikes = (this.bikeForm.value);
-    this.bikeTableService.postBikes(this.bikes).subscribe(data => {
-      this.toastr.success("successfully added", "Success")
-      this.router.navigate(['/admin/bikeTable']);
-    })
+  //   this.bikes = (this.bikeForm.value);
+  //   this.bikeTableService.postBikes(this.bikes).subscribe(data => {
+  //     this.toastr.success("successfully added", "Success")
+  //     this.router.navigate(['/admin/bikeTable']);
+  //   })
 
+  // }
+
+
+  // Handle the save functionality (Submit form data)
+  addBike(): void {
+    if (this.bikeForm.valid) {
+      const bikeData = this.bikeForm.value;
+      this.bikeTableService.postBikes(bikeData).subscribe(
+        (response) => {
+          this.toastr.success('Bike added successfully!');
+          this.router.navigate(['/admin/bikeTable']);  // Redirect to the bike list page
+        },
+        (error) => {
+          this.toastr.error('Failed to add bike');
+        }
+      );
+    } else {
+      this.toastr.warning('Please fill in all required fields');
+    }
   }
 
+
+
+  // get myBikeUnits(): FormArray {
+  //   return this.bikeForm.get('bikeUnits') as FormArray;
+  // }
 
   get myBikeUnits(): FormArray {
     return this.bikeForm.get('bikeUnits') as FormArray;
   }
   
 
-  removeCheckList(index:number){
+  // removeCheckList(index:number){
 
-    this.myBikeUnits.removeAt(index);
+  //   this.myBikeUnits.removeAt(index);
 
-  }                                                    
+  // }         
+  
+    // Remove a bike unit from the bike form array
+    removeCheckList(index: number): void {
+      (this.bikeForm.get('bikeUnits') as FormArray).removeAt(index);
+    }
+  
 
-  addCheckList(){
-    this.myBikeUnits.push(this.fb.group({                          
-      RegistrationNumber : [''],
-      year :[''],
-      rentPerDay:['']
+  // addCheckList(){
+  //   this.myBikeUnits.push(this.fb.group({                          
+  //     RegistrationNumber : [''],
+  //     year :[''],
+  //     rentPerDay:['']
       
-    }))
-  }
+  //   }))
+  // }
 
+    // Add a new bike unit to the bike form array
+    addCheckList(): void {
+      (this.bikeForm.get('bikeUnits') as FormArray).push(this.createBikeUnit());
+    }
 
   onEditTask() {
     let bike = (this.editForm.value);
@@ -175,6 +220,24 @@ unit: any;
 
   
 }
+
+
+
+// Method to handle image file input
+onImageChange(event: any, unitIndex: number): void {
+  const imageFiles = event.target.files;
+  const imagesFormArray = (this.myBikeUnits.at(unitIndex).get('images') as FormArray);
+
+  // Loop through selected image files and add to the form array
+  for (let i = 0; i < imageFiles.length; i++) {
+    const imageFile = imageFiles[i];
+    imagesFormArray.push(this.fb.group({
+      imagePath: [imageFile.name]  // Save the file name or you can process the file path later
+    }));
+  }
+}
+
+
 
 }
 
