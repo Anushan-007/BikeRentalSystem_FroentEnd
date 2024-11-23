@@ -20,6 +20,7 @@ export class BikeTableComponent implements OnInit{
   editForm!:FormGroup;
   bikesArray:Bike[] = [];
   bikes!:Bike;
+  bikeUnits !: bikeUnits;
   selectedFile: File | null = null;
 
 
