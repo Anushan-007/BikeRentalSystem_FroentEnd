@@ -86,6 +86,20 @@
                   </div>
                 </div>
 
+
+                              <!-- Image Upload -->
+                  <div class="col-12 mt-3">
+                    <input type="file" class="form-control" (change)="onImageChange($event, i)" multiple>
+                  </div>
+                  
+                  <!-- Images Preview -->
+                  <!-- <div class="col-12 mt-2">
+                    <div *ngFor="let image of (unit.get('images') as FormArray).controls">
+                      <p>{{ image.value.imagePath }}</p> 
+                    </div>
+                  </div> -->
+                
+
                 <!-- Remove Bike Unit -->
                 <div class="col-12 text-center mt-2">
                   <button class="btn btn-danger" type="button" (click)="removeCheckList(i)">Remove</button>
@@ -268,7 +282,7 @@
 
 
 <!--Edit Modal -->
-<div class="modal fade" id="bikeEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="bikeEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -354,7 +368,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 
 

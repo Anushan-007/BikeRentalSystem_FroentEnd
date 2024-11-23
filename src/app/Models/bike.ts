@@ -11,7 +11,7 @@ export class Bike{
         this.brand = obj.brand != null ? obj.id :null;
         this.model = obj.model != null ? obj.model :null;
         this.type = obj.type != null ? obj.type :null;
-       this.bikeUnits = obj.bikeUnits != null ? obj.bikeUnits : null;
+       this.bikeUnits = obj.bikeUnits != null ? obj.bikeUnits :  [];
     }
 
 }
