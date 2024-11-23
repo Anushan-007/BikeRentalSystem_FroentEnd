@@ -98,6 +98,7 @@
                   <button class="btn btn-success" type="button" (click)="addCheckList()">Add Bike Unit</button>
                 </div>
               </div>
+
             </div>
 
           </div>
@@ -226,9 +227,11 @@
 
         <!-- Image Column -->
         <td>
-          <ng-container *ngFor="let unit of item.bikeUnits">
-            <div *ngIf="unit.imagepath && unit.imagepath.length > 0">
-              <img [src]="'http://localhost:5268/' + unit.imagepath[0].imagePath" alt="Bike Image" width="100" />
+          <ng-container *ngFor="let unit of item.bikeUnits[0].images">
+            <div *ngIf="unit.imagePath && unit.imagePath">
+              <!-- <div>http://localhost:5268{{unit.imagepath[0].imagePath}}</div> -->
+
+              <img [src]="'http://localhost:5268/' + unit.imagePath" alt="Bike Image" width="100" />
             </div>
           </ng-container>
         </td>
@@ -252,7 +255,7 @@
         <!-- Registration Number Column -->
         <td>
           <ng-container *ngFor="let unit of item.bikeUnits">
-            <span>{{ unit.registrationNumber }}</span>
+            <span>{{ unit.registrationNumber }},</span>
           </ng-container>
         </td>
         <td><button class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#bikeEditModal"><i class="bi bi-pencil-square"></i></button><button class="btn btn-danger"><i class="bi bi-trash"></i></button></td>
@@ -264,7 +267,7 @@
 
 
 
-<!-- Modal -->
+<!--Edit Modal -->
 <div class="modal fade" id="bikeEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -278,7 +281,7 @@
       <div class="container">
         <form [formGroup]="editForm" (ngSubmit)="onEditTask()">
           <div class="modal-body">
-            <!-- Bike Brand -->
+            
             <div class="row mb-3">
               <div class="col-12">
                 <div class="input-group flex-nowrap">
@@ -288,7 +291,7 @@
               </div>
             </div>
 
-            <!-- Bike Model -->
+            
             <div class="row mb-3">
               <div class="col-12">
                 <div class="input-group flex-nowrap">
@@ -298,7 +301,7 @@
               </div>
             </div>
 
-            <!-- Bike Type -->
+            
             <div class="row mb-3">
               <div class="col-12">
                 <div class="input-group flex-nowrap">
@@ -308,7 +311,7 @@
               </div>
             </div>
           
-             <!-- Registration Number -->
+            
             <div class="row mb-3">
               <div class="col-12">
                 <div class="input-group flex-nowrap">
@@ -318,7 +321,7 @@
               </div>
             </div>
 
-            <!-- Year -->
+            
             <div class="row mb-3">
               <div class="col-12 mt-2">
                 <div class="input-group flex-nowrap">
@@ -328,7 +331,7 @@
               </div>
             </div>
 
-             <!-- Rent per Day -->
+             
              <div class="row mb-3">
               <div class="col-12 mt-2">
                 <div class="input-group flex-nowrap">

@@ -5,7 +5,7 @@ export class Bike{
     brand:string;
     model:string;
     type:string;
-    bikeUnits?:bikeUnits[];
+    bikeUnits:bikeUnits[];
     constructor(obj:any){
         this.id = obj.id != null ? obj.id : null;
         this.brand = obj.brand != null ? obj.id :null;
