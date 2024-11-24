@@ -6,7 +6,7 @@ export class bikeUnits{
     registrationNumber:string;
     year:number;
     rentPerDay:number;
-    images?:images[]
+    images:images[]
 
     constructor(obj:any){
 
