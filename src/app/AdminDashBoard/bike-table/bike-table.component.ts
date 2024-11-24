@@ -156,14 +156,85 @@ unit: any;
   // }
 
 
+  // Method to handle image file input
+// onImageChange(event: any, unitIndex: number): void {
+  
+//   const imageFiles = event.target.files;
+//   const imagesFormArray = (this.myBikeUnits.at(unitIndex).get('images') as FormArray);
+
+//   // Loop through selected image files and add to the form array
+//   for (let i = 0; i < imageFiles.length; i++) {
+//     const imageFile = imageFiles[i];
+//     imagesFormArray.push(this.fb.group({
+//       imagePath: [imageFile.name]  // Save the file name or you can process the file path later
+//     }));
+//   }
+// } 
+
+onImageChange(event: any, unitIndex: number): void {
+  const imageFiles: FileList = event.target.files;  // Get the list of selected image files
+  const imagesFormArray = (this.myBikeUnits.at(unitIndex).get('images') as FormArray);  // Get the FormArray for images of the specific unit
+
+  // Loop through selected image files and add them to the form array
+  for (let i = 0; i < imageFiles.length; i++) {
+    const imageFile: File = imageFiles[i];  // Get each file
+
+    // Push the file object to the FormArray
+    imagesFormArray.push(this.fb.group({
+      imagePath: [imageFile]  // Store the entire File object, not just the name
+    }));
+  }
+}
+
+
   // Handle the save functionality (Submit form data)
-  addBike(): void {
-    if (this.bikeForm.valid) {
-      const bikeData = this.bikeForm.value;
-      this.bikeTableService.postBikes(bikeData).subscribe(
+  // addBike(): void {
+  //   if (this.bikeForm.valid) {
+  //     const bikeData = this.bikeForm.value;
+  //     this.bikeTableService.postBikes(bikeData).subscribe(
+  //       (response) => {
+  //         this.toastr.success('Bike added successfully!');
+  //         this.router.navigate(['/admin/bikeTable']);  // Redirect to the bike list page
+  //       },
+  //       (error) => {
+  //         this.toastr.error('Failed to add bike');
+  //       }
+  //     );
+  //   } else {
+  //     this.toastr.warning('Please fill in all required fields');
+  //   }
+  // }
+
+
+  
+      //const formData = new FormData();
+      
+  
+      // Append standard bike form fields to the FormData
+      // formData.append('brand', bikeData.brand);
+      // formData.append('model', bikeData.model);
+      // formData.append('type', bikeData.type);
+  
+      // Append bike units data (if any)
+      // bikeData.bikeUnits.forEach((unit: any, index: number) => {
+      //   formData.append('bikeUnits[' + index + '].RegistrationNumber', unit.RegistrationNumber);
+      //   formData.append('bikeUnits[' + index + '].year', unit.year);
+      //   formData.append('bikeUnits[' + index + '].rentPerDay', unit.rentPerDay);
+      // });
+  
+      addBike(): void {
+        if (this.bikeForm.valid) {
+          const bikeData = this.bikeForm.value;
+
+      // Send the bike details request
+      this.bikeTableService.postBikeData(bikeData).subscribe(
         (response) => {
           this.toastr.success('Bike added successfully!');
-          this.router.navigate(['/admin/bikeTable']);  // Redirect to the bike list page
+
+          response.bikeUnits.forEach((unit: any)=>{
+            const unitId = unit.unitId;  // Get the bike ID from the response
+          this.uploadImages(unitId);   // Proceed to upload images after bike data is saved)
+        });
         },
         (error) => {
           this.toastr.error('Failed to add bike');
@@ -173,6 +244,61 @@ unit: any;
       this.toastr.warning('Please fill in all required fields');
     }
   }
+  
+
+
+  // uploadImages(unitId: number): void {
+  //   const bikeData = this.bikeForm.value;
+  
+  //   // Prepare the FormData for images
+  //   const formData = new FormData();
+  
+  //   bikeData.bikeUnits.forEach((unit: any, index: number) => {
+  //     // Only upload images if there are images for this unit
+  //     unit.images.forEach((image: any, imageIndex: number) => {
+  //       formData.append('imagePath', image.imagePath); // Add the image file
+  //       formData.append('unitId', unitId.toString());  // Attach the bike unit ID
+  //     });
+  //   });
+  
+  //   // Send the image upload request
+  //   this.bikeTableService.postBikeImages(formData).subscribe(
+  //     (response) => {
+  //       this.toastr.success('Images uploaded successfully!');
+  //       this.router.navigate(['/admin/bikeTable']);  // Redirect after uploading images
+  //     },
+  //     (error) => {
+  //       this.toastr.error('Failed to upload images');
+  //     }
+  //   );
+  // }
+
+  uploadImages(unitId: number): void {
+    const bikeData = this.bikeForm.value; 
+    
+    const formData = new FormData();
+  
+    bikeData.bikeUnits.forEach((unit: any) => {
+      unit.images.forEach((image: images) => {
+        formData.append('imagePath', image.imagePath, image.imagePath.name);
+  
+        formData.append('unitId', unitId.toString());
+      });
+    });
+  
+    this.bikeTableService.postBikeImages(formData).subscribe(
+      (response) => {
+        this.toastr.success('Images uploaded successfully!');
+        this.router.navigate(['/admin/bikeTable']);
+      },
+      (error) => {
+        this.toastr.error('Failed to upload images');
+      }
+    );
+  }
+  
+  
+
 
 
 
@@ -223,19 +349,7 @@ unit: any;
 
 
 
-// Method to handle image file input
-onImageChange(event: any, unitIndex: number): void {
-  const imageFiles = event.target.files;
-  const imagesFormArray = (this.myBikeUnits.at(unitIndex).get('images') as FormArray);
 
-  // Loop through selected image files and add to the form array
-  for (let i = 0; i < imageFiles.length; i++) {
-    const imageFile = imageFiles[i];
-    imagesFormArray.push(this.fb.group({
-      imagePath: [imageFile.name]  // Save the file name or you can process the file path later
-    }));
-  }
-}
 
 
 

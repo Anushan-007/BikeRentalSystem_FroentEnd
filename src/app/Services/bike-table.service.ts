@@ -43,12 +43,33 @@ export class BikeTableService {
 
 
 
-  postBikes(bikesArray: Bike): Observable<any> {
-    return this.http.post(this.postBikeURL, bikesArray).pipe(
-      catchError(this.handleError)
-    );;;
-  }
+  // postBikes(bikesArray: Bike): Observable<any> {
+  //   return this.http.post(this.postBikeURL, bikesArray).pipe(
+  //     catchError(this.handleError)
+  //   );;;
+  // }
+
+  // postBikesWithImage(formData:FormData):Observable<any>{
+  //   return this.http.post(this.postBikeURL , formData)
+  // }
+
+  // postBikesWithImage(formData: FormData): Observable<any> {
+  //   return this.http.post(this.postBikeURL, formData);
+  // }
   
+  
+  // In the bikeTableService (Angular service)
+
+postBikeData(bikeData: Bike): Observable<any> {
+  return this.http.post('http://localhost:5268/api/Bike/BikeAdd', bikeData);
+}
+
+postBikeImages(imageData: FormData): Observable<any> {
+  console.log(imageData);
+  
+  return this.http.post('http://localhost:5268/api/Bike/AddBikeImages', imageData);
+}
+
 
 }
 
