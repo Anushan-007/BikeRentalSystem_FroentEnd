@@ -1,21 +1,38 @@
 <hr class="featurette-divider">
 
-<div class="row featurette">
+<div class="row featurette" *ngIf="bike">
   <div class="col-md-7">
-    <h2 class="featurette-heading fw-normal lh-1">First featurette heading. <span class="text-body-secondary">It’ll blow your mind.</span></h2>
+    <h2 class="featurette-heading fw-normal lh-1">{{bike.brand}} <span class="text-body-secondary">{{bike.model}}</span></h2>
     <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
   </div>
-  <div class="col-md-5" *ngFor="let item of bikes">
-    <!-- <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg> -->
-    <ng-container *ngFor="let unit of item.bikeUnits[0].images">
-      <div *ngIf="unit.imagePath && unit.imagePath">
-        <!-- <div>http://localhost:5268{{unit.imagepath[0].imagePath}}</div> -->
 
-        <img [src]="'http://localhost:5268/' + unit.imagePath" alt="Bike Image" width="100" />
-      </div>
-    </ng-container>
-  </div>
+  <!-- sample -->
+  <!-- <div *ngIf="bike.bikeUnits[0].images">
+    <img [src]="'http://localhost:5268/' + bike.bikeUnits[0].images" alt="Bike Image" width="100" />
+    
+  </div> -->
+
+   <!-- Display the image -->
+   <!-- <div *ngIf="bike.bikeUnits && bike.bikeUnits[0]?.images?.length">
+    
+    <img [src]="'http://localhost:5268/' + bike.bikeUnits[0].images[0].imagePath" alt="Bike Image" width="100" />
+  </div> -->
+  <!-- ... -->
 </div>
+
+
+<hr class="featurette-divider">
+
+<div class="col-md-5" *ngFor="let item of bikes">
+   
+  <ng-container *ngFor="let unit of item.bikeUnits[0].images">
+    <div *ngIf="unit.imagePath && unit.imagePath">
+
+      <img [src]="'http://localhost:5268/' + unit.imagePath" alt="Bike Image" width="100" />
+    </div>
+  </ng-container>
+</div>
+
 
 <!-- <hr class="featurette-divider">
 
@@ -40,5 +57,3 @@
     <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
   </div>
 </div> -->
-
-<hr class="featurette-divider">

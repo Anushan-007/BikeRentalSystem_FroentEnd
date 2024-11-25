@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Bike } from '../../Models/bike';
 import { ToastrService } from 'ngx-toastr';
 import { BikeTableService } from '../../Services/bike-table.service';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-bikes-details',
@@ -13,14 +14,23 @@ import { CommonModule } from '@angular/common';
 })
 export class BikesDetailsComponent implements OnInit {
 
+  @Input() bikeData: any = '';
+
+  bikeId: string | null = null;
   bikes:Bike[] =[];
+  bike!:Bike;
 
-  constructor(private biketableService:BikeTableService , private toastr :ToastrService){
-
+  constructor(private route: ActivatedRoute, private biketableService:BikeTableService , private toastr :ToastrService){
+    console.log(this.bikeData);
+   this.bikeId = ( this.route.snapshot.paramMap.get("id"));
   }
 
   ngOnInit(): void {
-    this.getBikes();
+    this.biketableService.getBikeById(this.bikeId).subscribe(data => {
+      this.bike = data 
+      console.log(data);
+      
+    })
   }
 
 
@@ -35,6 +45,17 @@ export class BikesDetailsComponent implements OnInit {
         this.toastr.error("Response Error" + err)
       }
   })
+}
+
+getBike(id: number) {
+  this.biketableService.getBikeById(id).subscribe({
+    next: (data) => {
+      this.bike = data;
+    },
+    error: (err) => {
+      console.error('Error fetching bike details:', err);
+    }
+  });
 }
 
 }

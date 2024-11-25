@@ -11,7 +11,7 @@ export class BikeTableService {
 
   constructor(private http:HttpClient, private router:Router) { }
 
-
+  getBikeURL = "http://localhost:5268/api/Bike";
   getAllBikeURL = 'http://localhost:5268/api/Bike/GetAllBikes';
   postBikeURL = 'http://localhost:5268/api/Bike/BikeAdd';
   updateBikeURL = 'http://localhost:5268/api/Bike/DF4849F8-83B0-40A2-0AE8-08DD0AF3B489/UpdateBike';
@@ -22,10 +22,16 @@ export class BikeTableService {
           );;
   }
 
+  getBikeById(id:any):Observable<Bike>{
+    return this.http.get<Bike>(this.getBikeURL+ "/"+id)
+  }
+
   
   editTask(bike : Bike , BikeId : number ){
     return this.http.put(this.updateBikeURL + BikeId  , bike);
   }
+
+
 
 
   private handleError(error: HttpErrorResponse) {
