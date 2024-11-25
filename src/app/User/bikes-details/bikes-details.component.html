@@ -18,6 +18,15 @@
     <img [src]="'http://localhost:5268/' + bike.bikeUnits[0].images[0].imagePath" alt="Bike Image" width="100" />
   </div> -->
   <!-- ... -->
+  
+  
+  <form [formGroup]="rentalRequestForm" (ngSubmit)="onRequest()">
+    <label  class="form-label">Date of rent :</label>
+    <input type="date" formControlName="requestTime" class="form-control" bsDatepicker>
+    <button type="submit" class="btn btn-primary mt-2">Request</button>
+</form>
+
+
 </div>
 
 

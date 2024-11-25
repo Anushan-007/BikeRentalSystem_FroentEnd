@@ -38,7 +38,9 @@ export class UserRegisterService {
         
         localStorage.setItem("name", decoded.UserName)
         localStorage.setItem("Role", decoded.roles)
-
+        localStorage.setItem("nicNumber", decoded.NicNumber)
+       // console.log(localStorage.setItem("nicNumber", decoded.nicNumber));
+        
       }
       return true;
     }else{

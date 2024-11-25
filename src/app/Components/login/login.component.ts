@@ -6,6 +6,7 @@ import { Router, RouterLink } from '@angular/router';
 import { Login } from '../../Models/login';
 import { UserRegisterService } from '../../Services/user-register.service';
 import { ToastrService } from 'ngx-toastr';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-login',
@@ -41,11 +42,25 @@ export class LoginComponent implements OnInit {
       
       this.registerService.UserLogin(this.LoginData).subscribe(data => {
         localStorage.setItem("token", data);
-        this.toastr.success("LogIn Successfully", "LogIn")
-        this.loginForm.reset();
-        this.router.navigate(['/user/bikes']);
+        if (data) {
+          const decoded: any = jwtDecode(data);
+          console.log(decoded.Role);
+          if(decoded.Role != "Admin"){
+            localStorage.setItem('user', JSON.stringify(decoded));
+            this.toastr.success("Welcome User!!!");
+            this.loginForm.reset();
+            this.router.navigate(['/user']) 
+          }else{
+            this.router.navigate(['/admin']);
+  
+          }
+         
+        }
+        // this.toastr.success("LogIn Successfully", "LogIn")
+        // this.loginForm.reset();
+        // this.router.navigate(['/user/bikes']);
     }, error => {
-      this.toastr.error(error)
+      this.toastr.error(error.error)
     })
   }
     else{
