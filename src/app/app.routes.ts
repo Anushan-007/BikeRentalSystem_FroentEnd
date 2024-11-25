@@ -10,6 +10,8 @@ import { BikeTableComponent } from './AdminDashBoard/bike-table/bike-table.compo
 import { AuthGuard } from './Guard/auth.guard';
 import { CustomerListComponent } from './AdminDashBoard/customer-list/customer-list.component';
 import { RentalRequestListComponent } from './AdminDashBoard/rental-request-list/rental-request-list.component';
+import { RentalProcessComponent } from './AdminDashBoard/rental-process/rental-process.component';
+import { ReturnComponent } from './AdminDashBoard/return/return.component';
 // import { EditBikeComponent } from './AdminDashBoard/edit-bike/edit-bike.component';
 
 
@@ -21,7 +23,9 @@ export const routes: Routes = [
     children:[
       {path:'bikeTable', component:BikeTableComponent},
       {path:'customerList', component:CustomerListComponent},
-     {path:'request-list', component:RentalRequestListComponent}
+     {path:'request-list', component:RentalRequestListComponent},
+     {path:'rental-process', component:RentalProcessComponent},
+     {path:'return', component:ReturnComponent}
       // {path:'editBike', component:EditBikeComponent}
      
     ]
