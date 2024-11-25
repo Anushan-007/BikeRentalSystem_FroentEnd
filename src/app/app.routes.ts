@@ -29,7 +29,7 @@ export const routes: Routes = [
      canActivate: [AuthGuard], data: { role: 'User' },
      children:[
         {path:'bikes', component:BikesComponent},
-        {path:'bikeDetails', component:BikesDetailsComponent},
+        {path:'bikeDetails/:id', component:BikesDetailsComponent},
      ]
     },
     
