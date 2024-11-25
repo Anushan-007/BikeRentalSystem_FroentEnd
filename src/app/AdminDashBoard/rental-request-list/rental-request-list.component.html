@@ -1,0 +1,30 @@
+<div class="table-responsive mt-4">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Bike Id</th>
+          <th>NIC Number</th>
+          <th>Request Time</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of rentalReq">
+          <td>{{ item.bikeId}}</td>
+  
+          <!-- Brand Column -->
+          <td>{{ item.nicNumber }}</td>
+  
+          <!-- Model Column -->
+          <td>{{ item.requestTime }}</td>
+  
+          <!-- Type Column -->
+          <td>{{ item.status }}</td>
+  
+          <td><button class="btn btn-danger m-1" >Accept</button><button class="btn btn-danger">Decline</button></td>
+          
+        </tr>
+      </tbody>
+    </table>
+  </div>

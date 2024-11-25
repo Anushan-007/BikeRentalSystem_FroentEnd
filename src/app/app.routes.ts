@@ -9,7 +9,9 @@ import { RegisterComponent } from './Components/register/register.component';
 import { BikeTableComponent } from './AdminDashBoard/bike-table/bike-table.component';
 import { AuthGuard } from './Guard/auth.guard';
 import { CustomerListComponent } from './AdminDashBoard/customer-list/customer-list.component';
-import { EditBikeComponent } from './AdminDashBoard/edit-bike/edit-bike.component';
+import { RentalRequestListComponent } from './AdminDashBoard/rental-request-list/rental-request-list.component';
+// import { EditBikeComponent } from './AdminDashBoard/edit-bike/edit-bike.component';
+
 
 
 export const routes: Routes = [
@@ -19,7 +21,9 @@ export const routes: Routes = [
     children:[
       {path:'bikeTable', component:BikeTableComponent},
       {path:'customerList', component:CustomerListComponent},
-      {path:'editBike', component:EditBikeComponent}
+     {path:'request-list', component:RentalRequestListComponent}
+      // {path:'editBike', component:EditBikeComponent}
+     
     ]
     },
 
