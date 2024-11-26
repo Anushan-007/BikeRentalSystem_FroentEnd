@@ -3,26 +3,32 @@
       <thead>
         <tr>
           <th>Bike Id</th>
+          <th>Bike Name</th>
           <th>NIC Number</th>
           <th>Request Time</th>
           <th>Status</th>
           <th>Action</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody  *ngIf="rentalReq.length > 0">
         <tr *ngFor="let item of rentalReq">
+         
+
           <td>{{ item.bikeId}}</td>
+          <td >{{item.bike?.brand}} {{item.bike?.model}}</td>
   
           <!-- Brand Column -->
           <td>{{ item.nicNumber }}</td>
   
           <!-- Model Column -->
-          <td>{{ item.requestTime }}</td>
+          <td>{{ item.requestTime | date}}</td>
   
           <!-- Type Column -->
           <td>{{ item.status }}</td>
   
-          <td><button class="btn btn-success m-1" >Accept</button><button class="btn btn-danger">Decline</button></td>
+          <td><button class="btn btn-success m-1" (click)="acceptRequest(item.id)">Accept</button>
+            <button class="btn btn-danger" (click)="declineRequest(item.id)">Decline</button>
+          </td>
           
         </tr>
       </tbody>

@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
           console.log(decoded.Role);
           if(decoded.Role != "Admin"){
             localStorage.setItem('user', JSON.stringify(decoded));
-            this.toastr.success("Welcome User!!!");
+            this.toastr.success("Login Successfully!!!", "Login");
             this.loginForm.reset();
             this.router.navigate(['/user']) 
           }else{
