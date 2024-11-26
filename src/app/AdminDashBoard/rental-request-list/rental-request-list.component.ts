@@ -24,4 +24,17 @@ export class RentalRequestListComponent implements OnInit {
   }
 
 
+  acceptRequest(id : string){
+    this.rentalrequestService.acceptRequest(id).subscribe(data => {
+      console.log(data);
+    })
+   }
+   
+   declineRequest(id : string){
+    this.rentalrequestService.declineRequest(id).subscribe(data => {
+      console.log(data);
+    })
+   }
+
+
 }

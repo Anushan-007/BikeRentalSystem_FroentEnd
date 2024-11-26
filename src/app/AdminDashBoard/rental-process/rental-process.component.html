@@ -1,1 +1,50 @@
-<p>rental-process works!</p>
+<div class="table-responsive mt-4">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Bike Id</th>
+          <th>Bike Name</th>
+          <th>NIC Number</th>
+          <th>Request Time</th>
+          <th>Registration Number</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody  *ngIf="rentalReq.length > 0">
+        <tr *ngFor="let item of rentalReq">
+         
+
+          <td>{{ item.bikeId}}</td>
+          <td >{{item.bike?.brand}} {{item.bike?.model}}</td>
+  
+          <!-- Brand Column -->
+          <td>{{ item.nicNumber }}</td>
+  
+          <!-- Model Column -->
+          <td>{{ item.requestTime | date }}</td>
+  
+          <!-- Type Column -->
+          <td>     
+            <div>
+            <form action="" class="row" [formGroup]="rentalRecordForm">
+                <div class="col-8">
+                    <select class="form-control" formControlName="registrationNumber" name="unit"  (click)="getAvailableInventoryUnits(item.bikeId)">
+                        <option *ngFor="let unit of units" [value]="unit.registrationNumber">
+                            {{unit.registrationNumber}}</option>
+                    </select>
+                </div>
+               
+            </form>
+        </div>
+    </td>
+    <td>
+        <div class="col-4">
+            <button class="btn btn-success" type="submit" (click)="rentOut(item.id)">Rent</button>
+        </div>
+    </td>
+  
+          
+        </tr>
+      </tbody>
+    </table>
+  </div>
