@@ -39,6 +39,7 @@ export class RentalProcessComponent implements OnInit {
 
     })
   }
+  
   units! : bikeUnits[];
   getAvailableInventoryUnits(bikeId: string) {
     this.bikeUnitService.getAvailableUnitsByBikeId(bikeId).subscribe(data => {

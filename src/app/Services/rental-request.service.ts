@@ -13,7 +13,9 @@ export class RentalRequestService {
   rentalRequestGetAllURL = 'http://localhost:5268/api/RentalRequest'
   acceptRequestURl = 'http://localhost:5268/api/RentalRequest/Accept-Request'
   declineRequestURL = 'http://localhost:5268/api/RentalRequest/Decline-Request'
-  getRequestforportalURL = 'http://localhost:5268/api/RentalRequest?status=1';
+  // getRequestforportalURL = 'http://localhost:5268/api/RentalRequest?status=1';
+  getAcceptRentalURl = 'http://localhost:5268/api/RentalRequest?status=2';
+
 
   postRequest(req: any) {
     return this.http.post<rentalRequest>(this.rentalRequestPostURL, req);
@@ -25,7 +27,7 @@ export class RentalRequestService {
   }
 
   getRequestsForPortal() {
-    return this.http.get<rentalRequest[]>(this.getRequestforportalURL);
+    return this.http.get<rentalRequest[]>(this.getAcceptRentalURl);
   }
 
   acceptRequest(id: string) {
