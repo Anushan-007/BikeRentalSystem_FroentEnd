@@ -10,7 +10,7 @@ export class rentalRecord{
     rentalRequestId :string;
     unitId?:string;
     bikeUnit?:bikeUnits[];
-    rentalRequest?:rentalRequest[];
+    rentalRequest:rentalRequest;
 
     constructor(obj:any){
         this.id = obj.id != null ? obj.id :null;
@@ -19,6 +19,6 @@ export class rentalRecord{
         this.registrationNumber = obj.registrationNumber != null ? obj.registrationNumber :null;
         this.rentalRequestId = obj.rentalRequestId != null ? obj.rentalRequestId :null;
         this.unitId = obj.unitId != null ? obj.unitId :null;
-
+        this.rentalRequest = obj.rentalRequest != null ? obj.rentalRequest :null;
     }
 }

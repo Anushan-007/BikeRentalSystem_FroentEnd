@@ -15,6 +15,8 @@ export class RentalRequestService {
   declineRequestURL = 'http://localhost:5268/api/RentalRequest/Decline-Request'
   // getRequestforportalURL = 'http://localhost:5268/api/RentalRequest?status=1';
   getAcceptRentalURl = 'http://localhost:5268/api/RentalRequest?status=2';
+  
+
 
 
   postRequest(req: any) {
@@ -36,5 +38,7 @@ export class RentalRequestService {
   declineRequest(id: string) {
     return this.http.get(this.declineRequestURL + id);
   }
+
+  
   
 }

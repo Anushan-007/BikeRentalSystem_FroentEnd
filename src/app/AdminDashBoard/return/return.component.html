@@ -1,1 +1,38 @@
-<p>return works!</p>
+<div class="table-responsive mt-4">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Request Id</th>
+          <th>Rental Out Time</th>
+          <th>Registration Number</th>
+          <th>Nic Number</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody  *ngIf="rentalRec.length > 0">
+        <tr *ngFor="let item of rentalRec">
+         
+
+          <td>{{ item.rentalRequestId}}</td>
+          <td >{{item.rentalOut | date}}</td>
+  
+          <!-- Brand Column -->
+          <td>{{ item.registrationNumber }}</td>
+  
+          <!-- Model Column -->
+          <td>
+              {{item.rentalRequest.nicNumber}}
+          </td>
+          
+
+    <td>
+        <div class="col-4">
+            <button class="btn btn-success" type="submit" >Return</button>
+        </div>
+    </td>
+  
+          
+        </tr>
+      </tbody>
+    </table>
+  </div>
