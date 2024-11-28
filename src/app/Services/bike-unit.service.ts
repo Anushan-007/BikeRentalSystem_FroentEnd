@@ -11,7 +11,7 @@ export class BikeUnitService {
 
 
   getAvailableUnitsByBikeId(bikeId: string) {
-    return this.http.get<bikeUnits[]>("http://localhost:5268/api/BikeUnit?availability=false&bikeId=" + bikeId);
+    return this.http.get<bikeUnits[]>("http://localhost:5268/api/BikeUnit?availability=true&bikeId=" + bikeId);
   }
 
   
