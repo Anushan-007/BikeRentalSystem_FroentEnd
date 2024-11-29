@@ -5,6 +5,9 @@ import { rentalRequest } from '../../Models/rentalRequest';
 import { RentalRequestService } from '../../Services/rental-request.service';
 import { rentalRecord } from '../../Models/rentalRecord';
 import { RentalRecordService } from '../../Services/rental-record.service';
+import { ReturnService } from '../../Services/return.service';
+import { payment } from '../../Models/payment';
+import { RentalRecordRequest } from '../../Models/RentalRecRequest';
 
 @Component({
   selector: 'app-return',
@@ -16,8 +19,22 @@ import { RentalRecordService } from '../../Services/rental-record.service';
 export class ReturnComponent implements OnInit {
 
   rentalRec:rentalRecord[] =[];
+  
+  pay!:payment;
+  selected: any;
+  currentTime!: Date;
 
-  constructor(private rentalrecordService:RentalRecordService){}
+  recRequest: RentalRecordRequest = {
+    id: '',
+    payment: 0
+  };
+
+  constructor(private rentalrecordService:RentalRecordService, private returnService:ReturnService){
+    this.currentTime = new Date();
+  }
+
+
+
 
   ngOnInit(): void {
     this.rentalrecordService.rentalRecord().subscribe(data => {
@@ -26,7 +43,13 @@ export class ReturnComponent implements OnInit {
      })
   }
 
-  
+  displayPayment(recordId: any) {
+    console.log(recordId);
+    this.returnService.CalculateRentPayment(recordId).subscribe(data => {
+      console.log(data);
+      this.pay = data;
+    })
+  }
 
   
 }
