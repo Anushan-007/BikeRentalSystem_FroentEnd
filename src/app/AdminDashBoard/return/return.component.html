@@ -58,18 +58,18 @@
       </div>  
       </div> -->
 
-      <div class="modal-body" *ngFor="let item of rentalRec">
+      <div class="modal-body" *ngIf="currentRecord">
         <div class="col-8" >
-          <h6>Rental Start : {{item.rentalOut | date : 'MMM d, y, h:mm:ss a'}} </h6>
+          <h6>Rental Start : {{currentRecord.rentalOut | date : 'MMM d, y, h:mm:ss a'}} </h6>
           <h6>Rental End : {{currentTime | date : 'MMM d, y, h:mm:ss a'}} </h6>
           <div *ngIf="pay">
               <h4>Payment : {{pay.payment| number: '2.0-1'}}</h4>
           </div>               
       </div>  
       </div>
-      <div class="modal-footer" *ngFor="let item of rentalRec">
+      <div class="modal-footer" >
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="completeRecord(item)">Confirm Rent</button>
+        <button type="button" class="btn btn-primary" (click)="completeRecord(currentRecord)">Confirm Rent</button>
       </div>
     </div>
   </div>
