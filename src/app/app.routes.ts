@@ -32,7 +32,7 @@ export const routes: Routes = [
     },
 
 
-    {path:'user',
+    {path:'',
      component:HomeComponent,
      canActivate: [AuthGuard], data: { role: 'User' },
      children:[
@@ -43,18 +43,23 @@ export const routes: Routes = [
     
     
     
-    {
-        path:'', 
-        component:BlankLayoutComponent,
-        children:[
-          {
-            path:'login',
-            component:LoginComponent
-          },
-          {
-            path:'register',
-            component:RegisterComponent
-          },{path:'**', redirectTo:'login', pathMatch:'full'}
-        ]
-      },
+    // {
+    //     path:'', 
+    //     component:BlankLayoutComponent,
+    //     children:[
+    //       {
+    //         path:'login',
+    //         component:LoginComponent
+    //       },
+    //       {
+    //         path:'register',
+    //         component:RegisterComponent
+    //       },{path:'**', redirectTo:'login', pathMatch:'full'}
+    //     ]
+    //   },
+
+    { path:'login', component:LoginComponent},
+    {path:'register', component:RegisterComponent},
+    {path:'**', redirectTo:'login', pathMatch:'full'}
+
 ];

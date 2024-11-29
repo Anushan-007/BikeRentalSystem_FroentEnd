@@ -21,6 +21,7 @@ export class ReturnComponent implements OnInit {
   rentalRec:rentalRecord[] =[];
   currentRecord!:rentalRecord;
   
+  
   pay!:payment;
   selected: any;
   currentTime!: Date;
@@ -46,10 +47,15 @@ export class ReturnComponent implements OnInit {
 
   displayPayment(recordId: any) {
     console.log(recordId);
-    this.returnService.CalculateRentPayment(recordId).subscribe(data => {
-      console.log(data);
-      this.pay = data;
+    this.rentalrecordService.getRentalRecord(recordId).subscribe(data => {
+      console.log('Fetched Rental Record:', data);
+      this.currentRecord = data;
+      this.returnService.CalculateRentPayment(recordId).subscribe(data => {
+        console.log(data);
+        this.pay = data;
+      })
     })
+   
   }
 
 

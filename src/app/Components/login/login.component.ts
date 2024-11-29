@@ -44,12 +44,13 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("token", data);
         if (data) {
           const decoded: any = jwtDecode(data);
-          console.log(decoded.Role);
-          if(decoded.Role != "Admin"){
+          console.log(decoded.roles);
+          console.log(decoded);
+          if(decoded.roles != "Admin"){
             localStorage.setItem('user', JSON.stringify(decoded));
             this.toastr.success("Login Successfully!!!", "Login");
             this.loginForm.reset();
-            this.router.navigate(['/user']) 
+            this.router.navigate(['']) 
           }else{
             this.router.navigate(['/admin']);
   
