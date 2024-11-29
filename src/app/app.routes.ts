@@ -12,6 +12,8 @@ import { CustomerListComponent } from './AdminDashBoard/customer-list/customer-l
 import { RentalRequestListComponent } from './AdminDashBoard/rental-request-list/rental-request-list.component';
 import { RentalProcessComponent } from './AdminDashBoard/rental-process/rental-process.component';
 import { ReturnComponent } from './AdminDashBoard/return/return.component';
+import { BikeUnitComponent } from './AdminDashBoard/bike-unit/bike-unit.component';
+import { InventoryComponent } from './AdminDashBoard/inventory/inventory.component';
 // import { EditBikeComponent } from './AdminDashBoard/edit-bike/edit-bike.component';
 
 
@@ -22,10 +24,12 @@ export const routes: Routes = [
     canActivate: [AuthGuard], data: { role: 'Admin' },
     children:[
       {path:'bikeTable', component:BikeTableComponent},
+      {path:'bikeUnits', component:BikeUnitComponent},
       {path:'customerList', component:CustomerListComponent},
      {path:'request-list', component:RentalRequestListComponent},
      {path:'rental-process', component:RentalProcessComponent},
-     {path:'return', component:ReturnComponent}
+     {path:'return', component:ReturnComponent},
+     {path:'inventory', component:InventoryComponent}
       // {path:'editBike', component:EditBikeComponent}
      
     ]

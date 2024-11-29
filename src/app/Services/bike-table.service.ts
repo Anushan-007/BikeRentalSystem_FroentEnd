@@ -14,7 +14,8 @@ export class BikeTableService {
   getBikeURL = "http://localhost:5268/api/Bike";
   getAllBikeURL = 'http://localhost:5268/api/Bike/GetAllBikes';
   postBikeURL = 'http://localhost:5268/api/Bike/BikeAdd';
-  updateBikeURL = 'http://localhost:5268/api/Bike/DF4849F8-83B0-40A2-0AE8-08DD0AF3B489/UpdateBike';
+  updateBikeURL = 'http://localhost:5268/api/Bike/';
+  deleteBikeURL = 'http://localhost:5268/api/User/DeleteUser?NicNumber=';
 
   getAllBikes(): Observable<Bike[]> {
     return this.http.get<Bike[]>(this.getAllBikeURL).pipe(
@@ -27,25 +28,9 @@ export class BikeTableService {
   }
 
   
-  editTask(bike : Bike , BikeId : number ){
+  editBike(bike : Bike , BikeId : number ){
     return this.http.put(this.updateBikeURL + BikeId  , bike);
   }
-
-
-
-
-  private handleError(error: HttpErrorResponse) {
-    let errorMessage = 'An unknown error occurred!';
-    if (error.error instanceof ErrorEvent) {
-      // Client-side error
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      // Server-side error
-      errorMessage = `Error: ${error.status}, Message: ${error.message}`;
-    }
-    return throwError(errorMessage);
-  }
-
 
 
 
@@ -74,6 +59,24 @@ postBikeImages(imageData: FormData): Observable<any> {
   console.log(imageData);
   
   return this.http.post('http://localhost:5268/api/Bike/AddBikeImages', imageData);
+}
+
+
+
+DeleteBike(id:string){
+  return this.http.delete(this.deleteBikeURL+ id)
+}
+
+private handleError(error: HttpErrorResponse) {
+  let errorMessage = 'An unknown error occurred!';
+  if (error.error instanceof ErrorEvent) {
+    // Client-side error
+    errorMessage = `Error: ${error.error.message}`;
+  } else {
+    // Server-side error
+    errorMessage = `Error: ${error.status}, Message: ${error.message}`;
+  }
+  return throwError(errorMessage);
 }
 
 

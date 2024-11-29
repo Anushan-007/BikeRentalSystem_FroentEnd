@@ -1,0 +1,39 @@
+<div class="table-responsive mt-4">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Unit Id</th>
+          <th>Bike Id</th>
+          <th>Registration Number</th>
+          <th>Year</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of bikeunits">
+          <td>{{ item.unitId }}</td>
+  
+          <!-- Brand Column -->
+          <td>{{ item.bikeId }}</td>
+  
+          <!-- Model Column -->
+          <td>{{ item.registrationNumber }}</td>
+  
+          <!-- Type Column -->
+          <td>{{ item.year }}</td>
+  
+          <!-- <td>
+            <ng-container *ngFor="let unit of item.bikeUnits">
+              <span>{{ unit.rentPerDay }}</span>
+            </ng-container>
+          </td> -->
+  
+          <td>
+            <!-- <button class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#bikeEditModal"><i class="bi bi-pencil-square"></i></button> -->
+            <button class="btn btn-danger" ><i class="bi bi-trash" (click)="deleteBikeUnit(item.registrationNumber)"></i></button>
+          </td>
+          
+        </tr>
+      </tbody>
+    </table>
+  </div>
