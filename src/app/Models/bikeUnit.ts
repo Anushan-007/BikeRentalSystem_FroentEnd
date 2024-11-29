@@ -5,7 +5,6 @@ export class bikeUnits{
     bikeId:number;
     registrationNumber:string;
     year:number;
-    rentPerDay:number;
     images:images[]
 
     constructor(obj:any){
@@ -14,7 +13,6 @@ export class bikeUnits{
         this.bikeId = obj.bikeId != null ? obj.bikeId :null;
         this.registrationNumber = obj.registrationNumber != null ? obj.registrationNumber :null;
         this.year = obj.year != null ? obj.year :null;
-        this.rentPerDay = obj.rentPerDay != null ? obj.rentPerDay :null;
         this.images = obj.images != null ? obj.images : [];
 
     }

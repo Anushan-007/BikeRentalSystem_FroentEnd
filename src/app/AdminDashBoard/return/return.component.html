@@ -27,7 +27,7 @@
 
     <td>
         <div class="col-4">
-            <button class="btn btn-success" type="submit" >Return</button>
+            <button class="btn btn-success" type="submit" data-bs-toggle="modal" data-bs-target="#paymentModal" (click)="selected=item" (click)="displayPayment(item.id)">Return</button>
         </div>
     </td>
   
@@ -36,3 +36,40 @@
       </tbody>
     </table>
   </div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content" >
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Rent Payment</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <!-- <div class="modal-body" *ngIf="rentalRecord">
+        <div class="col-8" >
+          <h6>Rental Start : {{rentalRecord.rentalOut | date : 'MMM d, y, h:mm:ss a'}} </h6>
+          <h6>Rental End : {{currentTime | date : 'MMM d, y, h:mm:ss a'}} </h6>
+          <div *ngIf="pay">
+              <h4>Payment : {{pay.payment| number: '2.0-1'}}</h4>
+          </div>               
+      </div>  
+      </div> -->
+      <div class="modal-body" *ngFor="let item of rentalRec">
+        <div class="col-8" >
+          <h6>Rental Start : {{item.rentalOut | date : 'MMM d, y, h:mm:ss a'}} </h6>
+          <h6>Rental End : {{currentTime | date : 'MMM d, y, h:mm:ss a'}} </h6>
+          <div *ngIf="pay">
+              <h4>Payment : {{pay.payment| number: '2.0-1'}}</h4>
+          </div>               
+      </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Confirm Rent</button>
+      </div>
+    </div>
+  </div>
+</div>

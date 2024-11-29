@@ -56,7 +56,16 @@
                 </div>
               </div>
             </div>
+
+             <!-- Rent per Day -->
+             <div class="col-12 mt-2">
+              <div class="input-group flex-nowrap">
+                <span class="input-group-text" id="addon-wrapping"><i class="bi bi-cash-coin"></i></span>
+                <input type="text" class="form-control" placeholder="Enter the Rent per Hour" formControlName="rentPerHour">
+              </div>
+            </div>
           
+            <br>
             <!-- Bike Units (Bike Specific) -->
             <div formArrayName="bikeUnits">
               <div *ngFor="let checkList of myBikeUnits.controls; let i = index;" [formGroupName]="i">
@@ -77,13 +86,7 @@
                     </div>
                   </div>
 
-                  <!-- Rent per Day -->
-                  <div class="col-12 mt-2">
-                    <div class="input-group flex-nowrap">
-                      <span class="input-group-text" id="addon-wrapping"><i class="bi bi-cash-coin"></i></span>
-                      <input type="text" class="form-control" placeholder="Enter the Rent per day" formControlName="rentPerDay">
-                    </div>
-                  </div>
+                 
                 </div>
 
 
@@ -230,7 +233,7 @@
         <th>Brand</th>
         <th>Model</th>
         <th>Type</th>
-        <th>Rate per Day</th>
+        <th>Rate per Hour</th>
         <th>Registration Number</th>
         <th>Action</th>
       </tr>
@@ -260,11 +263,13 @@
         <td>{{ item.type }}</td>
 
         <!-- Rate per Day Column -->
-        <td>
+        <td>{{item.rentPerHour}}</td>
+
+        <!-- <td>
           <ng-container *ngFor="let unit of item.bikeUnits">
             <span>{{ unit.rentPerDay }}</span>
           </ng-container>
-        </td>
+        </td> -->
 
         <!-- Registration Number Column -->
         <td>

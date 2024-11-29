@@ -36,6 +36,7 @@ unit: any;
       brand: ['', [Validators.required]],
       model: [''],
       type: [''],
+      rentPerHour: ['', Validators.required],
       bikeUnits: this.fb.array([this.createBikeUnit()])
     });
   }
@@ -44,7 +45,6 @@ unit: any;
     return this.fb.group({
       RegistrationNumber: ['', Validators.required],
       year: ['', Validators.required],
-      rentPerDay: ['', Validators.required],
       images: this.fb.array([])  // Assuming you might want to add images in the future
     });
   }

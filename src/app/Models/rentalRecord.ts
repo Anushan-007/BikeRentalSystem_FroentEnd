@@ -3,7 +3,7 @@ import { rentalRequest } from "./rentalRequest";
 
 export class rentalRecord{
     id:string;
-    rentalOut?:string;
+    rentalOut:string;
     rentalReturn?:string;
     payment?:string;
     registrationNumber:string;
