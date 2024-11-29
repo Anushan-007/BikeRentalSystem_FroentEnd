@@ -61,7 +61,7 @@
              <div class="col-12 mt-2">
               <div class="input-group flex-nowrap">
                 <span class="input-group-text" id="addon-wrapping"><i class="bi bi-cash-coin"></i></span>
-                <input type="text" class="form-control" placeholder="Enter the Rent per Hour" formControlName="rentPerHour">
+                <input type="number" class="form-control" placeholder="Enter the Rent per Hour" formControlName="rentPerHour">
               </div>
             </div>
           
@@ -82,7 +82,7 @@
                   <div class="col-12 mt-2">
                     <div class="input-group flex-nowrap">
                       <span class="input-group-text" id="addon-wrapping"><i class="bi bi-calendar"></i></span>
-                      <input type="text" class="form-control" placeholder="Enter the Year" formControlName="year">
+                      <input type="number" class="form-control" placeholder="Enter the Year" formControlName="year">
                     </div>
                   </div>
 
@@ -246,7 +246,6 @@
         <td>
           <ng-container *ngFor="let unit of item.bikeUnits[0].images">
             <div *ngIf="unit.imagePath && unit.imagePath">
-              <!-- <div>http://localhost:5268{{unit.imagepath[0].imagePath}}</div> -->
 
               <img [src]="'http://localhost:5268/' + unit.imagePath" alt="Bike Image" width="100" />
             </div>
@@ -277,7 +276,10 @@
             <span>{{ unit.registrationNumber }},</span>
           </ng-container>
         </td>
-        <td><button class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#bikeEditModal"><i class="bi bi-pencil-square"></i></button><button class="btn btn-danger"><i class="bi bi-trash"></i></button></td>
+        <td>
+          <button class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#bikeEditModal"><i class="bi bi-pencil-square"></i></button>
+          <button class="btn btn-danger" (click)="onDeleteBike()"><i class="bi bi-trash"></i></button>
+        </td>
         
       </tr>
     </tbody>

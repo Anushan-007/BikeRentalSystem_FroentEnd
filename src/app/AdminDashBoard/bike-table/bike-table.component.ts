@@ -337,17 +337,21 @@ onImageChange(event: any, unitIndex: number): void {
       (this.bikeForm.get('bikeUnits') as FormArray).push(this.createBikeUnit());
     }
 
-  onEditTask() {
-    let bike = (this.editForm.value);
-    this.bikeTableService.editTask(bike , this.bikes ? this.bikes.id : 0 ).subscribe(data => {
-      this.toastr.success('successfully updated', 'Success');
-      this.router.navigate(['/adminbikeTable']);
-    });
+//   onEditBike() {
+//     let bike = (this.editForm.value);
+//     this.bikeTableService.editBike(bike , this.bikes ? this.bikes.id : 0 ).subscribe(data => {
+//       this.toastr.success('successfully updated', 'Success');
+//       this.router.navigate(['/adminbikeTable']);
+//     });
 
+   
   
+// }
+
+onDeleteBike(){
+  
+
 }
-
-
 
 
 
