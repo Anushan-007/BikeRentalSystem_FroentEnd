@@ -7,11 +7,12 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RentalRequestService } from '../../Services/rental-request.service';
 import { User } from '../../Models/users';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-bikes-details',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, BsDatepickerModule],
   templateUrl: './bikes-details.component.html',
   styleUrl: './bikes-details.component.css'
 })

@@ -50,9 +50,12 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('user', JSON.stringify(decoded));
             this.toastr.success("Login Successfully!!!", "Login");
             this.loginForm.reset();
-            this.router.navigate(['']) 
-          }else{
-            this.router.navigate(['/admin']);
+            this.router.navigate(['user']) 
+          }else if(decoded.roles != "User"){
+            localStorage.setItem('admin', JSON.stringify(decoded));
+            this.toastr.success("Login Successfully!!!", "Login");
+            this.loginForm.reset();
+            this.router.navigate(['admin']);
   
           }
          

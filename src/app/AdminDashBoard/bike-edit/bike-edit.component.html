@@ -1,0 +1,105 @@
+<div class="container">
+    <form [formGroup]="editForm">
+        <div class="modal-body" *ngIf="currentBike">
+            <div class="row mb-3">
+                <div class="col-12">
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text" id="addon-wrapping"><i
+                                class="bi bi-bicycle"></i></span>
+                        <input type="text" class="form-control" placeholder="Enter the bike brand"
+                            formControlName="brand">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-12">
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text" id="addon-wrapping"><i
+                                class="bi bi-bicycle"></i></span>
+                        <input type="text" class="form-control" placeholder="Enter the bike model"
+                            formControlName="model">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-12">
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text" id="addon-wrapping"><i
+                                class="bi bi-person-bounding-box"></i></span>
+                        <input type="text" class="form-control" placeholder="Enter the bike type"
+                            formControlName="type">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 mt-2">
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping"><i
+                            class="bi bi-cash-coin"></i></span>
+                    <input type="number" class="form-control" placeholder="Enter the Rent per Hour"
+                        formControlName="rentPerHour">
+                </div>
+            </div>
+
+            <br>
+            <div formArrayName="bikeUnits">
+                <div *ngFor="let checkList of myBikeUnits.controls; let i = index;" [formGroupName]="i">
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <div class="input-group flex-nowrap">
+                                <span class="input-group-text" id="addon-wrapping"><i
+                                        class="bi bi-person-bounding-box"></i></span>
+                                <input type="text" class="form-control"
+                                    placeholder="Enter the Registration Number"
+                                    formControlName="RegistrationNumber">
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-2">
+                            <div class="input-group flex-nowrap">
+                                <span class="input-group-text" id="addon-wrapping"><i
+                                        class="bi bi-calendar"></i></span>
+                                <input type="number" class="form-control" placeholder="Enter the Year"
+                                    formControlName="year">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="col-12 mt-3">
+                        <input type="file" class="form-control" (change)="onImageChange($event, i)"
+                            multiple>
+                    </div>
+
+
+
+                    <!-- <div class="col-12 text-center mt-2">
+                        <button class="btn btn-danger" type="button"
+                            (click)="removeCheckList(i)">Remove</button>
+                    </div> -->
+                </div>
+
+                <!-- <div class="row mt-3">
+                    <div class="col-12 text-center">
+                        <button class="btn btn-success" type="button" (click)="addCheckList()">Add Bike
+                            Unit</button>
+                    </div>
+                </div> -->
+
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+            <button type="reset" class="btn btn-secondary">Reset</button>
+            <!-- <button type="button" class="btn btn-primary shadow-lg px-4 py-2 rounded-3 text-white fw-bold"
+                (click)="editBike()" data-bs-dismiss="modal">
+                Save
+            </button> -->
+        </div>
+    </form>
+</div>

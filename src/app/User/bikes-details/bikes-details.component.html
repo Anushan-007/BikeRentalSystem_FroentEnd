@@ -22,7 +22,7 @@
   
   <form [formGroup]="rentalRequestForm" (ngSubmit)="onRequest()">
     <label  class="form-label">Date of rent :</label>
-    <input type="date" formControlName="requestTime" class="form-control" bsDatepicker>
+    <input type="text" formControlName="requestTime" class="form-control" bsDatepicker>
     <button type="submit" class="btn btn-primary mt-2">Request</button>
 </form>
 

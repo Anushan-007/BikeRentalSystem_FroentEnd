@@ -14,6 +14,7 @@ import { RentalProcessComponent } from './AdminDashBoard/rental-process/rental-p
 import { ReturnComponent } from './AdminDashBoard/return/return.component';
 import { BikeUnitComponent } from './AdminDashBoard/bike-unit/bike-unit.component';
 import { InventoryComponent } from './AdminDashBoard/inventory/inventory.component';
+import { BikeEditComponent } from './AdminDashBoard/bike-edit/bike-edit.component';
 // import { EditBikeComponent } from './AdminDashBoard/edit-bike/edit-bike.component';
 
 
@@ -29,14 +30,15 @@ export const routes: Routes = [
      {path:'request-list', component:RentalRequestListComponent},
      {path:'rental-process', component:RentalProcessComponent},
      {path:'return', component:ReturnComponent},
-     {path:'inventory', component:InventoryComponent}
+     {path:'inventory', component:InventoryComponent},
+     { path: 'edit-bike/:id', component: BikeEditComponent}
       // {path:'editBike', component:EditBikeComponent}
      
     ]
     },
 
 
-    {path:'',
+    {path:'user',
      component:HomeComponent,
      canActivate: [AuthGuard], data: { role: 'User' },
      children:[
