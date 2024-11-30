@@ -1,7 +1,7 @@
 import { bikeUnits } from "./bikeUnit";
 
 export class Bike{
-    id:number;
+    id:string;
     brand:string;
     model:string;
     type:string;

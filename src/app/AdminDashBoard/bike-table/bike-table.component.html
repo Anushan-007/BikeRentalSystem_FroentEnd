@@ -9,9 +9,6 @@
   </div>
 </div>
 
-
-
-
 <!-- Add Modal -->
 <!-- Modal -->
 <div class="modal fade" id="bikeaddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -132,95 +129,8 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-      <!-- <div class="col-2">
-                                <input type="checkbox" class="form-check-input fs-4 ms-4" id=""
-                                    formControlName="isDone">
-
-                            </div> -->
-                            <!-- <div class="col-8">
-                                <input type="text" class="form-control" id="" formControlName="RegistrationNumber" placeholder="Enter the Registration Number">
-                                <small
-                                    *ngIf="bikeForm.get('bikeUnits.RegistrationNumber')?.errors && bikeForm.get('bikeUnits.RegistrationNumber')?.touched">Registration Number
-                                    is required</small>
-                            </div> -->
-
-
- <!-- <div class="col-8">
-                            <input type="text" class="form-control" id="" formControlName="year" placeholder="Enter the Year">
-                            <small
-                                *ngIf="bikeForm.get('bikeUnits.year')?.errors && bikeForm.get('bikeUnits.year')?.touched">Year
-                                is required</small>
-                        </div> -->
-                      
-<!-- <div class="col-8">
-                          <input type="text" class="form-control" id="" formControlName="rentPerDay" placeholder="Enter the Rent per day">
-                          <small
-                              *ngIf="bikeForm.get('bikeUnits.year')?.errors && bikeForm.get('bikeUnits.year')?.touched">Year
-                              is required</small>
-                              
-                      </div> -->
-
-
-
-
-
-
-
-
-<!-- <div class="table-responsive mt-4">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Image</th>
-        <th>Brand</th>
-        <th>Model</th>
-        <th>Type</th>
-        <th>Rate per Day</th>
-        <th>Registration Number</th>
-      </tr>
-    </thead>
-    <tbody >
+ 
     
-
-      <tr *ngFor="let item of bikesArray">
-        <td>{{ item.id }}</td>
-        <td>{{ item.brand }}</td>
-        <td>{{ item.model }}</td>
-        <td>{{ item.type }}</td>
-
-        <td>
-     
-          <span *ngFor="let unit of item.bikeUnits">
-            {{ unit.rentPerDay }}
-          </span>
-        </td>
-
-        <td>
-  
-          <span *ngFor="let unit of item.bikeUnits">
-            {{ unit.registrationNumber }}
-          </span>
-        </td>
-
-        <td>
-     
-          <div *ngFor="let unit of item.bikeUnits">
-            <img *ngIf="unit.imagepath && unit.imagepath.length > 0" 
-                 [src]="'http://localhost:5268/' + unit.imagepath[0].imagePath" 
-                 alt="Bike Image" width="100" />
-          </div>
-        </td>
-      </tr>
-
-    </tbody>
-  </table>
-</div> -->
 
 
 
@@ -242,7 +152,7 @@
       <tr *ngFor="let item of bikesArray">
         <td>{{ item.id }}</td>
 
-        <!-- Image Column -->
+       
         <td>
           <ng-container *ngFor="let unit of item.bikeUnits[0].images">
             <div *ngIf="unit.imagePath && unit.imagePath">
@@ -252,32 +162,29 @@
           </ng-container>
         </td>
 
-        <!-- Brand Column -->
+        
         <td>{{ item.brand }}</td>
 
-        <!-- Model Column -->
+        
         <td>{{ item.model }}</td>
 
-        <!-- Type Column -->
+       
         <td>{{ item.type }}</td>
 
-        <!-- Rate per Day Column -->
+        
         <td>{{item.rentPerHour}}</td>
 
-        <!-- <td>
-          <ng-container *ngFor="let unit of item.bikeUnits">
-            <span>{{ unit.rentPerDay }}</span>
-          </ng-container>
-        </td> -->
+    
 
-        <!-- Registration Number Column -->
+        
         <td>
           <ng-container *ngFor="let unit of item.bikeUnits">
             <span>{{ unit.registrationNumber }},</span>
           </ng-container>
         </td>
-        <td>
-          <button class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#bikeEditModal"><i class="bi bi-pencil-square"></i></button>
+        <td >
+          
+          <button class="btn btn-danger m-1"  data-bs-toggle="modal" data-bs-target="#bikeaddModal" (click)="Edit(item.id)"><i class="bi bi-pencil-square"></i></button>
           <button class="btn btn-danger" (click)="onDeleteBike()"><i class="bi bi-trash"></i></button>
         </td>
         
@@ -288,170 +195,82 @@
 
 
 
+<!-- (click)="selected=item; openModal(template)" -->
+
 <!--Edit Modal -->
-<!-- <div class="modal fade" id="bikeEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Edit bike</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-bike-edit [currentBike]="selected">
+
+    </app-bike-edit>
+  </div>
+</ng-template> -->
+
+
+
+
+<!-- <div  *ngIf="selected" class="modal fade" id="bikeEditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
+        {{selected.brand}}
         <h1 class="modal-title fs-4 fw-bold text-center text-primary" id="exampleModalLabel">
           <i class="bi bi-bicycle me-2"></i> Edit Bikes
         </h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
-      <div class="container">
-        <form [formGroup]="editForm" (ngSubmit)="onEditTask()">
-          <div class="modal-body">
-            
-            <div class="row mb-3">
-              <div class="col-12">
-                <div class="input-group flex-nowrap">
-                  <span class="input-group-text" id="addon-wrapping"><i class="bi bi-bicycle"></i></span>
-                  <input type="text" class="form-control" placeholder="Enter the bike brand" formControlName="brand">
-                </div>
-              </div>
-            </div>
-
-            
-            <div class="row mb-3">
-              <div class="col-12">
-                <div class="input-group flex-nowrap">
-                  <span class="input-group-text" id="addon-wrapping"><i class="bi bi-bicycle"></i></span>
-                  <input type="text" class="form-control" placeholder="Enter the bike model" formControlName="model">
-                </div>
-              </div>
-            </div>
-
-            
-            <div class="row mb-3">
-              <div class="col-12">
-                <div class="input-group flex-nowrap">
-                  <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-bounding-box"></i></span>
-                  <input type="text" class="form-control" placeholder="Enter the bike type" formControlName="type">
-                </div>
-              </div>
-            </div>
-          
-            
-            <div class="row mb-3">
-              <div class="col-12">
-                <div class="input-group flex-nowrap">
-                  <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-bounding-box"></i></span>
-                  <input type="text" class="form-control" placeholder="Enter the Registration Number" formControlName="RegistrationNumber">
-                </div>
-              </div>
-            </div>
-
-            
-            <div class="row mb-3">
-              <div class="col-12 mt-2">
-                <div class="input-group flex-nowrap">
-                  <span class="input-group-text" id="addon-wrapping"><i class="bi bi-calendar"></i></span>
-                  <input type="text" class="form-control" placeholder="Enter the Year" formControlName="year">
-                </div>
-              </div>
-            </div>
-
-             
-             <div class="row mb-3">
-              <div class="col-12 mt-2">
-                <div class="input-group flex-nowrap">
-                  <span class="input-group-text" id="addon-wrapping"><i class="bi bi-cash-coin"></i></span>
-                  <input type="text" class="form-control" placeholder="Enter the Rent per day" formControlName="rentPerDay">
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="modal-footer">
-            <button type="reset" class="btn btn-secondary">Reset</button>
-            <button type="button" class="btn btn-primary shadow-lg px-4 py-2 rounded-3 text-white fw-bold"
-              (click)="addBike()" data-bs-dismiss="modal">
-              Save
-            </button>
-          </div>
-        </form>
-      </div>
+   
+      
     </div>
   </div>
 </div> -->
 
 
+<!-- <button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button> -->
+ 
+<!-- <ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    This is a modal.
+  </div>
+</ng-template> -->
 
 
 
 
-<!-- <div class="table-responsive mt-4">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Brand</th>
-          <th>Modal</th>
-          <th>Type</th>
-          <th>Rate per Hour</th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let item of bikes">
-        <tr >
-          <td>{{item.id}}</td>
-          <td>{{item.brand}}</td>
-          <td>{{item.model}}</td>
-          <td>{{item.type}}</td>
-          <td>{{item.ratePerHour}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div> -->
 
-
-
-<!-- <span class="badge bg-warning">Pending</span> -->
-
-
-
-<!-- Pagination controls -->
-<!-- <div *ngIf="bikes.length > 0">
-    <button (click)="onPageChange(pagenumber - 1)" [disabled]="pagenumber <= 1">Previous</button>
-    <span>Page {{ pagenumber }}</span>
-    <button (click)="onPageChange(pagenumber + 1)">Next</button>
-  </div> -->
-
-
-<!-- <td style="width: 30px; height: 20vh;">
-          <img *ngIf="item.image" [src]="'http://localhost:5268/bike-images/'+item.image" alt="Uploaded Bike Image" class="img-thumbnail" />
-          <span *ngIf="!item.image">No image available</span>
-        </td> -->
+<!-- <button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button> -->
+ 
 
 
 
 
-  <!-- <tr *ngFor="let item of bikesArray">
-        <td>{{ item.id}}</td>
-        <td>{{ item.brand }}</td>
-        <td>{{ item.model }}</td>
-        <td>{{ item.type }}</td>
-        <td *ngFor="let unit of item.bikeUnits">
-          {{ unit.rentPerDay}}
-        </td>
-        <td>{{unit?.registrationNumber}}</td>
-        <td>
-          <div *ngFor="let image of unit?.images">
-            <img *ngFor="let image of item.bikeUnits?.[0]?.imagepath" [src]="'http://localhost:5268/'+image.imagePath"
-              alt="Bike Image" width="50" height="50">
-          </div>
-        </td>
 
-      </tr> -->
+
+   <!-- <app-bike-add></app-bike-add> -->
 
 
 
-     <!-- image -->
-            <!-- <div class="modal-body">
-              <div class="input-group flex-nowrap">
-                <span class="input-group-text" id="addon-wrapping"><i class="bi bi-cash-coin"></i></span>
-                <input type="file" class="form-control" aria-label="type" aria-describedby="addon-wrapping"
-                  formControlName="image" (change)="onFileSelected($event)">
-              </div>
-            </div> -->
+   <!-- <ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Edit bike</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-bike-edit></app-bike-edit>
+    </div>
+  </ng-template> -->
