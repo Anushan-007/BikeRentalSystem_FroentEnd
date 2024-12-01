@@ -67,6 +67,14 @@
             <div formArrayName="bikeUnits">
               <div *ngFor="let checkList of myBikeUnits.controls; let i = index;" [formGroupName]="i">
                 <div class="row mb-3">
+                   <!-- Bike Unit Id -->
+                   <div class="col-12" *ngIf="isEditForm">
+                    <div class="input-group flex-nowrap">
+                      <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-bounding-box"></i></span>
+                      <input type="text" class="form-control" placeholder="Enter the Registration Number" formControlName="unitId" readonly>
+                    </div>
+                  </div>
+
                   <!-- Registration Number -->
                   <div class="col-12">
                     <div class="input-group flex-nowrap">

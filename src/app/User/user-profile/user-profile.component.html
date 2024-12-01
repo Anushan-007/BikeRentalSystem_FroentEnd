@@ -1,0 +1,52 @@
+
+  
+
+ <!-- Profile Form -->
+ <form>
+    <div class="row" >
+      <!-- Left Column -->
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="userName" class="form-label">Username</label>
+          <input type="text" class="form-control" id="userName" [(ngModel)]="userName" name="userName">
+        </div>
+        <div class="mb-3">
+          <label for="nic" class="form-label">NIC</label>
+          <input type="text" class="form-control" id="nic" [(ngModel)]="nic" name="nic" readonly>
+        </div>
+        <div class="mb-3">
+          <label for="fName" class="form-label">First Name</label>
+          <input type="text" class="form-control" id="fName" [(ngModel)]="fName" name="fName">
+        </div>
+        <div class="mb-3">
+          <label for="lName" class="form-label">Last Name</label>
+          <input type="text" class="form-control" id="lName" [(ngModel)]="lName" name="lName">
+        </div>
+        <div class="mb-3" >
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email">
+        </div>
+
+        <div class="mb-3">
+          <label for="cNumber" class="form-label">Contact Number</label>
+          <input type="text" class="form-control" id="cNumber" [(ngModel)]="cNumber" name="cNumber">
+        </div>
+        <div class="mb-3">
+          <label for="address" class="form-label">Address</label>
+          <textarea class="form-control" id="address" rows="3" [(ngModel)]="address" name="address"></textarea>
+        </div>
+        <!-- <div class="mb-3">
+          <label for="accountCreated" class="form-label">Account Created</label>
+          <input type="text" class="form-control" id="accountCreated" [(ngModel)]="accountCreated" name="accountCreated" disabled>
+        </div> -->
+      </div>
+
+      
+    </div>
+
+    <div class="text-center ">
+      <button type="submit" class="btn btn-save " (click)="updateUser(user.nicNumber, user)">Save Changes</button>
+    <button type="button" class="btn btn-danger me-2" (click)="logout()">LogOut</button>
+    </div>
+  </form>
+

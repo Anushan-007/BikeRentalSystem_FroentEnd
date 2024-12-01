@@ -64,15 +64,43 @@
       <form class="d-flex" role="search">
        
         <div class="text-end">
-            <button type="button" class="btn btn-outline-light me-2" (click)="logout()">LogOut</button>
+          <button class="btn " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Hello {{userName}}</button>
             <!-- <button type="button" class="btn btn-warning" >Sign-up</button> -->
-          </div>
+        </div>
       </form>
     </div>
   </div>
 </nav>
 </header> 
 <hr>
+
+
+<!-- user profile side bar -->
+
+<div class="offcanvas offcanvas-end " tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header container" >
+    <h5 class="offcanvas-title row justify-content-center col-md-8 profile-container" id="offcanvasRightLabel">  Hello {{userName}}</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+
+    <!-- <div class="container">
+      <div class="row justify-content-center"> -->
+        <!-- <div class="col-md-8 profile-container"> -->
+          <div class="profile-header text-center">
+            <!-- <p>Manage your account details</p> -->
+          </div>
+    
+    <app-user-profile></app-user-profile>
+         
+        <!-- </div> -->
+      <!-- </div>
+    </div> -->
+
+      
+
+  </div>
+</div>
 
 <main class="mt-4 " >
 

@@ -13,6 +13,8 @@ export class CustomerService {
   constructor(private http:HttpClient, private router:Router) { }
 
   getAllUser = 'http://localhost:5268/api/User/GetAllUsers';
+  UpdateUserURL = 'http://localhost:5268/api/User/UpdateUser?NicNumber=';
+  getUserURL = 'http://localhost:5268/api/User/GetUserById?NicNumber=';
 
   
   getAllUsers(): Observable<User[]> {
@@ -21,6 +23,15 @@ export class CustomerService {
           );;
   }
 
+  getBikeById(NicNumber:String):Observable<User>{
+    return this.http.get<User>(this.getUserURL+NicNumber)
+  }
+
+  UpdateUsers(NicNumber:string, user:User): Observable<User[]> {
+    return this.http.get<User[]>(this.UpdateUserURL + NicNumber + user).pipe(
+            catchError(this.handleError)
+          );;
+  }
 
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';

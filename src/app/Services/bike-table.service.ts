@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Bike } from '../Models/bike';
 import { Observable, catchError, throwError } from 'rxjs';
 import { updateBike } from '../Models/updateBike';
+import { bikeUnitUpdateDTO } from '../Models/BikeUnitUpdateDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -30,71 +31,72 @@ export class BikeTableService {
   }
 
   
-  // updateBike(bikeId: string, bike: updateBike) {
+  // updateBike(bikeId: string, bike: bikeUnitUpdateDTO) {
   //   const url = `${this.updateBikeURL}${bikeId}`;  // Append the bikeId to the URL
   //   return this.http.put(url, bike);  // Make the PUT request to update the bike
   // }
 
-    // Method to update the bike, bike unit, and images
-    updateBikeUnit(bikeId: string, bikeUnitUpdateDTO: updateBike): Observable<any> {
-      const formData = new FormData();
+    //Method to update the bike, bike unit, and images
+    // updateBikeUnit(bikeId: string, bikeUnitUpdateDTO: bikeUnitUpdateDTO): Observable<any> {
+    //   const formData = new FormData();
   
-      // Check if required fields are populated before appending them to FormData
+    //   // Check if required fields are populated before appending them to FormData
   
-      if (!bikeUnitUpdateDTO.unitId) {
-        throw new Error('UnitId is required.');
-      }
-      formData.append('UnitId', bikeUnitUpdateDTO.unitId);
+    //   if (!bikeUnitUpdateDTO.unitId) {
+    //     throw new Error('UnitId is required.');
+    //   }
+    //   formData.append('UnitId', bikeUnitUpdateDTO.unitId);
   
-      if (bikeUnitUpdateDTO.brand) {
-        formData.append('Brand', bikeUnitUpdateDTO.brand);
-      }
+    //   if (bikeUnitUpdateDTO.brand) {
+    //     formData.append('Brand', bikeUnitUpdateDTO.brand);
+    //   }
   
-      if (bikeUnitUpdateDTO.type) {
-        formData.append('Type', bikeUnitUpdateDTO.type);
-      }
+    //   if (bikeUnitUpdateDTO.type) {
+    //     formData.append('Type', bikeUnitUpdateDTO.type);
+    //   }
   
-      if (bikeUnitUpdateDTO.model) {
-        formData.append('Model', bikeUnitUpdateDTO.model);
-      }
+    //   if (bikeUnitUpdateDTO.model) {
+    //     formData.append('Model', bikeUnitUpdateDTO.model);
+    //   }
   
-      // RentPerHour should be a valid number, so check for it
-      if (bikeUnitUpdateDTO.rentPerHour || bikeUnitUpdateDTO.rentPerHour === 0) {
-        formData.append('RentPerHour', bikeUnitUpdateDTO.rentPerHour.toString());
-      }
+    //   // RentPerHour should be a valid number, so check for it
+    //   if (bikeUnitUpdateDTO.rentPerHour || bikeUnitUpdateDTO.rentPerHour === 0) {
+    //     formData.append('RentPerHour', bikeUnitUpdateDTO.rentPerHour.toString());
+    //   }
   
-      // Check if RegistrationNumber is provided and valid (required field)
-      if (!bikeUnitUpdateDTO.registrationNumber || bikeUnitUpdateDTO.registrationNumber.trim() === '') {
-        throw new Error('RegistrationNumber is required.');
-      }
-      formData.append('RegistrationNumber', bikeUnitUpdateDTO.registrationNumber);
+    //   // Check if RegistrationNumber is provided and valid (required field)
+    //   if (!bikeUnitUpdateDTO.registrationNumber || bikeUnitUpdateDTO.registrationNumber.trim() === '') {
+    //     throw new Error('RegistrationNumber is required.');
+    //   }
+    //   formData.append('RegistrationNumber', bikeUnitUpdateDTO.registrationNumber);
   
-      // Handle Year field, check if it's a valid number
-      if (bikeUnitUpdateDTO.year) {
-        formData.append('Year', bikeUnitUpdateDTO.year.toString());
-      }
+    //   // Handle Year field, check if it's a valid number
+    //   if (bikeUnitUpdateDTO.year) {
+    //     formData.append('Year', bikeUnitUpdateDTO.year.toString());
+    //   }
   
-      // Ensure Availability is a boolean and append it
-      if (typeof bikeUnitUpdateDTO.availability === 'boolean') {
-        formData.append('Availability', bikeUnitUpdateDTO.availability.toString());
-      } else {
-        throw new Error('Availability is required.');
-      }
+    //   // Ensure Availability is a boolean and append it
+    //   if (typeof bikeUnitUpdateDTO.availability === 'boolean') {
+    //     formData.append('Availability', bikeUnitUpdateDTO.availability.toString());
+    //   } else {
+    //     throw new Error('Availability is required.');
+    //   }
   
-      // Handle images (if available)
-      if (bikeUnitUpdateDTO.bikeImages && bikeUnitUpdateDTO.bikeImages.length > 0) {
-        for (let i = 0; i < bikeUnitUpdateDTO.bikeImages.length; i++) {
-          formData.append('BikeImages', bikeUnitUpdateDTO.bikeImages[i], bikeUnitUpdateDTO.bikeImages[i].name);
-        }
-      }
+    //   // Handle images (if available)
+    //   if (bikeUnitUpdateDTO.bikeImages && bikeUnitUpdateDTO.bikeImages.length > 0) {
+    //     for (let i = 0; i < bikeUnitUpdateDTO.bikeImages.length; i++) {
+    //       formData.append('BikeImages', bikeUnitUpdateDTO.bikeImages[i], bikeUnitUpdateDTO.bikeImages[i].name);
+    //     }
+    //   }
   
-      // Send the PUT request
-      return this.http.put(`${this.baseUrl}/${bikeId}/UpdateBike`, formData);
-    }
+    //   // Send the PUT request
+    //   return this.http.put(`${this.baseUrl}/${bikeId}/UpdateBike`, formData);
+    // }
 
-  // updateBike(bike : IBike , id : string){
-  //   return this.http.put("http://localhost:5057/api/Bikes/" + id , bike);
-  // }
+    updateBikeUnit( bikeId : string, formData:FormData){
+      
+    return this.http.put("http://localhost:5268/api/Bike/" + bikeId +"/Updatebike",formData);
+  }
   
 
 postBikeData(bikeData: Bike): Observable<any> {
