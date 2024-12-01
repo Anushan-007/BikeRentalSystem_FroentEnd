@@ -10,6 +10,7 @@ import { images } from '../../Models/images';
 import { BikeEditComponent } from '../bike-edit/bike-edit.component';
 import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
 import { BikeAddComponent } from '../bike-add/bike-add.component';
+import { bikeUnitUpdateDTO } from '../../Models/BikeUnitUpdateDTO';
 
 @Component({
   selector: 'app-bike-table',
@@ -30,6 +31,7 @@ export class BikeTableComponent implements OnInit {
   selected: any;
   isEditForm: boolean = false;
   editId!:string;
+  bikeUpdate!:bikeUnitUpdateDTO;
 
 
   loading: boolean = true;
@@ -117,16 +119,44 @@ export class BikeTableComponent implements OnInit {
   addBike(): void {
     if (this.bikeForm.valid) {
       const bikeData = this.bikeForm.value;
+      console.log("bike data"+bikeData.unitId);
+      
   
-      // Send the bike details request (Add or Edit)
-      if (this.isEditForm) {
-        this.bikeTableService.updateBikeUnit(this.editId, bikeData).subscribe(
+      
+      if (this.isEditForm == true) {
+        const formData = new FormData();
+        
+        
+        // formData.append('unitId', bikeData.unitId);
+        formData.append('unitId', bikeData.unitId || '14e9ea52-83a8-47f8-981f-08dd11095369' );
+        // || '14E9EA52-83A8-47F8-981F-08DD11095369'
+        formData.append('brand', bikeData.brand);
+        formData.append('model', bikeData.model);
+        formData.append('type', bikeData.type);
+        formData.append('rentPerHour', bikeData.rentPerHour);
+         //formData.append('registrationNumber', bikeData.registrationNumber);
+         formData.append('registrationNumber', bikeData.registrationNumber || '000');
+        // formData.append('year', bikeData.year);
+        // formData.append('availability', bikeData.availability);
+        formData.append('year', bikeData.year || 0);
+        formData.append('availability', bikeData.availability || true);
+        formData.append('bikeImages', bikeData.bikeImages);
+        
+
+
+        console.log("id"+this.editId);
+        
+        this.bikeTableService.updateBikeUnit(this.editId,formData).subscribe(
           (response) => {
+            console.log(response);
+            
             this.toastr.success('Bike updated successfully!');
-            this.router.navigate(['/admin/bikeTable']);  // Navigate to the bike table after successful update
+            this.router.navigate(['/admin/bikeTable']);  
           },
           (error) => {
             this.toastr.error('Failed to update bike');
+            console.log(error);
+            
           }
         );
       } else {
@@ -299,6 +329,7 @@ export class BikeTableComponent implements OnInit {
         bikeUnitsArray.clear(); // Clear any existing bike units
         res.bikeUnits.forEach((unit: bikeUnits) => {
           bikeUnitsArray.push(this.fb.group({
+            unitId:[unit.unitId],
             RegistrationNumber: [unit.registrationNumber, Validators.required],
             year: [unit.year, Validators.required],
             images: this.fb.array(unit.images ? unit.images.map(image => this.fb.group({
