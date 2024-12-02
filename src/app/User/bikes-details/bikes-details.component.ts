@@ -29,7 +29,6 @@ export class BikesDetailsComponent implements OnInit {
   constructor(private fb:FormBuilder, private route: ActivatedRoute, private biketableService:BikeTableService , private toastr :ToastrService, private rentalRequestService:RentalRequestService){
     console.log(this.bikeData);
    this.bikeId = ( this.route.snapshot.paramMap.get("id"));
-   
    console.log(this.bikeId);
    
     
@@ -37,20 +36,46 @@ export class BikesDetailsComponent implements OnInit {
    let user = { NicNumber: '' }
    if (getUser) {
      user = JSON.parse(getUser);
-   } this.rentalRequestForm = this.fb.group({
+   }  this.rentalRequestForm = this.fb.group({
     requestTime: [''],
-     bikeId: [this.bikeId],
-     nicNumber: [user.NicNumber]
-   })
+    bikeId: [this.bikeId], // Dynamically set bikeId
+    nicNumber: [user.NicNumber]
+  });
+
   }
 
-  ngOnInit(): void {
-    this.biketableService.getBikeById(this.bikeId).subscribe(data => {
-      this.bike = data 
-      console.log(data);
+
+  
+ 
+  // ngOnInit(): void {
+  //   this.biketableService.getBikeById(this.bikeId).subscribe(data => {
+  //     this.bike = data 
+  //     console.log(data);
       
-    })
+  //   })
+  // }
+
+  ngOnInit(): void {
+    if (!this.bikeData) {
+      // If no bike data was passed in, use the bikeId from the route to fetch the bike details
+      if (this.bikeId) {
+        this.biketableService.getBikeById(this.bikeId).subscribe(data => {
+          this.bike = data;
+          console.log(data);
+        });
+      }
+    } else {
+      // If bikeData is passed in, set it directly
+      if(this.bikeData){
+        this.bike = this.bikeData;
+         console.log(this.bikeData)
+      }
+     
+    }
   }
+  
+
+  
 
 
   getBikes(){
@@ -82,8 +107,10 @@ onRequest(){
 
  // this.rentalRequestForm.value.bikeId = this.bikeData.id;
   console.log(this.rentalRequestForm.value);
+  this.rentalRequestForm.value.bikeId = this.bikeData.id;
   this.rentalRequestService.postRequest(this.rentalRequestForm.value).subscribe(data => {
     console.log(data);
+    this.rentalRequestForm.reset();
   }, error => {
     this.toastr.error(error.error);
   })

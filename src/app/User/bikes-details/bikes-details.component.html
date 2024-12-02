@@ -1,8 +1,8 @@
 <hr class="featurette-divider">
 
-<div class="row featurette" *ngIf="bike">
+<div class="row featurette" *ngIf="bikeData">
   <div class="col-md-7">
-    <h2 class="featurette-heading fw-normal lh-1">{{bike.brand}} <span class="text-body-secondary">{{bike.model}}</span></h2>
+    <h2 class="featurette-heading fw-normal lh-1">{{bikeData.brand}} <span class="text-body-secondary">{{bikeData.model}}</span></h2>
     <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
   </div>
 
@@ -18,12 +18,21 @@
     <img [src]="'http://localhost:5268/' + bike.bikeUnits[0].images[0].imagePath" alt="Bike Image" width="100" />
   </div> -->
   <!-- ... -->
+
+  <!-- <div *ngIf="bike.bikeUnits && bike.bikeUnits[0]?.images?.length">
+    <ng-container *ngFor="let unit of bike.bikeUnits[0].images">
+      <div *ngIf="unit.imagePath">
+        <img [src]="'http://localhost:5268/' + unit.imagePath" alt="Bike Image" width="100" />
+      </div>
+    </ng-container>
+  </div> -->
+  
   
   
   <form [formGroup]="rentalRequestForm" (ngSubmit)="onRequest()">
     <label  class="form-label">Date of rent :</label>
     <input type="text" formControlName="requestTime" class="form-control" bsDatepicker>
-    <button type="submit" class="btn btn-primary mt-2">Request</button>
+    <button type="submit" class="btn btn-primary mt-2" [disabled]="!bikeData">Request</button>
 </form>
 
 

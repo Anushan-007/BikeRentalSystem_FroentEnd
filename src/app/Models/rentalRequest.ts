@@ -8,6 +8,7 @@ export class rentalRequest{
     UserAlert:boolean;
     status:Status;
     bike? : Bike;
+    rentalRequests!:rentalRequest[];
 
     constructor(obj:any){
         this.id = obj.id != null ? obj.id:null;
@@ -17,6 +18,7 @@ export class rentalRequest{
         this.UserAlert = obj.UserAlert != null ? obj.UserAlert :null;
         this.status = obj.status != null ? obj.status :null;
         this.bike = obj.bike != null ? obj.bike : null;
+        this.rentalRequests = obj.rentalRequests != null ? obj.rentalRequests : null;
     }
 }
 

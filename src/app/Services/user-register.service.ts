@@ -37,12 +37,12 @@ export class UserRegisterService {
         console.log(decoded);
         
         localStorage.setItem("name", decoded.UserName)
-        localStorage.setItem("FirstName", decoded.FirstName)
-        localStorage.setItem("LastName", decoded.LastName)
-        localStorage.setItem("Email", decoded.Email)
-        localStorage.setItem("ContactNo", decoded.ContactNo)
-        localStorage.setItem("Address", decoded.Address)
-        localStorage.setItem("Role", decoded.roles)
+        // localStorage.setItem("FirstName", decoded.FirstName)
+        // localStorage.setItem("LastName", decoded.LastName)
+        // localStorage.setItem("Email", decoded.Email)
+        // localStorage.setItem("ContactNo", decoded.ContactNo)
+        // localStorage.setItem("Address", decoded.Address)
+        // localStorage.setItem("Role", decoded.roles)
         localStorage.setItem("nicNumber", decoded.NicNumber)
        // console.log(localStorage.setItem("nicNumber", decoded.nicNumber));
         

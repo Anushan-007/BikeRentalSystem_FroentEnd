@@ -8,11 +8,14 @@ import { ToastrService } from 'ngx-toastr';
 import { CustomerService } from '../../Services/customer.service';
 import { User } from '../../Models/users';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { PopoverModule } from 'ngx-bootstrap/popover';
+import { RentalRecordService } from '../../Services/rental-record.service';
+import { Status } from '../../Models/rentalRequest';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, BsDatepickerModule, BikesComponent, CommonModule, UserProfileComponent, FormsModule, ReactiveFormsModule],
+  imports: [RouterOutlet, RouterLink, BsDatepickerModule, BikesComponent, CommonModule, FormsModule, ReactiveFormsModule,PopoverModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -37,10 +40,12 @@ export class HomeComponent implements OnInit{
 
   userEdit:FormGroup;
   currentNicNumber!:string;
+  currentUser!:User;
+  notifyCount!:number;
 
 
   
-  constructor(private fb:FormBuilder, private router:Router, private customerService:CustomerService, private toastr:ToastrService){
+  constructor(private fb:FormBuilder, private router:Router, private customerService:CustomerService, private toastr:ToastrService, private rentalRecordService:RentalRecordService){
     this.userEdit = this.fb.group({
       UserName: [''],
       NicNumber: [''],
@@ -50,6 +55,8 @@ export class HomeComponent implements OnInit{
       ContactNo: [''],
       Address: [''],
     });
+
+    this.getNotifications();
 
   }
 
@@ -78,8 +85,35 @@ export class HomeComponent implements OnInit{
     // this.address = Address;
     // this.accountCreated = AccountCreated;
 
-  }
    
+
+  }
+  
+  getNotifications(){
+    let user = localStorage.getItem("user");
+    if(user){
+      let currentUser = JSON.parse(user);
+      console.log(currentUser);
+      
+      this.customerService.getUserById(currentUser.NicNumber).subscribe(data => {
+        console.log(data);
+        this.currentUser = data;
+        // this.notifyCount = this.currentUser?.rentalRequests?.length
+        console.log( this.currentUser);
+        
+        let acceptedReq = this.currentUser?.rentalRequests?.filter((r:any) => r.status == Status.accepted);
+        
+        let declinedReq = this.currentUser?.rentalRequests?.filter((a:any) => a.status == Status.declined);
+        console.log(acceptedReq);
+        console.log(declinedReq);
+        acceptedReq?.length == 0 ? '' : this.toastr.info("Accepted our request");
+        declinedReq?.length == 0 ? '' : this.toastr.info("Declined our request");
+
+        
+      })
+    }
+  }
+
   
   logout(){
     localStorage.clear();

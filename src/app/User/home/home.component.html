@@ -50,7 +50,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <p class="nav-link active" aria-current="page" >Home</p>
         </li>
         <li class="nav-item">
@@ -58,13 +58,19 @@
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li>
+        </li> -->
       </ul>
       <!-- <button [routerLink]="['/admin/']">Admin</button> -->
       <form class="d-flex" role="search">
        
         <div class="text-end" >
-          <button class="btn btn-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" (click)="editUser()">abc</button>
+          <button type="button" class="btn btn-default btn-secondary"
+          [popover]=""
+          popoverTitle="Notification"
+          placement="left"  (click)="getNotifications()">
+          <i class="bi bi-bell"></i>
+  </button>
+          <button class="btn btn-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" (click)="editUser()">{{userName}}</button>
           
         </div>
       </form>
