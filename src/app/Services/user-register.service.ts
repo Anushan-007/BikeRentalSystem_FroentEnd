@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { user } from '../Models/user';
 import { Login } from '../Models/login';
 import { jwtDecode } from "jwt-decode";
 import { Router } from '@angular/router';
+import { User } from '../Models/users';
 
 
 @Injectable({
@@ -17,8 +17,8 @@ export class UserRegisterService {
   userLoginURL = 'http://localhost:5268/api/User/login';
   
 
-  AddRegisterUser(UserRegister:user){
-    return this.http.post<user>(this.userRegisterURL, UserRegister)
+  AddRegisterUser(UserRegister:User){
+    return this.http.post<User>(this.userRegisterURL, UserRegister)
    
   }
 

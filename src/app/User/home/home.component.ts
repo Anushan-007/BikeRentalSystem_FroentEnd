@@ -3,13 +3,16 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BikesComponent } from "../bikes/bikes.component";
 import { CommonModule } from '@angular/common';
-import { user } from '../../Models/user';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
+import { ToastrService } from 'ngx-toastr';
+import { CustomerService } from '../../Services/customer.service';
+import { User } from '../../Models/users';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, BsDatepickerModule, BikesComponent, CommonModule, UserProfileComponent],
+  imports: [RouterOutlet, RouterLink, BsDatepickerModule, BikesComponent, CommonModule, UserProfileComponent, FormsModule, ReactiveFormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -19,11 +22,34 @@ export class HomeComponent implements OnInit{
   imageUrl2:string ='https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/motocross-rider-at-sunset-piola666.jpg';
 
 
-  users!:user[];
+  users!:User[];
+  user!:User
   userName:string = '';
+  // nic:string = '';
+  // fName :string = '';
+  // lName :string = '';
+  // email:string = '';
+  // cNumber:string = '';
+  // address:string = '';
+  // accountCreated :string = '';
+
+  editId!:string;
+
+  userEdit:FormGroup;
+  currentNicNumber!:string;
+
 
   
-  constructor(private router:Router){
+  constructor(private fb:FormBuilder, private router:Router, private customerService:CustomerService, private toastr:ToastrService){
+    this.userEdit = this.fb.group({
+      UserName: [''],
+      NicNumber: [''],
+      FirstName: [''],
+      LastName: [''],
+      Email: [''],
+      ContactNo: [''],
+      Address: [''],
+    });
 
   }
 
@@ -32,9 +58,96 @@ export class HomeComponent implements OnInit{
   ngOnInit(): void {
     const name = localStorage.getItem("name") || "";
     this.userName = name;
+
+    // const NicNumber = localStorage.getItem("nicNumber") || "";
+    // const FirstName = localStorage.getItem("FirstName") || "";
+    // const LastName = localStorage.getItem("LastName") || "";
+    // const Email = localStorage.getItem("Email" ) || "";
+    // const ContactNo = localStorage.getItem("ContactNo" ) || "";
+    // const cNumber = localStorage.getItem("cNumber" ) || "";
+    // const Address = localStorage.getItem("Address" ) || "";
+    // const AccountCreated = localStorage.getItem("AccountCreated" ) || "";
+
+
+
+    // this.nic = NicNumber;
+    // this.fName = FirstName;
+    // this.lName = LastName;
+    // this.email = Email;
+    // this.cNumber = ContactNo;
+    // this.address = Address;
+    // this.accountCreated = AccountCreated;
+
   }
    
   
+  logout(){
+    localStorage.clear();
+    this.router.navigate(['/login'])
+  }
 
+  editUser(): void {
+let NicNumber =  localStorage.getItem("nicNumber") || ""
+  this.currentNicNumber = NicNumber;
+    this.customerService.getUserById(NicNumber).subscribe( 
+      (res: User) => {
+        this.userEdit.patchValue({
+          NicNumber: res.nicNumber,
+          Email: res.email,
+          FirstName: res.firstName,
+          LastName: res.lastName,
+          ContactNo: res.contactNo,
+          Address: res.address,
+          UserName: res.userName
+        });
+      },
+      (err) => {
+        this.toastr.error(err.error.error);
+      }
+      
+  )}
+      
+    
+  
+  
+  
+  
+
+
+  // this.bikeTableService.getBikeById(id).subscribe(
+  //   (res: Bike) => {
+  //     this.bikeForm.patchValue({
+  //       brand: res.brand,
+  //       model: res.model,
+  //       type: res.type,
+  //       rentPerHour: res.rentPerHour
+  //     });
+
+  // getBikeById(nic:string){
+  //   this.customerService.getBikeById(nic).subscribe({
+  //     next: (data) => {
+  //       console.log(data);
+  //       this.user = data;
+  //     },
+  //     error: (err) => {
+  //       this.toastr.error(err.error.error)
+  //     }
+  //   })
+
+  // }
+
+  updateUser(){
+    this.customerService.UpdateUsers(this.currentNicNumber,this.userEdit.value).subscribe({
+      next: (data) => {
+        console.log(data);
+        // this.users = data;
+      },
+      error: (err) => {
+        this.toastr.error(err.error.error)
+      }
+    })
+
+  }
 
 }
+

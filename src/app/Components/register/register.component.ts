@@ -4,8 +4,8 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Router, RouterLink } from '@angular/router';
 import { UserRegisterService } from '../../Services/user-register.service';
 import { ToastrService } from 'ngx-toastr';
-import { user } from '../../Models/user';
 import {  HttpClientModule } from '@angular/common/http';
+import { User } from '../../Models/users';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit{
 
   registrationForm !: FormGroup;
   imagePreview: string | ArrayBuffer | null = null;
-  user!:user;
+  user!:User;
   // Iuser! :Iuser;
 
   constructor(private fb: FormBuilder, private registerService: UserRegisterService, private router:Router, private toaster:ToastrService) { }

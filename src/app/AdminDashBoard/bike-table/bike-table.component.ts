@@ -125,26 +125,26 @@ export class BikeTableComponent implements OnInit {
       
       if (this.isEditForm == true) {
         const formData = new FormData();
-        
+        console.log(bikeData)
         
         // formData.append('unitId', bikeData.unitId);
-        formData.append('unitId', bikeData.unitId || '14e9ea52-83a8-47f8-981f-08dd11095369' );
-        // || '14E9EA52-83A8-47F8-981F-08DD11095369'
+        // formData.append('unitId', bikeData.unitId );
+        // // || '14E9EA52-83A8-47F8-981F-08DD11095369'
         formData.append('brand', bikeData.brand);
         formData.append('model', bikeData.model);
         formData.append('type', bikeData.type);
         formData.append('rentPerHour', bikeData.rentPerHour);
-         //formData.append('registrationNumber', bikeData.registrationNumber);
-         formData.append('registrationNumber', bikeData.registrationNumber || '000');
-        // formData.append('year', bikeData.year);
-        // formData.append('availability', bikeData.availability);
-        formData.append('year', bikeData.year || 0);
-        formData.append('availability', bikeData.availability || true);
-        formData.append('bikeImages', bikeData.bikeImages);
+        //  //formData.append('registrationNumber', bikeData.registrationNumber);
+        //  formData.append('registrationNumber', bikeData.registrationNumber || '000');
+        // // formData.append('year', bikeData.year);
+        // // formData.append('availability', bikeData.availability);
+        // formData.append('year', bikeData.year || 0);
+        // formData.append('availability', bikeData.availability || true);
+        // formData.append('bikeImages', bikeData.bikeImages);
         
 
 
-        console.log("id"+this.editId);
+        // console.log("id"+this.editId);
         
         this.bikeTableService.updateBikeUnit(this.editId,formData).subscribe(
           (response) => {
