@@ -23,12 +23,14 @@ export class CustomerService {
           );;
   }
 
-  getBikeById(NicNumber:String):Observable<User>{
-    return this.http.get<User>(this.getUserURL+NicNumber)
-  }
+// Service: Change Observable<User> to Observable<user> (lowercase)
+getUserById(NicNumber: string): Observable<User> {
+  return this.http.get<User>(this.getUserURL + NicNumber);
+}
+
 
   UpdateUsers(NicNumber:string, user:User): Observable<User[]> {
-    return this.http.get<User[]>(this.UpdateUserURL + NicNumber + user).pipe(
+    return this.http.put<User[]>(this.UpdateUserURL + NicNumber , user).pipe(
             catchError(this.handleError)
           );;
   }

@@ -65,18 +65,18 @@ export class UserProfileComponent implements OnInit {
   }
 
 
-  getBikeById(nic:string){
-    this.customerService.getBikeById(nic).subscribe({
-      next: (data) => {
-        console.log(data);
-        this.user = data;
-      },
-      error: (err) => {
-        this.toastr.error(err.error.error)
-      }
-    })
+  // getBikeById(nic:string){
+  //   this.customerService.getBikeById(nic).subscribe({
+  //     next: (data) => {
+  //       console.log(data);
+  //       // this.user = data;
+  //     },
+  //     error: (err) => {
+  //       this.toastr.error(err.error.error)
+  //     }
+  //   })
 
-  }
+  // }
 
   updateUser(nic:string, user:User){
     this.customerService.UpdateUsers(nic,user).subscribe({
