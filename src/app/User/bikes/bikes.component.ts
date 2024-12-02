@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { Bike } from '../../Models/bike';
 import { BikeTableService } from '../../Services/bike-table.service';
 import { ToastrService } from 'ngx-toastr';
@@ -9,13 +9,13 @@ import { BikesDetailsComponent } from "../bikes-details/bikes-details.component"
 @Component({
   selector: 'app-bikes',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, CommonModule, BikesDetailsComponent],
+  imports: [RouterLink, CommonModule, BikesDetailsComponent],
   templateUrl: './bikes.component.html',
   styleUrl: './bikes.component.css'
 })
 export class BikesComponent {
 
-
+selected:any;
   bikesArray:Bike[] = [];
   currentBike!: Bike;
 
@@ -26,6 +26,8 @@ export class BikesComponent {
   ngOnInit(): void {
     this.getBikes();
   }
+
+  
 
 
   getBikes(){
