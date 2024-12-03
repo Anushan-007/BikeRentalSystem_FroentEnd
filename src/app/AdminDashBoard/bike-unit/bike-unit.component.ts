@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { bikeUnits } from '../../Models/bikeUnit';
 import { CommonModule } from '@angular/common';
 import { UnitsService } from '../../Services/units.service';
 import { ToastrService } from 'ngx-toastr';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-bike-unit',
   standalone: true,
   imports: [CommonModule],
+  providers: [BsModalService],
   templateUrl: './bike-unit.component.html',
   styleUrl: './bike-unit.component.css'
 })
@@ -15,7 +17,11 @@ export class BikeUnitComponent implements OnInit {
 
   bikeunits:bikeUnits[] =[];
 
-  constructor(private unitService:UnitsService, private toastr:ToastrService){}
+  modalRef?: BsModalRef;
+  message?: string;
+  regNo!:string;
+
+  constructor(private unitService:UnitsService, private toastr:ToastrService, private modalService: BsModalService ){}
 
 
   ngOnInit(): void {
@@ -47,4 +53,22 @@ deleteBikeUnit(regNo:string): void {
     })
   }
 
+  openModal(template: TemplateRef<void>, registrationNumber:string) {
+    this.regNo = registrationNumber;
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+  }
+ 
+  confirm(): void {
+    this.message = 'Confirmed!';
+    this.deleteBikeUnit(this.regNo)
+    this.modalRef?.hide();
+  }
+ 
+  decline(): void {
+    this.message = 'Declined!';
+    this.modalRef?.hide();
+  }
+
 }
+
+
