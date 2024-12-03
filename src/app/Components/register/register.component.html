@@ -1,90 +1,122 @@
+ <!-- [disabled]="!registrationForm.valid" -->
 
-  <div class="container mt-5" >
-    <div class="form-container">
-      <h3 class="text-center mb-4">Registration Form</h3>
-      <form [formGroup]="registrationForm" >
-        <div class="row">
-          <!-- NIC Number -->
-          <div class="col-md-6 mb-3">
-            <label for="nicNumber">NIC Number</label>
-            <input type="text" class="form-control" id="nicNumber" formControlName="nicNumber" placeholder="Enter NIC Number" >
-          </div>
-
-           <!-- Email -->
-           <div class="col-md-6 mb-3">
-            <label for="email">Email Address</label>
-            <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter Email" >
-          </div>
-
-          <!-- First Name -->
-          <div class="col-md-6 mb-3">
-            <label for="firstName">First Name</label>
-            <input type="text" class="form-control" id="firstName" formControlName="firstName" placeholder="Enter First Name" >
-          </div>
+  <section class="vh-100" style="background-color: #050505;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-xl-10">
+          <div class="card" style="border-radius: 1rem;">
+            <div class="row g-0">
+              <div class="col-md-6 col-lg-5 d-none d-md-block">
+                <!-- Image -->
+                <img src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/man-with-riding-sport-motorbike-taking-a-curve-daniel-lozano-gonzalez.jpg"
+                     alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem; object-fit: cover; height: 100%; width: 100%;" />
+              </div>
+              <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                <div class="card-body p-4 p-lg-5 text-black">
+    
+                  <form [formGroup]="registrationForm">
+    
+                    <div class="d-flex align-items-center mb-3 pb-1">
+                      <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                      <span class="h1 fw-bold mb-0">Logo</span>
+                    </div>
+    
+                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign Up your account</h5>
+    
+                    <!-- Two-column layout -->
+                    <div class="row">
+                      <!-- First Column -->
+                      <div class="col-md-6">
+                        <!-- NIC Number -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                          <label for="nicNumber">NIC Number</label>
+                          <input type="text" class="form-control" id="nicNumber" formControlName="nicNumber" placeholder="Enter NIC Number" />
+                        </div>
+    
+                        <!-- First Name -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                          <label for="firstName">First Name</label>
+                          <input type="text" class="form-control" id="firstName" formControlName="firstName" placeholder="Enter First Name" />
+                        </div>
+    
+                        <!-- Contact Number -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                          <label for="contactNo">Contact Number</label>
+                          <input type="text" class="form-control" id="contactNo" formControlName="contactNo" placeholder="Enter Contact Number" />
+                        </div>
+    
+                        <!-- Password -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                          <label for="passwordHash">Password</label>
+                          <input type="password" class="form-control" id="passwordHash" formControlName="password" placeholder="Enter Password" />
+                        </div>
+    
+                        <!-- Username -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                          <label for="userName">Username</label>
+                          <input type="text" class="form-control" id="userName" formControlName="userName" placeholder="Enter Username" />
+                        </div>
+                      </div>
   
-          <!-- Last Name -->
-          <div class="col-md-6 mb-3">
-            <label for="lastName">Last Name</label>
-            <input type="text" class="form-control" id="lastName" formControlName="lastName" placeholder="Enter Last Name" >
-          </div>
-  
-         
-  
-          <!-- Contact Number -->
-          <div class="col-md-6 mb-3">
-            <label for="contactNo">Contact Number</label>
-            <input type="text" class="form-control" id="contactNo" formControlName="contactNo" placeholder="Enter Contact Number" >
-          </div>
-  
-          <!-- Address -->
-          <div class="col-md-12 mb-3">
-            <label for="address">Address</label>
-            <textarea class="form-control" id="address" formControlName="address" rows="3" placeholder="Enter Address" ></textarea>
-          </div>
-  
-          <!-- Password -->
-          <div class="col-md-6 mb-3">
-            <label for="passwordHash">Password</label>
-            <input type="password" class="form-control" id="passwordHash" formControlName="password" placeholder="Enter Password" >
-          </div>
-  
-          <!-- Roles -->
-          <div class="col-md-6 mb-3">
-            <label for="roles">Roles</label>
-            <select class="form-control" id="roles" formControlName="roles" >
-              <option value=1>Admin</option>
-              <option value=2>Manager</option>
-              <option value=3>User</option>
-            </select>
-          </div>
-  
-          <!-- Username -->
-          <div class="col-md-6 mb-3">
-            <label for="userName">Username</label>
-            <input type="text" class="form-control" id="userName" formControlName="userName" placeholder="Enter Username" >
-          </div>
-  
-          <!-- Profile Image -->
-          <div class="col-md-12 mb-3">
-            <label for="profileImage">Profile Image</label>
-            <input type="file" class="form-control" id="profileImage" (change)="onImageSelected($event)" formControlName="profileImage">
-            <div *ngIf="imagePreview" class="mt-2">
-              <img [src]="imagePreview" alt="Profile Image" class="profile-img">
+                      <!-- Second Column -->
+                      <div class="col-md-6">
+                        <!-- Email -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                          <label for="email">Email Address</label>
+                          <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter Email" />
+                        </div>
+    
+                        <!-- Last Name -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                          <label for="lastName">Last Name</label>
+                          <input type="text" class="form-control" id="lastName" formControlName="lastName" placeholder="Enter Last Name" />
+                        </div>
+    
+                        <!-- Address -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                          <label for="address">Address</label>
+                          <textarea class="form-control" id="address" formControlName="address" rows="3" placeholder="Enter Address"></textarea>
+                        </div>
+    
+                        <!-- Roles -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                          <label for="roles">Roles</label>
+                          <select class="form-control" id="roles" formControlName="roles">
+                            <option value="1">Admin</option>
+                            <option value="2">Manager</option>
+                            <option value="3">User</option>
+                          </select>
+                        </div>
+    
+                        <!-- Profile Image -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                          <label for="profileImage">Profile Image</label>
+                          <input type="file" class="form-control" id="profileImage" (change)="onImageSelected($event)" formControlName="profileImage" />
+                          <div *ngIf="imagePreview" class="mt-2">
+                            <img [src]="imagePreview" alt="Profile Image" class="profile-img" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+    
+                    <!-- Submit Button -->
+                    <div class="pt-1 mb-4">
+                      <button type="submit" class="btn btn-primary" (click)="onSubmit(registrationForm)">Register</button>
+                    </div>
+    
+                    <p class="mb-5 pb-lg-2" style="color: #393f81;">I am Already a member 
+                      <a style="color: #393f81;" [routerLink]="['/login']">Login here</a></p>
+                    <a href="#!" class="small text-muted">Terms of use.</a>
+                    <a href="#!" class="small text-muted">Privacy policy</a>
+                  </form>
+    
+                </div>
+              </div>
             </div>
           </div>
-  
-          <!-- Submit Button -->
-          <div class="col-md-12 mb-3">
-            <button type="submit" class="btn btn-primary"  (click)="onSubmit(registrationForm)">Register</button>
-          </div>
-
-          <div class="col-md-12 mb-3" >
-            <p [routerLink]="['/login']" >I am Already member</p>
-          </div>
         </div>
-      </form>
+      </div>  
     </div>
-  </div>
+    </section>
   
-
-  <!-- [disabled]="!registrationForm.valid" -->
+  

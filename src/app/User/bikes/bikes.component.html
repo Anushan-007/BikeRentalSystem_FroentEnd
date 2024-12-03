@@ -1,50 +1,46 @@
+<br>
 <div class="row">
-    <div class="col-lg-4" *ngFor="let item of bikesArray">
-      <!-- Image Column -->
-      <div>
-        <ng-container *ngFor="let unit of item.bikeUnits[0].images">
-          <div *ngIf="unit.imagePath && unit.imagePath">
-            
+  <!-- Loop through bikesArray to display each bike in a card -->
+  <div class="col-lg-4 col-md-6 col-sm-12 mb-4" *ngFor="let item of bikesArray">
+    <!-- Bike Card -->
+    <div class="card shadow-sm h-100">
+      <div class="card-body">
+        <!-- Bike Image -->
+        <div class="mb-3">
+          <ng-container *ngFor="let unit of item.bikeUnits[0].images">
+            <div *ngIf="unit.imagePath">
+              <img [src]="'http://localhost:5268/' + unit.imagePath" alt="Bike Image" class="card-img-top" />
+            </div>
+          </ng-container>
+        </div>
 
-            <img [src]="'http://localhost:5268/' + unit.imagePath" alt="Bike Image" width="100" (click)="getBike(currentBike.id)"/>
-          </div>
-        </ng-container>
+        <!-- Bike Brand and Model -->
+        <h5 class="card-title">{{ item.brand }} - {{ item.model }}</h5>
+        <p class="card-text">Some representative placeholder content for the bike. It's designed for comfort and performance.</p>
+
+        <!-- View Details Button (Triggers Modal) -->
+        <p><a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="selected = item">View details &raquo;</a></p>
       </div>
-      <h2 class="fw-normal">{{item.brand}}</h2>
-      <h2 class="fw-normal">{{item.model}}</h2>
-      <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-      <!-- <p><a class="btn btn-secondary" [routerLink]="['/user/bikeDetails' , item.id]">View  &raquo;</a></p> -->
-      <!-- In bike component html -->
-<p><a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="selected = item">View details &raquo;</a></p>
-
     </div>
   </div>
-
-
-  <!-- [routerLink]="['/user/bikeDetails' , item.id]" -->
-
-  <!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button> -->
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h5 class="modal-title" id="exampleModalLabel">Bike Details</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-
+        <!-- Pass selected bike data to the details component -->
         <app-bikes-details [bikeData]="selected"></app-bikes-details>
-
       </div>
-      <div class="modal-footer">
+      <!-- <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
