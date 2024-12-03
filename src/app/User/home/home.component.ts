@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { RentalRecordService } from '../../Services/rental-record.service';
 import { Status } from '../../Models/rentalRequest';
+import { rentalRecord } from '../../Models/rentalRecord';
 
 @Component({
   selector: 'app-home',
@@ -42,6 +43,7 @@ export class HomeComponent implements OnInit{
   currentNicNumber!:string;
   currentUser!:User;
   notifyCount!:number;
+  CurrentUserOverDue:rentalRecord[] = [];
 
 
   
@@ -100,6 +102,16 @@ export class HomeComponent implements OnInit{
         this.currentUser = data;
         // this.notifyCount = this.currentUser?.rentalRequests?.length
         console.log( this.currentUser);
+        if(this.currentUser){
+          this.rentalRecordService.getOverDueRentals(this.currentUser.nicNumber).subscribe(data => [
+            this.CurrentUserOverDue = data
+          
+            
+          ])
+          if(this.CurrentUserOverDue.length > 0){
+              this.toastr.error("You hanve rental overdue date ")
+          }
+        }
         
         let acceptedReq = this.currentUser?.rentalRequests?.filter((r:any) => r.status == Status.accepted);
         
