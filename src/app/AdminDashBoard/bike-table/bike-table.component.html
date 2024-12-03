@@ -192,8 +192,8 @@
         </td>
         <td >
           
-          <button class="btn btn-danger m-1"  data-bs-toggle="modal" data-bs-target="#bikeaddModal" (click)="Edit(item.id)"><i class="bi bi-pencil-square"></i></button>
-          <button class="btn btn-danger" (click)="onDeleteBike()"><i class="bi bi-trash"></i></button>
+          <button class="btn btn-outline-success m-1"  data-bs-toggle="modal" data-bs-target="#bikeaddModal" (click)="Edit(item.id)"><i class="bi bi-pencil-square"></i></button>
+          <button class="btn btn-outline-danger"  (click)="openModal(template,item.id)" ><i class="bi bi-trash"></i></button>
         </td>
         
       </tr>
@@ -201,6 +201,16 @@
   </table>
 </div>
 
+
+<br><br>
+<pre class="card card-block card-header">{{message}}</pre>
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Do you want to confirm?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()" >Yes</button>
+    <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+  </div>
+</ng-template>
 
 
 <!-- (click)="selected=item; openModal(template)" -->

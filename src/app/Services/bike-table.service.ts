@@ -18,7 +18,7 @@ export class BikeTableService {
   getAllBikeURL = 'http://localhost:5268/api/Bike/GetAllBikes';
   postBikeURL = 'http://localhost:5268/api/Bike/BikeAdd';
   updateBikeURL = 'http://localhost:5268/api/Bike/';
-  deleteBikeURL = 'http://localhost:5268/api/User/DeleteUser?NicNumber=';
+  deleteBikeURL = 'http://localhost:5268/api/Bike/DeleteBike?Id=';
 
   getAllBikes(): Observable<Bike[]> {
     return this.http.get<Bike[]>(this.getAllBikeURL).pipe(

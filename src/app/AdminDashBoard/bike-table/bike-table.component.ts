@@ -38,6 +38,10 @@ export class BikeTableComponent implements OnInit {
   error: string | null = null;
   unit: any;
 
+  modalRef?: BsModalRef;
+  message?: string;
+  id!:string;
+
   constructor( private fb:FormBuilder,private bikeTableService: BikeTableService, private toastr: ToastrService, private router: Router,private modalService: BsModalService ) {
     this.bikeForm = this.fb.group({
       id: [''],
@@ -59,7 +63,7 @@ export class BikeTableComponent implements OnInit {
   }
 
 
-  modalRef?: BsModalRef;
+
 
 
 
@@ -240,17 +244,41 @@ export class BikeTableComponent implements OnInit {
         this.loading = false;
       },
       error: (err) => {
-        this.error = 'Failed to load bikes';
-        this.loading = false;
+        this.toastr.error("'Failed to load bikes'");
       }
     })
   }
 
 
 
-  onDeleteBike() {
+  onDeleteBike(id:string) {
+    this.bikeTableService.DeleteBike(id).subscribe({
+      next: (data) => {
+        console.log(data);
 
+        this.toastr.success("Deleted Bike")
+      },
+      error: (err) => {
+        this.toastr.error("Failed to load bikes");
+      }
+    })
 
+  }
+
+  openModal(template: TemplateRef<void>, id:string) {
+    this.id = id;
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+  }
+ 
+  confirm(): void {
+    this.message = 'Confirmed!';
+    this.onDeleteBike(this.id)
+    this.modalRef?.hide();
+  }
+ 
+  decline(): void {
+    this.message = 'Declined!';
+    this.modalRef?.hide();
   }
 
 
