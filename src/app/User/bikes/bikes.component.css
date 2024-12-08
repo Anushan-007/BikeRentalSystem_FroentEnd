@@ -28,3 +28,19 @@
     border-color: #004085;
   }
   
+
+  /* bike.component.css */
+.dropdown-menu {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.dropdown-item {
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f1f1f1;
+}

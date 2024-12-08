@@ -5,6 +5,7 @@ import { BikeTableService } from '../../Services/bike-table.service';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { BikesDetailsComponent } from "../bikes-details/bikes-details.component";
+import { FilterService } from '../../Services/filter.service';
 
 @Component({
   selector: 'app-bikes',
@@ -18,13 +19,17 @@ export class BikesComponent {
 selected:any;
   bikesArray:Bike[] = [];
   currentBike!: Bike;
+  bikeTypes: string[] = []; // To store the bike types
+  selectedType: string = ''; // To bind the selected type in the dropdo
+  dropdownOpen: boolean = false; // To toggle dropdown visibility
 
-  constructor(private biketableService:BikeTableService , private toastr :ToastrService){
+  constructor(private biketableService:BikeTableService , private toastr :ToastrService, private filterService:FilterService){
 
   }
 
   ngOnInit(): void {
     this.getBikes();
+    this.getBikeTypes();
   }
 
   
@@ -54,5 +59,28 @@ getBike(id: any) {
   });
 
 }
+
+// Method to get all bike types
+getBikeTypes(): void {
+  this.filterService.getAllBikeTypes().subscribe(
+    (data) => {
+      this.bikeTypes = data; // Store the fetched bike types
+    },
+    (error) => {
+      this.toastr.error(error.error)
+    }
+  );
+}
+
+  // Method to toggle the visibility of the dropdown
+  toggleDropdown(): void {
+    this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  // Method to set the selected bike type
+  selectType(type: string): void {
+    this.selectedType = type;
+    this.dropdownOpen = false; // Close dropdown after selection
+  }
 
 }
