@@ -115,6 +115,8 @@ DeleteBike(id:string){
   return this.http.delete(this.deleteBikeURL+ id)
 }
 
+
+
 private handleError(error: HttpErrorResponse) {
   let errorMessage = 'An unknown error occurred!';
   if (error.error instanceof ErrorEvent) {
