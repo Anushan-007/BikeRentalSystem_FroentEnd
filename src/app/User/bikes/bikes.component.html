@@ -1,21 +1,35 @@
-<!-- bike.component.html -->
 <div class="container mt-4">
-  <h2>Select Bike Type</h2>
+  <!-- Row for search filters -->
+  <div class="row justify-content-center mb-4">
+    <!-- Search for Bike Type -->
+    <div class="col-lg-3 col-md-4 col-sm-12 mb-2">
+      <input 
+        type="text" 
+        class="form-control form-control-lg" 
+        placeholder="Search Bike Type..." 
+        [(ngModel)]="searchType">
+    </div>
 
-  <!-- Dropdown button -->
-  <div class="dropdown">
-    <button class="btn btn-primary" (click)="toggleDropdown()">
-      {{ selectedType ? selectedType : 'Select Type' }}
-    </button>
+    <!-- Search for Bike Brand -->
+    <div class="col-lg-3 col-md-4 col-sm-12 mb-2">
+      <input 
+        type="text" 
+        class="form-control form-control-lg" 
+        placeholder="Search Bike Brand..." 
+        [(ngModel)]="searchBrand">
+    </div>
 
-    <!-- Dropdown list, shown when dropdownOpen is true -->
-    <ul class="dropdown-menu" *ngIf="dropdownOpen">
-      <li *ngFor="let type of bikeTypes">
-        <a class="dropdown-item" href="#" (click)="selectType(type)">{{ type }}</a>
-      </li>
-    </ul>
+    <!-- Search for Bike Model -->
+    <div class="col-lg-3 col-md-4 col-sm-12 mb-2">
+      <input 
+        type="text" 
+        class="form-control form-control-lg" 
+        placeholder="Search Bike Model..." 
+        [(ngModel)]="searchModel">
+    </div>
   </div>
-</div>
+
+
 
 
 
@@ -23,7 +37,7 @@
 <br>
 <div class="row">
   <!-- Loop through bikesArray to display each bike in a card -->
-  <div class="col-lg-4 col-md-6 col-sm-12 mb-4" *ngFor="let item of bikesArray">
+  <div class="col-lg-4 col-md-6 col-sm-12 mb-4" *ngFor="let item of bikesArray |  type: searchType : searchBrand : searchModel " >
     <!-- Bike Card -->
     <div class="card shadow-sm h-100">
       <div class="card-body">
