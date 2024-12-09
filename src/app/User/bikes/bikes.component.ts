@@ -6,11 +6,13 @@ import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { BikesDetailsComponent } from "../bikes-details/bikes-details.component";
 import { FilterService } from '../../Services/filter.service';
+import { TypePipe } from '../../Pipe/type.pipe';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-bikes',
   standalone: true,
-  imports: [RouterLink, CommonModule, BikesDetailsComponent],
+  imports: [ CommonModule, BikesDetailsComponent,TypePipe, FormsModule],
   templateUrl: './bikes.component.html',
   styleUrl: './bikes.component.css'
 })
@@ -18,10 +20,20 @@ export class BikesComponent {
 
 selected:any;
   bikesArray:Bike[] = [];
+  searchText:string = '';
+  searchType:string = '';
+  searchBrand: string = '';
+  searchModel: string = '';
+  
+
+
+
   currentBike!: Bike;
-  bikeTypes: string[] = []; // To store the bike types
-  selectedType: string = ''; // To bind the selected type in the dropdo
-  dropdownOpen: boolean = false; // To toggle dropdown visibility
+  // bikeTypes: string[] = []; 
+  // selectedType: string = ''; 
+  // dropdownOpen: boolean = false; 
+
+ 
 
   constructor(private biketableService:BikeTableService , private toastr :ToastrService, private filterService:FilterService){
 
@@ -29,7 +41,6 @@ selected:any;
 
   ngOnInit(): void {
     this.getBikes();
-    this.getBikeTypes();
   }
 
   
@@ -61,26 +72,26 @@ getBike(id: any) {
 }
 
 // Method to get all bike types
-getBikeTypes(): void {
-  this.filterService.getAllBikeTypes().subscribe(
-    (data) => {
-      this.bikeTypes = data; // Store the fetched bike types
-    },
-    (error) => {
-      this.toastr.error(error.error)
-    }
-  );
-}
+// getBikeTypes(): void {
+//   this.filterService.getAllBikeTypes().subscribe(
+//     (data) => {
+//       this.bikeTypes = data; 
+//     },
+//     (error) => {
+//       this.toastr.error(error.error)
+//     }
+//   );
+// }
 
   // Method to toggle the visibility of the dropdown
-  toggleDropdown(): void {
-    this.dropdownOpen = !this.dropdownOpen;
-  }
+  // toggleDropdown(): void {
+  //   this.dropdownOpen = !this.dropdownOpen;
+  // }
 
   // Method to set the selected bike type
-  selectType(type: string): void {
-    this.selectedType = type;
-    this.dropdownOpen = false; // Close dropdown after selection
-  }
+  // selectType(type: string): void {
+  //   this.selectedType = type;
+  //   this.dropdownOpen = false; 
+  // }
 
 }
