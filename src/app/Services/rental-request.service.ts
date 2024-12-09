@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { rentalRequest } from '../Models/rentalRequest';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,8 @@ export class RentalRequestService {
   declineRequestURL = 'http://localhost:5268/api/RentalRequest/Decline-Request'
   // getRequestforportalURL = 'http://localhost:5268/api/RentalRequest?status=1';
   getAcceptRentalURl = 'http://localhost:5268/api/RentalRequest?status=2';
+
+  pendingRequestURL = 'http://localhost:5268/api/RentalRequest/pending-count';
   
 
 
@@ -39,6 +42,9 @@ export class RentalRequestService {
     return this.http.get(this.declineRequestURL + id);
   }
 
-  
+  getTotalRentalRequest(): Observable<number> {
+    return this.http.get<number>(this.pendingRequestURL)
+  }
+
   
 }
