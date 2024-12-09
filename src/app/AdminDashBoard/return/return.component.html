@@ -1,3 +1,13 @@
+  <!-- Search for Bike Brand and Model -->
+  <div class="col-lg-3 col-md-4 col-sm-12 mb-2 mt-3">
+    <input 
+      type="text" 
+      class="form-control form-control-lg" 
+      placeholder="Searchig customer NIC Number..." 
+      [(ngModel)]="searchText">
+  </div>
+
+
 <div class="table-responsive mt-4">
     <table class="table table-striped">
       <thead>
@@ -10,7 +20,7 @@
         </tr>
       </thead>
       <tbody  *ngIf="rentalRec.length > 0">
-        <tr *ngFor="let item of rentalRec">
+        <tr *ngFor="let item of rentalRec | rentalRecord: searchText">
          
 
           <td>{{ item.rentalRequestId}}</td>

@@ -6,11 +6,12 @@ import { bikeUnits } from '../../Models/bikeUnit';
 import { BikeUnitService } from '../../Services/bike-unit.service';
 import { RentalRequestService } from '../../Services/rental-request.service';
 import { RentalRecordService } from '../../Services/rental-record.service';
+import { RentalRequestPipe } from '../../Pipe/rental-request.pipe';
 
 @Component({
   selector: 'app-rental-process',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule,RentalRequestPipe],
   templateUrl: './rental-process.component.html',
   styleUrl: './rental-process.component.css'
 })
@@ -18,7 +19,8 @@ export class RentalProcessComponent implements OnInit {
 
   rentalReq:rentalRequest [] = [];
   rentalRecordForm:FormGroup;
-
+  searchText:string = '';
+ 
 
   constructor(private fb: FormBuilder, private bikeUnitService:BikeUnitService , private rentalRequestService: RentalRequestService,
     private rentalRecordService: RentalRecordService){

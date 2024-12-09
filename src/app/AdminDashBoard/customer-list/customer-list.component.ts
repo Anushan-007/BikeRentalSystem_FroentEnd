@@ -3,18 +3,20 @@ import { CustomerService } from '../../Services/customer.service';
 import { User } from '../../Models/users';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
+import { CustomerNicPipe } from '../../Pipe/customer-nic.pipe';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-customer-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,CustomerNicPipe, FormsModule],
   templateUrl: './customer-list.component.html',
   styleUrl: './customer-list.component.css'
 })
 export class CustomerListComponent implements OnInit {
 
   User:User[] = [];
-
+  searchText:string = '';
   constructor(private customerService:CustomerService, private toastr:ToastrService){}
 
   ngOnInit(): void {

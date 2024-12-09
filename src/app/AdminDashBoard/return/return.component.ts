@@ -8,11 +8,12 @@ import { RentalRecordService } from '../../Services/rental-record.service';
 import { ReturnService } from '../../Services/return.service';
 import { payment } from '../../Models/payment';
 import { RentalRecordRequest } from '../../Models/RentalRecRequest';
+import { RentalRecordPipe } from '../../Pipe/rental-record.pipe';
 
 @Component({
   selector: 'app-return',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule,RentalRecordPipe],
   templateUrl: './return.component.html',
   styleUrl: './return.component.css'
 })
@@ -20,7 +21,7 @@ export class ReturnComponent implements OnInit {
 
   rentalRec:rentalRecord[] =[];
   currentRecord!:rentalRecord;
-  
+  searchText:string = '';
   
   pay!:payment;
   selected: any;

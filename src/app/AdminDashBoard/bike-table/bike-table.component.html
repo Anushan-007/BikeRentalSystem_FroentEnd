@@ -1,3 +1,14 @@
+<br>
+<div class="row justify-content-center mb-4">
+  <!-- Search for Bike Brand and Model -->
+  <div class="col-lg-3 col-md-4 col-sm-12 mb-2">
+    <input 
+      type="text" 
+      class="form-control form-control-lg" 
+      placeholder="Search Bike Brand and Model..." 
+      [(ngModel)]="searchText">
+  </div>
+
 <div class="d-flex flex-row-reverse">
   <div class="row mt-3">
     <div class="col">
@@ -160,7 +171,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of bikesArray">
+      <tr *ngFor="let item of bikesArray | brandModel:searchText">
         <td>{{ item.id }}</td>
 
        
