@@ -16,11 +16,12 @@ export class DashBoardComponent {
 
   totalBikes!: number ;  // To store total bike count
   pendingRequests!: number;  // Store pending requests count (optional)
-  outdoorBikes!: number ; // Store outdoor bikes count (optional)
+  AvaliableBikes!: number ; // Store outdoor bikes count (optional)
 
   constructor(private router:Router, private totalBikeCount:TotalbikesService, private rentalrequestService:RentalRequestService){
     this.countTotalBikes();
     this.countTotalPendingRequest();
+    this.getAvailableBikes();
   }
 
   toggleSidebar() {
@@ -54,6 +55,19 @@ export class DashBoardComponent {
         console.log("Fetched req: ", data);  
         this.pendingRequests = data;  
         console.log("Total req Count: ", this.pendingRequests);  
+      },
+      error => {
+        console.error('Error fetching total req', error);
+      }
+    );
+  }
+
+  getAvailableBikes(): void {
+    this.totalBikeCount.getAvailableBikes().subscribe(
+      (data) => {
+        console.log("Fetched req: ", data);  
+        this.AvaliableBikes = data;  
+        console.log("Total req Count: ", this.AvaliableBikes);  
       },
       error => {
         console.error('Error fetching total req', error);
