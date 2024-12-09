@@ -11,11 +11,12 @@ import { BikeEditComponent } from '../bike-edit/bike-edit.component';
 import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
 import { BikeAddComponent } from '../bike-add/bike-add.component';
 import { bikeUnitUpdateDTO } from '../../Models/BikeUnitUpdateDTO';
+import { BrandModelPipe } from '../../Pipe/brand-model.pipe';
 
 @Component({
   selector: 'app-bike-table',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule,BrandModelPipe],
   providers : [BsModalService],
   templateUrl: './bike-table.component.html',
   styleUrl: './bike-table.component.css'
@@ -41,6 +42,9 @@ export class BikeTableComponent implements OnInit {
   modalRef?: BsModalRef;
   message?: string;
   id!:string;
+
+
+  searchText:string = '';
 
   constructor( private fb:FormBuilder,private bikeTableService: BikeTableService, private toastr: ToastrService, private router: Router,private modalService: BsModalService ) {
     this.bikeForm = this.fb.group({

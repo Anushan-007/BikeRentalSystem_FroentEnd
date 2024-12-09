@@ -3,11 +3,13 @@ import { rentalRequest } from '../../Models/rentalRequest';
 import { CommonModule } from '@angular/common';
 import { RentalRequestService } from '../../Services/rental-request.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { FormsModule } from '@angular/forms';
+import { RentalRequestPipe } from '../../Pipe/rental-request.pipe';
 
 @Component({
   selector: 'app-rental-request-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule,RentalRequestPipe],
   providers : [BsModalService],
   templateUrl: './rental-request-list.component.html',
   styleUrl: './rental-request-list.component.css'
@@ -18,6 +20,7 @@ export class RentalRequestListComponent implements OnInit {
   modalRef?: BsModalRef;
   message?: string;
   id!:string;
+  searchText:string = '';
 
   constructor(private rentalrequestService:RentalRequestService, private modalService: BsModalService){}
 
