@@ -3,6 +3,7 @@ import { BikeTableComponent } from '../bike-table/bike-table.component';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { TotalbikesService } from '../../Services/totalbikes.service';
 import { Bike } from '../../Models/bike';
+import { RentalRequestService } from '../../Services/rental-request.service';
 
 @Component({
   selector: 'app-dash-board',
@@ -13,12 +14,13 @@ import { Bike } from '../../Models/bike';
 })
 export class DashBoardComponent {
 
-  totalBikes: number = 0;  // To store total bike count
-  pendingRequests: number = 0;  // Store pending requests count (optional)
-  outdoorBikes: number = 0; // Store outdoor bikes count (optional)
+  totalBikes!: number ;  // To store total bike count
+  pendingRequests!: number;  // Store pending requests count (optional)
+  outdoorBikes!: number ; // Store outdoor bikes count (optional)
 
-  constructor(private router:Router, private totalBikeCount:TotalbikesService){
+  constructor(private router:Router, private totalBikeCount:TotalbikesService, private rentalrequestService:RentalRequestService){
     this.countTotalBikes();
+    this.countTotalPendingRequest();
   }
 
   toggleSidebar() {
@@ -42,6 +44,19 @@ export class DashBoardComponent {
       },
       error => {
         console.error('Error fetching total bikes', error);
+      }
+    );
+  }
+
+  countTotalPendingRequest(): void {
+    this.rentalrequestService.getTotalRentalRequest().subscribe(
+      (data) => {
+        console.log("Fetched req: ", data);  
+        this.pendingRequests = data;  
+        console.log("Total req Count: ", this.pendingRequests);  
+      },
+      error => {
+        console.error('Error fetching total req', error);
       }
     );
   }
