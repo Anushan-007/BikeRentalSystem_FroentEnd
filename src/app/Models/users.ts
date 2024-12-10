@@ -1,3 +1,4 @@
+import { rentalRecord } from "./rentalRecord";
 import { rentalRequest } from "./rentalRequest";
 
 export class User{
@@ -12,6 +13,7 @@ export class User{
     userName:string;
      ProfileImage?:string;
      rentalRequests!:rentalRequest[];
+     rentalRecords!:rentalRecord[];
 
     constructor(obj:any){
         this.nicNumber = obj.nicNumber != null ? obj.nicNumber:null;
@@ -25,6 +27,8 @@ export class User{
         this.userName = obj.userName != null ? obj.userName:null;
         this.ProfileImage = obj.ProfileImage != null ? obj.ProfileImage:null;
         this.rentalRequests = obj.rentalRequests != null ? obj.rentalRequests:null;
+        this.rentalRecords = obj.rentalRecords != null ? obj.rentalRecords:null;
+
     }
 
 }

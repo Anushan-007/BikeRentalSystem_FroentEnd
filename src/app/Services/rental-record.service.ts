@@ -13,6 +13,7 @@ export class RentalRecordService {
   getRetalRecordByIdURL = 'http://localhost:5268/api/RentalRecord/';
   getOverdueURL = 'http://localhost:5268/api/RentalRecord/Get-overdue';
   //http://localhost:5268/api/RentalRecord/87BF2B71-7241-41B5-C896-08DD10412DBD
+  
 
   postRentalRecord(record : rentalRecord){
     return this.http.post("http://localhost:5268/api/RentalRecord" , record);
