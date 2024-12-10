@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { BikeTableService } from '../../Services/bike-table.service';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RentalRequestService } from '../../Services/rental-request.service';
 import { User } from '../../Models/users';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
@@ -37,7 +37,7 @@ export class BikesDetailsComponent implements OnInit {
    if (getUser) {
      user = JSON.parse(getUser);
    }  this.rentalRequestForm = this.fb.group({
-    requestTime: [''],
+    requestTime: ['',[Validators.required]],
     bikeId: [this.bikeId], // Dynamically set bikeId
     nicNumber: [user.NicNumber]
   });

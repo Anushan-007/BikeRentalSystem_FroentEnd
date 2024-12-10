@@ -25,18 +25,24 @@
                     <div data-mdb-input-init class="form-outline mb-4">
                       <label for="userName">Username</label>
                       <input type="text" class="form-control" id="userName" formControlName="UserName" placeholder="Enter Username" >
+                      <div *ngIf="loginForm.controls.UserName?.invalid && loginForm.controls.UserName?.touched" class="form-text text-danger">
+                        Username is required
+                      </div>
                     </div>
   
                     <div data-mdb-input-init class="form-outline mb-4">
                       <label for="passwordHash">Password</label>
                       <input type="password" class="form-control" id="passwordHash" formControlName="Password" placeholder="Enter Password" >
+                      <div *ngIf="loginForm.controls.Password?.invalid && loginForm.controls.Password?.touched" class="form-text text-danger">
+                        Password is required and must be at least 6 characters
+                      </div>
                     </div>
   
                     <div class="pt-1 mb-4">
-                      <button type="submit" class="btn btn-primary"  (click)="onSubmit()">Register</button>
+                      <button type="submit" class="btn btn-primary"  (click)="onSubmit()" [disabled]="loginForm.invalid">Register</button>
                     </div>
   
-                    <a class="small text-muted" href="#!">Forgot password?</a>
+                    <!-- <a class="small text-muted" href="#!">Forgot password?</a> -->
                     <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a 
                         style="color: #393f81;" [routerLink]="['/register']">Register here</a></p>
                     <a href="#!" class="small text-muted">Terms of use.</a>

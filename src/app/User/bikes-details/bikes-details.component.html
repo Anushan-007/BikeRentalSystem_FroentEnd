@@ -31,8 +31,10 @@
   
   
   <form [formGroup]="rentalRequestForm" (ngSubmit)="onRequest()">
-    <label  class="form-label">Date of rent :</label>
-    <input type="text" formControlName="requestTime" class="form-control" bsDatepicker>
+    <label  class="form-label">Date of rent :</label> <span class="text-danger">*</span>
+    <input type="text" formControlName="requestTime" class="form-control p-1" bsDatepicker> 
+    <div id="emailMg" class="form-text text-danger" *ngIf="rentalRequestForm.controls.requestTime?.errors?.required && rentalRequestForm.controls.requestTime?.touched">
+      Valid is required</div>
     <button type="submit" class="btn btn-primary mt-2" [disabled]="!bikeData">Request</button>
 </form>
 
