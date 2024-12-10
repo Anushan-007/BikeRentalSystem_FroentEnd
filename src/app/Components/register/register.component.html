@@ -29,8 +29,11 @@
                       <div class="col-md-6">
                         <!-- NIC Number -->
                         <div data-mdb-input-init class="form-outline mb-4">
-                          <label for="nicNumber">NIC Number</label>
+                          <label for="nicNumber" class="p-1">NIC Number</label><span class="text-danger">*</span>
                           <input type="text" class="form-control" id="nicNumber" formControlName="nicNumber" placeholder="Enter NIC Number" />
+                          <div *ngIf="registrationForm.controls.nicNumber?.invalid && registrationForm.controls.nicNumber?.touched" class="form-text text-danger">
+                            NIC Number is required
+                          </div>
                         </div>
     
                         <!-- First Name -->
@@ -41,20 +44,31 @@
     
                         <!-- Contact Number -->
                         <div data-mdb-input-init class="form-outline mb-4">
-                          <label for="contactNo">Contact Number</label>
+                          <label for="contactNo" class="p-1">Contact Number</label><span class="text-danger">*</span>
                           <input type="text" class="form-control" id="contactNo" formControlName="contactNo" placeholder="Enter Contact Number" />
+                          <div id="emailMg" class="form-text text-danger" *ngIf="registrationForm.controls.contactNo?.errors?.required && registrationForm.controls.contactNo?.touched">
+                            Valid is required</div>
+                          <div *ngIf="registrationForm.controls.contactNo?.invalid && registrationForm.controls.contactNo?.touched" class="form-text text-danger">
+                            Contact Number is required and must be 10 digits
+                          </div>
                         </div>
     
                         <!-- Password -->
                         <div data-mdb-input-init class="form-outline mb-4">
-                          <label for="passwordHash">Password</label>
+                          <label for="passwordHash" class="p-1">Password</label> <span class="text-danger">*</span>
                           <input type="password" class="form-control" id="passwordHash" formControlName="password" placeholder="Enter Password" />
+                          <div *ngIf="registrationForm.controls.password?.invalid && registrationForm.controls.password?.touched" class="form-text text-danger">
+                            Password is required and must be at least 6 characters
+                          </div>
                         </div>
     
                         <!-- Username -->
                         <div data-mdb-input-init class="form-outline mb-4">
-                          <label for="userName">Username</label>
+                          <label for="userName" class="p-1">Username</label> <span class="text-danger">*</span>
                           <input type="text" class="form-control" id="userName" formControlName="userName" placeholder="Enter Username" />
+                        </div>
+                        <div *ngIf="registrationForm.controls.userName?.invalid && registrationForm.controls.userName?.touched" class="form-text text-danger">
+                          Username is required
                         </div>
                       </div>
   
@@ -62,8 +76,12 @@
                       <div class="col-md-6">
                         <!-- Email -->
                         <div data-mdb-input-init class="form-outline mb-4">
-                          <label for="email">Email Address</label>
+                          <label for="email" class="p-1">Email Address</label><span class="text-danger">*</span>
                           <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter Email" />
+                          <div id="emailMg" class="form-text text-danger" *ngIf="registrationForm.controls.email?.errors?.required && registrationForm.controls.email?.touched">
+                            Valid is required</div>
+                           <div id="emailMg" class="form-text text-danger" *ngIf="registrationForm.controls.email?.errors?.email">
+                            InValid Email</div>
                         </div>
     
                         <!-- Last Name -->
@@ -80,34 +98,37 @@
     
                         <!-- Roles -->
                         <div data-mdb-input-init class="form-outline mb-4">
-                          <label for="roles">Roles</label>
+                          <label for="roles" class="p-1">Roles</label> <span class="text-danger">*</span>
                           <select class="form-control" id="roles" formControlName="roles">
                             <option value="1">Admin</option>
-                            <option value="2">Manager</option>
+                            <!-- <option value="2">Manager</option> -->
                             <option value="3">User</option>
                           </select>
+                          <div *ngIf="registrationForm.controls.roles?.invalid && registrationForm.controls.roles?.touched" class="form-text text-danger">
+                            Roles selection is required
+                          </div>
                         </div>
     
                         <!-- Profile Image -->
-                        <div data-mdb-input-init class="form-outline mb-4">
+                        <!-- <div data-mdb-input-init class="form-outline mb-4">
                           <label for="profileImage">Profile Image</label>
                           <input type="file" class="form-control" id="profileImage" (change)="onImageSelected($event)" formControlName="profileImage" />
                           <div *ngIf="imagePreview" class="mt-2">
                             <img [src]="imagePreview" alt="Profile Image" class="profile-img" />
                           </div>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
     
                     <!-- Submit Button -->
                     <div class="pt-1 mb-4">
-                      <button type="submit" class="btn btn-primary" (click)="onSubmit(registrationForm)">Register</button>
+                      <button type="submit" class="btn btn-primary" (click)="onSubmit(registrationForm)" [disabled]="registrationForm.invalid">Register</button>
                     </div>
     
                     <p class="mb-5 pb-lg-2" style="color: #393f81;">I am Already a member 
-                      <a style="color: #393f81;" [routerLink]="['/login']">Login here</a></p>
-                    <a href="#!" class="small text-muted">Terms of use.</a>
-                    <a href="#!" class="small text-muted">Privacy policy</a>
+                      <a style="color: #393f81;" [routerLink]="['/login']" >Login here</a></p>
+                    <a  class="small text-muted">Terms of use.</a>
+                    <a  class="small text-muted">Privacy policy</a>
                   </form>
     
                 </div>
