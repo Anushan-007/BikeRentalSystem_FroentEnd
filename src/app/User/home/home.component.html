@@ -44,7 +44,7 @@
   </a>
   <div class="container-fluid ">
     
-    <a class="navbar-brand" href="#">Carousel</a>
+    <!-- <a class="navbar-brand" >Carousel</a> -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -64,7 +64,7 @@
       <form class="d-flex" role="search">
        
         <div class="text-end" >
-          <button type="button" class="btn btn-default btn-secondary"><i class="bi bi-clock-history"></i></button>
+          <!-- <button type="button" class="btn btn-default btn-secondary"><i class="bi bi-clock-history"></i></button> -->
           <button type="button" class="btn btn-default btn-secondary"
           [popover]=""
           popoverTitle="Notification"
@@ -185,15 +185,59 @@
     </div>
 
     <!-- Second Slide -->
-    <div class="carousel-item" [ngStyle]="{'background-image': 'url(' + imageUrl1 + ')'}">
+    <div class="carousel-item" [ngStyle]="{'background-image': 'url(' + imageUrl1 + ')'}" >
       <div class="container">
-        <div class="carousel-caption">
+        <div class="carousel-caption" >
           <h1> Choose the Bike</h1>
-          <p>Safety and Maintaince</p>
-          <p class="btn btn-lg btn-primary home-btn">Customer Review</p>
+          <p >Safety and Maintaince</p>
+          <button class="btn btn-lg btn-primary home-btn"  data-bs-toggle="modal" data-bs-target="#historyModal" (click)="loadCurrentUserHistory()">Your Rent History</button>
         </div>
       </div>
     </div>
+
+
+
+<!--Customer hIstory Modal -->
+<div class="modal fade" id="historyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel" >Rent history</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive mt-4">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <!-- <th>Request Id</th> -->
+                <th>Rental Out Time</th>
+                <th>Rental Return </th>
+                <th>Payment</th>
+              </tr>
+            </thead>
+            <tbody  *ngIf="currentUserRecord">
+              <tr *ngFor="let item of currentUserRecord.rentalRecords">              
+      
+                <!-- <td>{{ item.rentalRequestId}}</td> -->
+                <td >{{item.rentalOut | date}}</td>
+        
+                <!-- Brand Column -->
+                <td>{{ item.rentalReturn | date  }}</td>
+        
+                <!-- Model Column -->
+                <td>
+                    {{item.payment}}
+                </td>
+                
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
     <!-- Third Slide -->
     <div class="carousel-item" [ngStyle]="{'background-image': 'url(' + imageUrl2 + ')'}">

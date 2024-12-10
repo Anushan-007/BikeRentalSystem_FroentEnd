@@ -3,7 +3,8 @@
 <div class="row featurette" *ngIf="bikeData">
   <div class="col-md-7">
     <h2 class="featurette-heading fw-normal lh-1">{{bikeData.brand}} <span class="text-body-secondary">{{bikeData.model}}</span></h2>
-    <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+    <p class="lead">This BikeType is {{bikeData.type}} So rent per hour </p> <h1>Rs.{{bikeData.rentPerHour}} </h1>
+    <p class="lead">Your rent 24 hours only thats times <span class="text-danger">over due</span> extra charge in management</p>
   </div>
 
   <!-- sample -->

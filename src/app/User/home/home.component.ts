@@ -44,10 +44,13 @@ export class HomeComponent implements OnInit{
   currentUser!:User;
   notifyCount!:number;
   CurrentUserOverDue:rentalRecord[] = [];
+  currentRecord!:rentalRecord;
 
-
+  currentUserId: string ='';
+  currentUserRecord!:User;
   
-  constructor(private fb:FormBuilder, private router:Router, private customerService:CustomerService, private toastr:ToastrService, private rentalRecordService:RentalRecordService){
+  
+  constructor(private fb:FormBuilder, private router:Router, private customerService:CustomerService, private toastr:ToastrService, private rentalRecordService:RentalRecordService, private customerSerive:CustomerService){
     this.userEdit = this.fb.group({
       UserName: [''],
       NicNumber: [''],
@@ -68,7 +71,8 @@ export class HomeComponent implements OnInit{
     const name = localStorage.getItem("name") || "";
     this.userName = name;
 
-    // const NicNumber = localStorage.getItem("nicNumber") || "";
+    const NicNumber = localStorage.getItem("nicNumber") || "";
+    this.currentUserId = NicNumber;
     // const FirstName = localStorage.getItem("FirstName") || "";
     // const LastName = localStorage.getItem("LastName") || "";
     // const Email = localStorage.getItem("Email" ) || "";
@@ -193,6 +197,25 @@ let NicNumber =  localStorage.getItem("nicNumber") || ""
       }
     })
 
+  }
+
+
+  displayPayment(recordId: any) {
+    console.log(recordId);
+    this.rentalRecordService.getRentalRecord(recordId).subscribe(data => {
+      console.log('Fetched Rental Record:', data);
+      this.currentRecord = data;
+   
+    })
+  }
+
+  // Load the current user's rental history
+  loadCurrentUserHistory(): void {
+    this.customerSerive.getUserById(this.currentUserId).subscribe(data => {
+      console.log(data);
+      this.currentUserRecord = data;
+      console.log('Fetched Current User Rental History:', data);
+    });
   }
 
 }
