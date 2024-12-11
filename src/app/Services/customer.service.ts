@@ -15,6 +15,7 @@ export class CustomerService {
   getAllUser = 'http://localhost:5268/api/User/GetAllUsers';
   UpdateUserURL = 'http://localhost:5268/api/User/UpdateUser?NicNumber=';
   getUserURL = 'http://localhost:5268/api/User/GetUserById?NicNumber=';
+  blockedUserURL = 'http://localhost:5268/api/User/blockUser?NicNumber=';
 
   
   getAllUsers(): Observable<User[]> {
@@ -33,6 +34,10 @@ getUserById(NicNumber: string): Observable<User> {
     return this.http.put<User[]>(this.UpdateUserURL + NicNumber , user).pipe(
             catchError(this.handleError)
           );;
+  }
+
+  blockedUser(NicNumber:string):Observable<boolean>{
+    return this.http.put<boolean>(this.blockedUserURL + NicNumber , {})
   }
 
   private handleError(error: HttpErrorResponse) {

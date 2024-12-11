@@ -42,14 +42,28 @@ export class CustomerListComponent implements OnInit {
   }
 
 
-  toggleBlock(user: any): void {
-    // Toggle the block state
-    user.isBlocked = !user.isBlocked;
+  // toggleBlock(user: any): void {
+  //   // Toggle the block state
+  //   user.isBlocked = !user.isBlocked;
 
-    // If you need to save this state, you can call an API or save it in local storage
-    console.log(`${user.userName} is now ${user.isBlocked ? 'Blocked' : 'Unblocked'}`);
+  //   // If you need to save this state, you can call an API or save it in local storage
+  //   console.log(`${user.userName} is now ${user.isBlocked ? 'Blocked' : 'Unblocked'}`);
+  // }
+
+  blockedUser(nicNumber:string){
+    this.customerService.blockedUser(nicNumber).subscribe(
+      (data) => {
+        console.log("Fetched Customer: ", data);  
+      //  if(data == true){
+      //   this.toastr.warning("Blocked User");
+      //  }else if(data == false){
+      //   this.toastr.warning("UnBlocked User");
+      //  } 
+      },
+      error => {
+        this.toastr.error("Failed Blocked")
+      }
+    );
   }
-
-
 
 }
