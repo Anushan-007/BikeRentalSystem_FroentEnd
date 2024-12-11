@@ -15,6 +15,7 @@ import { ReturnComponent } from './AdminDashBoard/return/return.component';
 import { BikeUnitComponent } from './AdminDashBoard/bike-unit/bike-unit.component';
 import { InventoryComponent } from './AdminDashBoard/inventory/inventory.component';
 import { BikeEditComponent } from './AdminDashBoard/bike-edit/bike-edit.component';
+import { ReportComponent } from './AdminDashBoard/report/report.component';
 // import { EditBikeComponent } from './AdminDashBoard/edit-bike/edit-bike.component';
 
 
@@ -31,7 +32,8 @@ export const routes: Routes = [
      {path:'rental-process', component:RentalProcessComponent},
      {path:'return', component:ReturnComponent},
      {path:'inventory', component:InventoryComponent},
-     { path: 'edit-bike/:id', component: BikeEditComponent}
+     { path: 'edit-bike/:id', component: BikeEditComponent},
+     {path:'report', component:ReportComponent}
       // {path:'editBike', component:EditBikeComponent}
      
     ]
