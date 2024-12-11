@@ -37,7 +37,7 @@
           <td>{{item.roles}}</td>
           <td>{{item.userName}}</td>
           <!-- <td>{{item.ProfileImage}}</td> -->
-          <td><button class="btn btn-danger btn-sm">Blocked</button></td>
+          <td><button class="btn btn-danger btn-sm" (click)="blockedUser(item.nicNumber)">{{item.isBlocked? 'UnBlock' : 'Block'}}</button></td>
           
         </tr>
   

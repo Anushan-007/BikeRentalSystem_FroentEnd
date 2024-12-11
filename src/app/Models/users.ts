@@ -11,9 +11,10 @@ export class User{
     accountCreated:string;
     roles:string;
     userName:string;
-     ProfileImage?:string;
-     rentalRequests!:rentalRequest[];
-     rentalRecords!:rentalRecord[];
+    isBlocked:boolean;
+    ProfileImage?:string;
+    rentalRequests!:rentalRequest[];
+    rentalRecords!:rentalRecord[];
 
     constructor(obj:any){
         this.nicNumber = obj.nicNumber != null ? obj.nicNumber:null;
@@ -25,6 +26,7 @@ export class User{
         this.accountCreated = obj.accountCreated != null ? obj.accountCreated:null;
         this.roles = obj.roles != null ? obj.roles:null;
         this.userName = obj.userName != null ? obj.userName:null;
+        this.isBlocked = obj.isBlocked != null ? obj.isBlocked:null;
         this.ProfileImage = obj.ProfileImage != null ? obj.ProfileImage:null;
         this.rentalRequests = obj.rentalRequests != null ? obj.rentalRequests:null;
         this.rentalRecords = obj.rentalRecords != null ? obj.rentalRecords:null;
