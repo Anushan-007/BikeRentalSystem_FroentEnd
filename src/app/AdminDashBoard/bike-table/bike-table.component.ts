@@ -204,7 +204,7 @@ export class BikeTableComponent implements OnInit {
 
     this.bikeTableService.postBikeImages(formData).subscribe(
       (response) => {
-        this.toastr.success('Images uploaded successfully!');
+        // this.toastr.success('Images uploaded successfully!');
         this.router.navigate(['/admin/bikeTable']);
       },
       (error) => {
