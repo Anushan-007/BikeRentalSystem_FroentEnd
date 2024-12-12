@@ -6,7 +6,6 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RentalRequestService } from '../../Services/rental-request.service';
-import { User } from '../../Models/users';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @Component({
