@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -11,7 +10,7 @@ import { jwtDecode } from 'jwt-decode';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink, HttpClientModule, CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [RouterLink, CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -41,9 +40,10 @@ export class LoginComponent implements OnInit {
       console.log(this.LoginData = this.loginForm.value);
       
       this.registerService.UserLogin(this.LoginData).subscribe(data => {
-        localStorage.setItem("token", data);
-        if (data) {
-          const decoded: any = jwtDecode(data);
+        const token = data.token;
+        localStorage.setItem("token", token);
+        if (token) {
+          const decoded: any = jwtDecode(token);
           console.log(decoded.roles);
           console.log(decoded);
           if(decoded.roles != "Admin"){

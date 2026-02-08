@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../../Services/customer.service';
+import { AdminService } from '../../Services/admin.service';
 import { User } from '../../Models/users';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
@@ -17,7 +18,13 @@ export class CustomerListComponent implements OnInit {
 
   User:User[] = [];
   searchText:string = '';
-  constructor(private customerService:CustomerService, private toastr:ToastrService){}
+  roleOptions = ['Admin', 'Manager', 'User'];
+  
+  constructor(
+    private customerService:CustomerService, 
+    private adminService: AdminService,
+    private toastr:ToastrService
+  ){}
 
   ngOnInit(): void {
     this.getAllUser();
@@ -64,6 +71,47 @@ export class CustomerListComponent implements OnInit {
         this.toastr.error("Failed Blocked")
       }
     );
+  }
+
+  /**
+   * Change user role using AdminController
+   * Integrated with AdminService for role management
+   */
+  changeRole(user: User, newRole: string): void {
+    if (confirm(`Change ${user.firstName} ${user.lastName}'s role to ${newRole}?`)) {
+      this.adminService.changeUserRole(user.nicNumber, newRole).subscribe({
+        next: (response) => {
+          console.log('Role changed:', response);
+          this.toastr.success(`Role changed to ${newRole}`, 'Success');
+          user.roles = newRole as any; // Update local data
+        },
+        error: (error) => {
+          console.error('Error changing role:', error);
+          this.toastr.error('Failed to change role', 'Error');
+        }
+      });
+    }
+  }
+
+  /**
+   * Search users using AdminController search endpoint
+   */
+  searchUsers(): void {
+    if (this.searchText.trim() === '') {
+      this.getAllUser();
+      return;
+    }
+    
+    this.adminService.searchUsers(this.searchText).subscribe({
+      next: (data) => {
+        console.log('Search results:', data);
+        this.User = data;
+      },
+      error: (error) => {
+        console.error('Error searching users:', error);
+        this.toastr.error('Failed to search users', 'Error');
+      }
+    });
   }
 
 }

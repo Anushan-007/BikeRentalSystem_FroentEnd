@@ -4,13 +4,12 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Router, RouterLink } from '@angular/router';
 import { UserRegisterService } from '../../Services/user-register.service';
 import { ToastrService } from 'ngx-toastr';
-import {  HttpClientModule } from '@angular/common/http';
 import { User } from '../../Models/users';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterLink,HttpClientModule,],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterLink,],
  
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
