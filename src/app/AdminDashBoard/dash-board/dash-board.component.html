@@ -56,6 +56,16 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link list-group-item list-group-item-action" [routerLink]="['/admin/user-management']" routerLinkActive="active">
+          <i class="bi bi-people"></i> User Management
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link list-group-item list-group-item-action" [routerLink]="['/admin/system-logs']" routerLinkActive="active">
+          <i class="bi bi-journal-text"></i> System Logs
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link list-group-item list-group-item-action" (click)="logOut()">
           <i class="bi bi-box-arrow-right"></i> Logout
         </a>
@@ -100,6 +110,53 @@
             <div class="card-body">
               <h5 class="card-title">Available Bikes</h5>
               <p class="card-text">{{AvaliableBikes}} bikes</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- User Management Metrics -->
+      <div class="row mt-4">
+        <div class="col-md-3">
+          <div class="card bg-primary text-white">
+            <div class="card-body">
+              <h5 class="card-title">Total Users</h5>
+              <p class="card-text display-4">{{ totalUsers }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card bg-success text-white">
+            <div class="card-body">
+              <h5 class="card-title">Regular Users</h5>
+              <p class="card-text display-4">{{ regularUsers }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card bg-info text-white">
+            <div class="card-body">
+              <h5 class="card-title">Managers</h5>
+              <p class="card-text display-4">{{ managerUsers }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card bg-warning text-white">
+            <div class="card-body">
+              <h5 class="card-title">Admins</h5>
+              <p class="card-text display-4">{{ adminUsers }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-md-4">
+          <div class="card bg-danger text-white">
+            <div class="card-body">
+              <h5 class="card-title">Blocked Users</h5>
+              <p class="card-text display-4">{{ blockedUsers }}</p>
             </div>
           </div>
         </div>

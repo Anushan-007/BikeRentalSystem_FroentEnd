@@ -4,6 +4,7 @@ import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/rou
 import { TotalbikesService } from '../../Services/totalbikes.service';
 import { Bike } from '../../Models/bike';
 import { RentalRequestService } from '../../Services/rental-request.service';
+import { AdminService, DashboardData } from '../../Services/admin.service';
 
 @Component({
   selector: 'app-dash-board',
@@ -17,11 +18,25 @@ export class DashBoardComponent {
   totalBikes!: number ;  // To store total bike count
   pendingRequests!: number;  // Store pending requests count (optional)
   AvaliableBikes!: number ; // Store outdoor bikes count (optional)
+  
+  // Admin Dashboard Data
+  dashboardData?: DashboardData;
+  totalUsers: number = 0;
+  blockedUsers: number = 0;
+  adminUsers: number = 0;
+  managerUsers: number = 0;
+  regularUsers: number = 0;
 
-  constructor(private router:Router, private totalBikeCount:TotalbikesService, private rentalrequestService:RentalRequestService){
+  constructor(
+    private router:Router, 
+    private totalBikeCount:TotalbikesService, 
+    private rentalrequestService:RentalRequestService,
+    private adminService: AdminService
+  ){
     this.countTotalBikes();
     this.countTotalPendingRequest();
     this.getAvailableBikes();
+    this.loadAdminDashboard();
   }
 
   toggleSidebar() {
@@ -73,6 +88,27 @@ export class DashBoardComponent {
         console.error('Error fetching total req', error);
       }
     );
+  }
+
+  /**
+   * Load Admin Dashboard metrics from AdminController
+   * Gets user statistics, role distribution, and recent users
+   */
+  loadAdminDashboard(): void {
+    this.adminService.getDashboard().subscribe({
+      next: (data) => {
+        console.log("Admin Dashboard Data: ", data);
+        this.dashboardData = data;
+        this.totalUsers = data.totalUsers;
+        this.blockedUsers = data.blockedUsers;
+        this.adminUsers = data.adminUsers;
+        this.managerUsers = data.managerUsers;
+        this.regularUsers = data.regularUsers;
+      },
+      error: (error) => {
+        console.error('Error fetching admin dashboard', error);
+      }
+    });
   }
 
 }

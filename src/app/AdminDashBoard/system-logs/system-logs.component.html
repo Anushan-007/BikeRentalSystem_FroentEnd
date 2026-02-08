@@ -1,0 +1,116 @@
+<div class="container-fluid mt-4">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h3>System Logs</h3>
+      <button class="btn btn-primary" (click)="refreshLogs()">
+        <i class="bi bi-arrow-clockwise"></i> Refresh
+      </button>
+    </div>
+    
+    <div class="card-body">
+      <!-- Loading Spinner -->
+      <div *ngIf="loading" class="text-center">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+
+      <!-- Placeholder Message -->
+      <div *ngIf="!loading && logs.totalLogs === 0" class="alert alert-info">
+        <i class="bi bi-info-circle"></i> 
+        <strong>System Logs Placeholder</strong>
+        <p class="mb-0 mt-2">
+          System logging functionality is currently in development. This feature will display:
+        </p>
+        <ul class="mt-2">
+          <li>User login/logout activities</li>
+          <li>Bike rental transactions</li>
+          <li>Administrative actions</li>
+          <li>System errors and warnings</li>
+          <li>Security events</li>
+        </ul>
+        <p class="mb-0">
+          <strong>Note:</strong> Backend endpoint <code>/api/Admin/system-logs</code> needs to be 
+          implemented with actual logging mechanism.
+        </p>
+      </div>
+
+      <!-- Logs Table (when implemented) -->
+      <div *ngIf="!loading && logs.logs.length > 0" class="table-responsive">
+        <table class="table table-striped table-hover">
+          <thead class="table-dark">
+            <tr>
+              <th>Timestamp</th>
+              <th>Level</th>
+              <th>User</th>
+              <th>Action</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let log of logs.logs">
+              <td>{{ log.timestamp | date:'short' }}</td>
+              <td>
+                <span [class]="'badge bg-' + getLogLevelClass(log.level)">
+                  {{ log.level }}
+                </span>
+              </td>
+              <td>{{ log.user }}</td>
+              <td>{{ log.action }}</td>
+              <td>{{ log.details }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      <div *ngIf="logs.totalLogs > 0" class="d-flex justify-content-between align-items-center mt-3">
+        <div>
+          Showing page {{ logs.currentPage }} ({{ logs.pageSize }} items per page)
+        </div>
+        <div class="btn-group">
+          <button 
+            class="btn btn-outline-primary" 
+            (click)="previousPage()" 
+            [disabled]="currentPage === 1"
+          >
+            <i class="bi bi-chevron-left"></i> Previous
+          </button>
+          <button class="btn btn-outline-primary" (click)="nextPage()">
+            Next <i class="bi bi-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- System Monitoring Cards -->
+  <div class="row mt-4">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">System Health</h5>
+          <div class="text-success">
+            <i class="bi bi-check-circle-fill"></i> All Systems Operational
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Total Logs</h5>
+          <p class="display-6">{{ logs.totalLogs }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Last Updated</h5>
+          <p>{{ currentDate | date:'medium' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

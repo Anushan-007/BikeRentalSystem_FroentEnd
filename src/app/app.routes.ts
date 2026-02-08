@@ -16,6 +16,8 @@ import { BikeUnitComponent } from './AdminDashBoard/bike-unit/bike-unit.componen
 import { InventoryComponent } from './AdminDashBoard/inventory/inventory.component';
 import { BikeEditComponent } from './AdminDashBoard/bike-edit/bike-edit.component';
 import { ReportComponent } from './AdminDashBoard/report/report.component';
+import { UserManagementComponent } from './AdminDashBoard/user-management/user-management.component';
+import { SystemLogsComponent } from './AdminDashBoard/system-logs/system-logs.component';
 // import { EditBikeComponent } from './AdminDashBoard/edit-bike/edit-bike.component';
 
 
@@ -33,7 +35,9 @@ export const routes: Routes = [
      {path:'return', component:ReturnComponent},
      {path:'inventory', component:InventoryComponent},
      { path: 'edit-bike/:id', component: BikeEditComponent},
-     {path:'report', component:ReportComponent}
+     {path:'report', component:ReportComponent},
+     {path:'user-management', component:UserManagementComponent},
+     {path:'system-logs', component:SystemLogsComponent}
       // {path:'editBike', component:EditBikeComponent}
      
     ]

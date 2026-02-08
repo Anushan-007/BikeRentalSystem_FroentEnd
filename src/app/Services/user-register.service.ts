@@ -23,9 +23,7 @@ export class UserRegisterService {
   }
 
   UserLogin(login:Login){
-    return this.http.post(this.userLoginURL, login, {
-      responseType:'text'
-    })
+    return this.http.post<{token: string}>(this.userLoginURL, login)
   }
 
 
