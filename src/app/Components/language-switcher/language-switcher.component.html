@@ -1,0 +1,31 @@
+<!-- Language Switcher Dropdown
+     - Click trigger button to open/close
+     - Click a language option to switch
+     - Click anywhere outside to close  (handled via @HostListener in the TS)
+-->
+<div class="lang-switcher">
+
+  <!-- Trigger button: shows current flag + native name -->
+  <button class="lang-trigger" (click)="toggle($event)" [attr.aria-expanded]="isOpen" type="button">
+    <span class="lang-flag">{{ currentLangObj?.flag }}</span>
+    <span class="lang-label">{{ currentLangObj?.nativeName }}</span>
+    <span class="lang-arrow" [class.open]="isOpen">▾</span>
+  </button>
+
+  <!-- Dropdown list -->
+  <ul class="lang-dropdown" [class.show]="isOpen" role="listbox">
+    <li
+      *ngFor="let lang of languages"
+      class="lang-option"
+      [class.active]="lang.code === currentLang"
+      (click)="select(lang.code)"
+      role="option"
+      [attr.aria-selected]="lang.code === currentLang"
+    >
+      <span class="lang-flag">{{ lang.flag }}</span>
+      <span class="lang-native">{{ lang.nativeName }}</span>
+      <span class="lang-english">({{ lang.name }})</span>
+    </li>
+  </ul>
+
+</div>

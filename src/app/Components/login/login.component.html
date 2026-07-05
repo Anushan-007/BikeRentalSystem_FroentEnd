@@ -1,59 +1,109 @@
- <!-- [disabled]="!registrationForm.valid" -->
+<!-- Login Page
+     Language switcher floats in the top-right corner.
+     All text uses the translate pipe — switches instantly when language changes.
+-->
+<section class="vh-100" style="background-color: #050505;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="row g-0">
 
-  <section class="vh-100" style="background-color: #050505;">
-    <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col col-xl-10">
-          <div class="card" style="border-radius: 1rem;">
-            <div class="row g-0">
-              <div class="col-md-6 col-lg-5 d-none d-md-block" >
-                <img src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/man-with-riding-sport-motorbike-taking-a-curve-daniel-lozano-gonzalez.jpg"
-                  alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem; height: 65vh;" />
-              </div>
-              <div class="col-md-6 col-lg-7 d-flex align-items-center">
-                <div class="card-body p-4 p-lg-5 text-black">
-  
-                  <form [formGroup]="loginForm">
-  
-                    <div class="d-flex align-items-center mb-3 pb-1">
-                      <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
-                      <!-- <span class="h1 fw-bold mb-0">Logo</span> -->
-                    </div>
-  
-                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
-  
-                    <div data-mdb-input-init class="form-outline mb-4">
-                      <label for="userName">Username</label>
-                      <input type="text" class="form-control" id="userName" formControlName="UserName" placeholder="Enter Username" >
-                      <div *ngIf="loginForm.controls.UserName?.invalid && loginForm.controls.UserName?.touched" class="form-text text-danger">
-                        Username is required
-                      </div>
-                    </div>
-  
-                    <div data-mdb-input-init class="form-outline mb-4">
-                      <label for="passwordHash">Password</label>
-                      <input type="password" class="form-control" id="passwordHash" formControlName="Password" placeholder="Enter Password" >
-                      <div *ngIf="loginForm.controls.Password?.invalid && loginForm.controls.Password?.touched" class="form-text text-danger">
-                        Password is required and must be at least 6 characters
-                      </div>
-                    </div>
-  
-                    <div class="pt-1 mb-4">
-                      <button type="submit" class="btn btn-primary"  (click)="onSubmit()" [disabled]="loginForm.invalid">Register</button>
-                    </div>
-  
-                    <!-- <a class="small text-muted" href="#!">Forgot password?</a> -->
-                    <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a 
-                        style="color: #393f81;" [routerLink]="['/register']">Register here</a></p>
-                    <a href="#!" class="small text-muted">Terms of use.</a>
-                    <a href="#!" class="small text-muted">Privacy policy</a>
-                  </form> 
-  
+            <!-- Left: bike image -->
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img
+                src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/man-with-riding-sport-motorbike-taking-a-curve-daniel-lozano-gonzalez.jpg"
+                alt="login form"
+                class="img-fluid"
+                style="border-radius: 1rem 0 0 1rem; height: 65vh; object-fit: cover;"
+              />
+            </div>
+
+            <!-- Right: login form -->
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black w-100">
+
+                <!-- Language Switcher — top right of the form panel -->
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <i class="fas fa-cubes fa-2x" style="color: #ff6219;"></i>
+                  <!-- Place the language switcher here with the 'light' variant -->
+                  <app-language-switcher class="light"></app-language-switcher>
                 </div>
+
+                <!-- Title -->
+                <h5 class="fw-normal mb-4 pb-2" style="letter-spacing: 1px;">
+                  {{ 'LOGIN_TITLE' | translate }}
+                </h5>
+
+                <form [formGroup]="loginForm">
+
+                  <!-- Username -->
+                  <div class="form-outline mb-4">
+                    <label for="userName">{{ 'USERNAME' | translate }}</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="userName"
+                      formControlName="UserName"
+                      [placeholder]="'USERNAME_PLACEHOLDER' | translate"
+                    />
+                    <div
+                      *ngIf="loginForm.controls['UserName']?.invalid && loginForm.controls['UserName']?.touched"
+                      class="form-text text-danger"
+                    >
+                      {{ 'USERNAME_REQUIRED' | translate }}
+                    </div>
+                  </div>
+
+                  <!-- Password -->
+                  <div class="form-outline mb-4">
+                    <label for="passwordHash">{{ 'PASSWORD' | translate }}</label>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="passwordHash"
+                      formControlName="Password"
+                      [placeholder]="'PASSWORD_PLACEHOLDER' | translate"
+                    />
+                    <div
+                      *ngIf="loginForm.controls['Password']?.invalid && loginForm.controls['Password']?.touched"
+                      class="form-text text-danger"
+                    >
+                      {{ 'PASSWORD_REQUIRED' | translate }}
+                    </div>
+                  </div>
+
+                  <!-- Submit button -->
+                  <div class="pt-1 mb-4">
+                    <button
+                      type="submit"
+                      class="btn btn-primary"
+                      (click)="onSubmit()"
+                      [disabled]="loginForm.invalid"
+                    >
+                      {{ 'LOGIN_BTN' | translate }}
+                    </button>
+                  </div>
+
+                  <!-- Register link -->
+                  <p class="mb-5 pb-lg-2" style="color: #393f81;">
+                    {{ 'NO_ACCOUNT' | translate }}
+                    <a style="color: #393f81;" [routerLink]="['/register']">
+                      {{ 'REGISTER_HERE' | translate }}
+                    </a>
+                  </p>
+
+                  <!-- Footer links -->
+                  <a href="#!" class="small text-muted me-2">{{ 'TERMS' | translate }}</a>
+                  <a href="#!" class="small text-muted">{{ 'PRIVACY' | translate }}</a>
+
+                </form>
               </div>
             </div>
+
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>

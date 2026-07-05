@@ -53,8 +53,11 @@ export class RegisterComponent implements OnInit{
 
 onSubmit(registrationForm:any){
   if (this.registrationForm.valid) {
-    const user = this.registrationForm.value;
-    this.registrationForm.value.roles = parseFloat(registrationForm.value.roles)
+    const formValue = this.registrationForm.value;
+    const user = {
+      ...formValue,
+      roles: 3  // Roles.User = 3
+    };
     this.registerService.AddRegisterUser(user).subscribe(data => {
       this.toaster.success("Sign Up Successfully", "Sign Up")
      console.log(data);

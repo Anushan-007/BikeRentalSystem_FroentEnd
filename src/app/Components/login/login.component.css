@@ -1,1 +1,11 @@
+/* Ensure the language switcher uses the light (dark-text) style on white card */
+app-language-switcher.light ::ng-deep .lang-trigger {
+  background: #f3f4f6;
+  border: 1.5px solid #d1d5db;
+  color: #374151;
+}
 
+app-language-switcher.light ::ng-deep .lang-trigger:hover {
+  background: #e5e7eb;
+  border-color: #9ca3af;
+}
