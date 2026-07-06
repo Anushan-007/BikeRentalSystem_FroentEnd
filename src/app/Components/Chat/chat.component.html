@@ -3,25 +3,31 @@
   <!-- ── Header ─────────────────────────────────────────────────────────── -->
   <div class="chat-header">
     <h2>🚲 Bike Rental AI Assistant</h2>
+
+    <!-- New Conversation button — resets history on both frontend and backend -->
+    <!-- [disabled]="isLoading" prevents accidental reset during a pending call -->
+    <button
+      (click)="newConversation()"
+      [disabled]="isLoading"
+      class="new-conversation-btn"
+      title="Start a fresh conversation"
+    >
+      + New Chat
+    </button>
   </div>
 
   <!-- ── Message List ───────────────────────────────────────────────────── -->
-  <!-- *ngFor loops through the messages array and renders each message     -->
-  <!-- [class] applies different CSS class based on sender (user vs bot)    -->
   <div class="chat-messages">
 
     <div
       *ngFor="let msg of messages"
       [class]="msg.sender === 'user' ? 'message user-message' : 'message bot-message'"
     >
-      <!-- Sender icon — 👤 for user, 🤖 for bot -->
       <span class="sender-icon">{{ msg.sender === 'user' ? '👤' : '🤖' }}</span>
-
-      <!-- Message text -->
       <span class="message-text">{{ msg.text }}</span>
     </div>
 
-    <!-- Loading indicator shown while waiting for AI response -->
+    <!-- Loading indicator while waiting for AI response -->
     <div *ngIf="isLoading" class="message bot-message">
       <span class="sender-icon">🤖</span>
       <span class="message-text loading-text">Typing...</span>
@@ -32,8 +38,6 @@
   <!-- ── Input Area ─────────────────────────────────────────────────────── -->
   <div class="chat-input-area">
 
-    <!-- Two-way binding: [(ngModel)]="message" keeps the variable in sync  -->
-    <!-- (keydown.enter) sends the message when Enter key is pressed         -->
     <input
       type="text"
       [(ngModel)]="message"
@@ -43,7 +47,6 @@
       class="chat-input"
     />
 
-    <!-- Send button — disabled while loading or when input is empty        -->
     <button
       (click)="sendMessage()"
       [disabled]="isLoading || !message.trim()"
