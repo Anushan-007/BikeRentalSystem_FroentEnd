@@ -1,4 +1,32 @@
 
+/* ── AI Chat Floating Button ────────────────────────────────────────────────
+   Fixed to bottom-right, positioned above the theme toggle (bottom: 80px).
+   Uses the same right/bottom convention as Bootstrap's bd-mode-toggle.    */
+.chat-float-btn {
+  position: fixed;
+  bottom: 80px;          /* sits above the theme-toggle button */
+  right: 16px;
+  z-index: 1050;         /* above Bootstrap navbar (z-index: 1030) */
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background-color: #1a73e8;
+  color: #ffffff;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.chat-float-btn:hover {
+  background-color: #1557b0;
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
 .carousel-item {
     background-size: cover;
     background-position: center;

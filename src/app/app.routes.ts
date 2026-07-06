@@ -18,6 +18,7 @@ import { BikeEditComponent } from './AdminDashBoard/bike-edit/bike-edit.componen
 import { ReportComponent } from './AdminDashBoard/report/report.component';
 import { UserManagementComponent } from './AdminDashBoard/user-management/user-management.component';
 import { SystemLogsComponent } from './AdminDashBoard/system-logs/system-logs.component';
+import { ChatComponent } from './Components/Chat/chat.component';
 // import { EditBikeComponent } from './AdminDashBoard/edit-bike/edit-bike.component';
 
 
@@ -72,6 +73,12 @@ export const routes: Routes = [
 
     { path:'login', component:LoginComponent},
     {path:'register', component:RegisterComponent},
+
+    // ── Phase 1: AI Chat ──────────────────────────────────────────────────
+    // Standalone route — accessible after login at /chat.
+    // No child of user/admin so it renders full-screen without any layout wrapper.
+    { path: 'chat', component: ChatComponent, canActivate: [AuthGuard], data: { role: 'User' } },
+
     {path:'**', redirectTo:'login', pathMatch:'full'}
 
 ];

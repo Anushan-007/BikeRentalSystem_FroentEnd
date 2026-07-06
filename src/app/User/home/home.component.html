@@ -1,4 +1,12 @@
 
+<!-- ── AI Chat Floating Button ──────────────────────────────────────────────
+     Positioned above the existing theme-toggle button.
+     [routerLink] navigates to the /chat route.
+     No component logic needed — RouterLink is already imported.          -->
+<a [routerLink]="['/chat']" class="chat-float-btn" title="Open AI Assistant">
+  🤖 <span>AI Chat</span>
+</a>
+
 <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
     <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
             id="bd-theme"

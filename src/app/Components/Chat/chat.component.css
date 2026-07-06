@@ -1,0 +1,135 @@
+/* ── Chat Container ──────────────────────────────────────────────────────────
+   Full-height flex column. All 3 sections stack vertically:
+   Header (fixed height) → Messages (grows to fill) → Input (fixed height)    */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  border: 1px solid #ddd;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+.chat-header {
+  background-color: #1a73e8;
+  color: white;
+  padding: 16px;
+  text-align: center;
+  flex-shrink: 0;        /* never shrinks — always visible at top */
+}
+
+.chat-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+/* ── Message List ────────────────────────────────────────────────────────── */
+.chat-messages {
+  flex: 1;               /* grows to fill all available space between header and input */
+  overflow-y: auto;      /* scroll when messages overflow */
+  padding: 16px;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Individual Message ──────────────────────────────────────────────────── */
+.message {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  max-width: 70%;
+}
+
+/* User messages: pushed to the right side */
+.user-message {
+  align-self: flex-end;
+  flex-direction: row-reverse;   /* icon on the right, text on the left */
+}
+
+/* Bot messages: aligned to the left side */
+.bot-message {
+  align-self: flex-start;
+}
+
+.sender-icon {
+  font-size: 22px;
+  line-height: 1;
+}
+
+/* Message bubble */
+.message-text {
+  background-color: white;
+  padding: 10px 14px;
+  border-radius: 12px;
+  line-height: 1.5;
+  font-size: 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  word-break: break-word;
+}
+
+/* User bubble: blue background, white text */
+.user-message .message-text {
+  background-color: #1a73e8;
+  color: white;
+}
+
+/* Loading "Typing..." text */
+.loading-text {
+  color: #888;
+  font-style: italic;
+}
+
+/* ── Input Area ──────────────────────────────────────────────────────────── */
+.chat-input-area {
+  display: flex;
+  padding: 12px 16px;
+  gap: 8px;
+  background-color: white;
+  border-top: 1px solid #ddd;
+  flex-shrink: 0;        /* never shrinks — always visible at bottom */
+}
+
+.chat-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #ddd;
+  border-radius: 24px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.chat-input:focus {
+  border-color: #1a73e8;
+}
+
+.chat-input:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+/* ── Send Button ─────────────────────────────────────────────────────────── */
+.send-button {
+  padding: 10px 24px;
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.send-button:hover:not(:disabled) {
+  background-color: #1557b0;
+}
+
+.send-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
